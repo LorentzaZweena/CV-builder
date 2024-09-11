@@ -311,7 +311,7 @@ a{
     line-height: 1.6;
 }
 
-/* section one */
+/* section 1 */
 .section-one{
     padding: 64px 0;
     min-height: 80vh;
@@ -341,4 +341,29 @@ a{
 
 .section-one-r .btn-group{
     margin-top: 3rem;
+}
+
+/* section 2 */
+.section-two{
+    padding: 64px 0;
+}
+
+.section-two .section-items{
+    display: grid;
+    gap: 2rem;
+}
+
+.section-two .section-item{
+    max-width: 350px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.section-two .section-item-icon{
+    margin: 1rem 0;
+}
+
+.section-two .section-item-title{
+    color: var(--clr-blue-dark);
 }
