@@ -7,14 +7,262 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
-    
 
+    <nav class="navbar bg-white">
+        <div class="container">
+            <div class="navbar-content">
+                <div class="brand-and-toggler">
+                    <a href="index.html" class="navbar-brand">
+                        <img src="images/logocv.png" alt="" class="navbar-brand-icon">
+                        <span class="navbar-brand-text">Build <span>resume</span></span>
+                    </a>
+                    <button type="button" class="navbar-toggler-btn">
+                        <div class="bars">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <section id="about-sc" class="" style="margin-top: -4em;">
+        <div class="container">
+            <div class="about-cnt">
+                <form action="" class="cv-form" id="cv-form">
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>About section</h3>
+                        </div>
+                        <div class="cv-form-row cv-form-row-about">
+                            <div class="cols-3">
+                                <div class="form-elem">
+                                    <label for="" class="form-label">First name</label>
+                                    <input type="text" name="firstname" class="form-control firstname" id="" onkeyup="" placeholder="Zweena">
+                                    <span class="form-text"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Middle name <span>(optional)</span></label>
+                                    <input type="text" name="middlename" class="form-control middlename" id="" onkeyup="" placeholder="">
+                                    <span class="form-text"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Last name</label>
+                                    <input type="text" name="lastname" class="form-control lastname" id="" onkeyup="" placeholder="Ariva">
+                                    <span class="form-text"></span>
+                                </div>
+                            </div>
+                            <div class="cols-3">
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Your image</label>
+                                    <input type="file" name="image" class="form-control image" id="" accept="images/*" onchange="">
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Position</label>
+                                    <input type="text" name="designation" class="form-control designation" id="" onkeyup="" placeholder="Web programmer">
+                                    <span class="form-text"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Address</label>
+                                    <input type="text" name="address" class="form-control address" id="" onkeyup="" placeholder="Cilebut">
+                                    <span class="form-text"></span>
+                                </div>
+                            </div>
+                            <div class="cols-3">
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control email" id="" onkeyup="" placeholder="abc@gmail.com">
+                                    <span class="form-text"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Mobile number</label>
+                                    <input type="text" name="mobileno" class="form-control mobileno" id="" onkeyup="" placeholder="+1 234-567-8901">
+                                    <span class="form-text"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label for="" class="form-label">Last name</label>
+                                    <input type="text" name="lastname" class="form-control lastname" id="" onkeyup="" placeholder="Ariva">
+                                    <span class="form-text"></span>
+                                </div>
+                            </div>
+                    </div>
 
-    
+                    <!-- Achievements -->
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>Achievements</h3>
+                        </div>
+                        <div class="row-separator repeater">
+                            <div class="repeater" data-repeater-list="group-a">
+                                <div data-repeater-item>
+                                    <div class="cv-form-row cv-form-row-achievement">
+                                        <div class="cols-2">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Title</label>
+                                                <input type="text" name="achieve_title" class="form-control achieve_title" id="" onkeyup="" placeholder="2nd place web design">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Description</label>
+                                                <input type="text" name="achieve_description" class="form-control achieve_description" id="" onkeyup="" placeholder="This is mine">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <button data-repeater-delete-type="button" class="repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>Experience</h3>
+                        </div>
+                        <div class="row-separator repeater">
+                            <div class="repeater" data-repeater-list="group-b">
+                                <div data-repeater-item>
+                                    <div class="cv-form-row cv-form-row-experience">
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Title</label>
+                                                <input type="text" name="exp_title" class="form-control exp_title" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Company</label>
+                                                <input type="text" name="exp_organization" class="form-control exp_organization" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Location</label>
+                                                <input type="text" name="exp_location" class="form-control exp_location" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Start date</label>
+                                                <input type="date" name="exp_start_date" class="form-control exp_start_date" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">End date</label>
+                                                <input type="date" name="exp_end_date" class="form-control exp_end_date" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Description</label>
+                                                <input type="text" name="exp_description" class="form-control exp_description" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <button data-repeater-delete-type="button" class="repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>Education</h3>
+                        </div>
+                        <div class="row-separator repeater">
+                            <div class="repeater" data-repeater-list="group-c">
+                                <div data-repeater-item>
+                                    <div class="cv-form-row cv-form-row-experience">
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">School</label>
+                                                <input type="text" name="exp_school" class="form-control exp_school" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Degree</label>
+                                                <input type="text" name="exp_degree" class="form-control exp_degree" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">City</label>
+                                                <input type="text" name="exp_city" class="form-control exp_city" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Start date</label>
+                                                <input type="date" name="edu_start_date" class="form-control edu_start_date" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">End date</label>
+                                                <input type="date" name="exp_graduation_date" class="form-control exp_graduation_date" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Description</label>
+                                                <input type="text" name="edu_description" class="form-control edu_description" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+                                        <button data-repeater-delete-type="button" class="repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="row-separator repeater">
+                            <div class="repeater" data-repeater-list="group-d">
+                                <div data-repeater-item>
+                                    <div class="cv-form-row cv-form-row-experience">
+                                        <div class="cols-3">
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Project name</label>
+                                                <input type="text" name="proj_title" class="form-control proj_title" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Project link</label>
+                                                <input type="text" name="proj_link" class="form-control proj_link" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                            <div class="form-elem">
+                                                <label for="" class="form-label">Description</label>
+                                                <input type="text" name="proj_description" class="form-control proj_description" id="" onkeyup="">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        </div>
+
+                                        <button data-repeater-delete-type="button" class="repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- script -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="script.js"></script>
     <script src="app.js"></script>
 </body>
