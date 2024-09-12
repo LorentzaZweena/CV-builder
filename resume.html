@@ -32,6 +32,7 @@
         <div class="container">
             <div class="about-cnt">
                 <form action="" class="cv-form" id="cv-form">
+                    <!-- About -->
                     <div class="cv-form-blk">
                         <div class="cv-form-row-title">
                             <h3>About section</h3>
@@ -254,7 +255,89 @@
                             <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
                         </div>
                     </div>
+
+                    <!-- Skills -->
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <h3>Skills</h3>
+                        </div>
+                        <div class="row-separator repeater">
+                            <div class="repeater" data-repeater-list="group-e">
+                                <div data-repeater-item>
+                                    <div class="cv-form-row cv-form-row-skills">
+                                        <div class="form-elem">
+                                            <label for="" class="form-label">Skills</label>
+                                            <input type="text" name="skill" class="form-control skill" id="" onkeyup="">
+                                            <span class="form-text"></span>
+                                        </div>
+
+                                        <button data-repeater-delete type="button" class="repeater-remove-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button>
+                        </div>
+                    </div>
                 </form>
+            </div>
+        </div>
+    </section>
+    
+    <section id="preview-sc" class="print_area">
+        <div class="container">
+            <div class="preview-cnt">
+                <div class="preview-cnt-l bg-green text-white">
+                    <div class="preview-blk">
+                        <div class="preview-image">
+                            <img src="" alt="" id="image_dsp">
+                        </div>
+                        <div class="preview-item preview-item-name">
+                            <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val text-uppercase fw-6 ls-1" id="designation_dsp"></span>
+                        </div>
+                    </div>
+                    <div class="preview-blk">
+                        <div class="preview-blk-title">
+                            <h3>About</h3>
+                        </div>
+                        <div class="preview-blk-list">
+                            <div class="preview-item">
+                                <span class="preview-item-val" id="phoneno_dsp"></span>
+                            </div>
+                            <div class="preview-item">
+                                <span class="preview-item-val" id="email_dsp"></span>
+                            </div>
+                            <div class="preview-item">
+                                <span class="preview-item-val" id="address"></span>
+                            </div>
+                            <div class="preview-item">
+                                <span class="preview-item-val" id="summary_dsp"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="preview-blk">
+                        <div class="preview-blk-title">
+                            <h3>Skills</h3>
+                        </div>
+                        <div class="skill-items preview-blk-list" id="skills_dsp">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-cnt-r bg-white">
+                    <div class="preview-blk">
+                        <div class="preview-blk-title">
+                            <h3>Achievements</h3>
+                        </div>
+                        <div class="achievement-items preview-blk-list" id="achievements_dsp">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
