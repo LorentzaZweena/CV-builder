@@ -594,7 +594,7 @@ textarea{
 }
 
 .preview-blk-title{
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
 }
 
 .preview-blk-list .preview-item{
@@ -615,7 +615,8 @@ textarea{
     display: block;
     font-weight: 600;
     margin-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
+    margin-top: 1em;
 }
 
 .educations-items.preview-blk-list .preview-item span:nth-child(2), .experiences-items.preview-blk-list .preview-item span:nth-child(2){
@@ -650,6 +651,43 @@ textarea{
 .projects-items.preview-blk-list .preview-item span{
     display: block;
 }
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1em;
+}
+
+.dropdown-label {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+.dropdown-select {
+    padding: 0.5em 1em;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1em top 50%;
+    background-size: 1em;
+}
+
+.dropdown-select:hover,
+.dropdown-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 
 @media screen and (min-width: 768px){
     .cols-3{

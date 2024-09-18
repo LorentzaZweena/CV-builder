@@ -81,7 +81,7 @@ const getUserInputs = () => {
     eduDescriptionElem = document.querySelectorAll('.edu_description');
 
     let projTitleElem = document.querySelectorAll('.proj_title'),
-    projLinkElem = document.querySelectorAll('.proj_link'),
+    // projLinkElem = document.querySelectorAll('.proj_link'),
     projDescriptionElem = document.querySelectorAll('.proj_description');
 
     let skillElem = document.querySelectorAll('.skill');
@@ -110,7 +110,7 @@ const getUserInputs = () => {
     eduGraduationDateElem.forEach(item => item.addEventListener('blur', (e) => validateFormData(e.target, validType.ANY, 'Graduation Date')));
     eduDescriptionElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'Description')));
     projTitleElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'Title')));
-    projLinkElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'Link')));
+    // projLinkElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'Link')));
     projDescriptionElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'Description')));
     skillElem.forEach(item => item.addEventListener('keyup', (e) => validateFormData(e.target, validType.ANY, 'skill')));
 
@@ -126,23 +126,23 @@ const getUserInputs = () => {
         achievements: fetchValues(['achieve_title', 'achieve_description'], achievementsTitleElem, achievementsDescriptionElem),
         experiences: fetchValues(['exp_title', 'exp_organization', 'exp_location', 'exp_start_date', 'exp_end_date', 'exp_description'], expTitleElem, expOrganizationElem, expLocationElem, expStartDateElem, expEndDateElem, expDescriptionElem),
         educations: fetchValues(['edu_school', 'edu_degree', 'edu_city', 'edu_start_date', 'edu_graduation_date', 'edu_description'], eduSchoolElem, eduDegreeElem, eduCityElem, eduStartDateElem, eduGraduationDateElem, eduDescriptionElem),
-        projects: fetchValues(['proj_title', 'proj_link', 'proj_description'], projTitleElem, projLinkElem, projDescriptionElem),
+        projects: fetchValues(['proj_title', 'proj_description'], projTitleElem, projDescriptionElem),
         skills: fetchValues(['skill'], skillElem)
     }
 };
 
 function validateFormData(elem, elemType, elemName){
     // checking for text string and non empty string
-    if(elemType == validType.TEXT){
-        if(!strRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
+    // if(elemType == validType.TEXT){
+    //     if(!strRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
+    //     else removeErrMsg(elem);
+    // }
 
     // checking for only text string
-    if(elemType == validType.TEXT_EMP){
-        if(!strRegex.test(elem.value)) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
+    // if(elemType == validType.TEXT_EMP){
+    //     if(!strRegex.test(elem.value)) addErrMsg(elem, elemName);
+    //     else removeErrMsg(elem);
+    // }
 
     // checking for email
     if(elemType == validType.EMAIL){
@@ -151,16 +151,16 @@ function validateFormData(elem, elemType, elemName){
     }
 
     // checking for phone number
-    if(elemType == validType.mobileno){
-        if(!phoneRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
+    // if(elemType == validType.mobileno){
+    //     if(!phoneRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
+    //     else removeErrMsg(elem);
+    // }
 
     // checking for only empty
-    if(elemType == validType.ANY){
-        if(elem.value.trim().length == 0) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
+    // if(elemType == validType.ANY){
+    //     if(elem.value.trim().length == 0) addErrMsg(elem, elemName);
+    //     else removeErrMsg(elem);
+    // }
 }
 
 // adding the invalid text
@@ -220,6 +220,6 @@ function previewImage(){
     }
 }
 
-function printCV(){
+function printCV(event) {
     window.print();
 }
