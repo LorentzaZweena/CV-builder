@@ -206,10 +206,83 @@ const displayCV = (userData) => {
 }
 
 // generate CV
-const generateCV = () => {
-    let userData = getUserInputs();
-    displayCV(userData);
-    console.log(userData);
+function generateCV() {
+    const firstName = document.querySelector('input[name="firstname"]').value;
+    const middleName = document.querySelector('input[name="middlename"]').value;
+    const lastName = document.querySelector('input[name="lastname"]').value;
+    const fullName = `${firstName} ${middleName} ${lastName}`.trim();
+    const designation = document.querySelector('input[name="designation"]').value;
+    const mobileNo = document.querySelector('input[name="mobileno"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const address = document.querySelector('input[name="address"]').value;
+    const summary = document.querySelector('input[name="summary"]').value;
+
+    document.getElementById('fullname_dsp').innerText = fullName;
+    document.getElementById('designation_dsp').innerText = designation;
+    document.getElementById('mobileno_dsp').innerText = mobileNo;
+    document.getElementById('email_dsp').innerText = email;
+    document.getElementById('address_dsp').innerText = address;
+    document.getElementById('summary_dsp').innerText = summary;
+
+    // Update Work Experience
+    let experiences = "";
+    document.querySelectorAll(".experience").forEach(function (experience) {
+        const jobTitle = experience.querySelector(".job-title").value;
+        const company = experience.querySelector(".company").value;
+        const dates = experience.querySelector(".dates").value;
+        const description = experience.querySelector(".description").value;
+
+        experiences += `
+            <h3>${jobTitle} - ${company}</h3>
+            <p><em>${dates}</em></p>
+            <p>${description}</p>
+            <br>
+        `;
+    });
+    document.getElementById("experiences_dsp").innerHTML = experiences;
+
+    // Update Education
+    let education = "";
+    document.querySelectorAll(".education").forEach(function (edu) {
+        const degree = edu.querySelector(".degree").value;
+        const institution = edu.querySelector(".institution").value;
+        const eduDates = edu.querySelector(".edu-dates").value;
+
+        education += `
+            <h3>${degree}</h3>
+            <p>${institution}</p>
+            <p><em>${eduDates}</em></p>
+            <br>
+        `;
+    });
+    document.getElementById("education_dsp").innerHTML = education;
+
+    // Update Projects
+    let projects = "";
+    document.querySelectorAll(".project").forEach(function (project) {
+        const projectName = project.querySelector(".project-name").value;
+        const projectDescription = project.querySelector(".project-description").value;
+
+        projects += `
+            <h3>${projectName}</h3>
+            <p>${projectDescription}</p>
+            <br>
+        `;
+    });
+    document.getElementById("projects_dsp").innerHTML = projects;
+
+    // Update Achievements
+    let achievements = "";
+    document.querySelectorAll(".achievement").forEach(function (achieve) {
+        const title = achieve.querySelector(".achieve_title").value;
+        const achieveDescription = achieve.querySelector(".achieve_description").value;
+
+        achievements += `
+            <p><strong>${title}:</strong> ${achieveDescription}</p>
+            <br>
+        `;
+    });
+    document.getElementById("achievements_dsp").innerHTML = achievements;
 }
 
 function previewImage(){

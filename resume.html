@@ -181,17 +181,17 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">School</label>
-                                                    <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()">
+                                                    <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" placeholder="SMK INFORMATIKA PESAT">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Degree</label>
-                                                    <input name = "edu_degree" type = "text" class = "form-control edu_degree" id = "" onkeyup="generateCV()">
+                                                    <label for = "" class = "form-label">Majors</label>
+                                                    <input name = "edu_degree" type = "text" class = "form-control edu_degree" id = "" onkeyup="generateCV()" placeholder="Rekayasa perangkat lunak">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">City</label>
-                                                    <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()">
+                                                    <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()" placeholder="Bogor">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -283,11 +283,11 @@
             </div>
         </section>
 
-        <div class="dropdown-container" style="margin-left: 7em;">
+        <div class="dropdown-container" style="margin-left: 68em; margin-top: -5em;">
             <label for="cv-type" class="dropdown-label">Choose CV type:</label>
             <select id="cv-type" class="dropdown-select" onchange="switchCVType()">
-                <option value="ats">CV ATS</option>
                 <option value="creative">CV Creative</option>
+                <option value="ats">CV ATS</option>
             </select>
         </div>
         
@@ -335,7 +335,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class = "preview-cnt-r bg-white" style="margin-left: 1em;">
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
@@ -388,7 +387,109 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    
+    <script>
+        function switchCVType() {
+    const cvType = document.getElementById('cv-type').value;
+    const previewCnt = document.querySelector('.preview-cnt');
+
+    if (cvType === 'ats') {
+        // Update to CV ATS layout
+        previewCnt.innerHTML = `
+            <div class="cv-ats">
+                <h1 id="fullname_dsp" class="ats-name text-uppercase"></h1>
+                <p id="designation_dsp" class="ats-designation"></p>
+                <p id="contact_dsp">
+                    <span id="address_dsp"></span> | 
+                    <span id="mobileno_dsp"></span> | 
+                    <span id="email_dsp"></span>
+                </p>
+                <p id="portfolio_dsp"><a href="#" target="_blank">Portfolio: link</a></p>
+                <hr>
+                <h2>PERSONAL SUMMARY</h2>
+                <p id="summary_dsp"></p>
+                <hr>
+                <h2>WORK EXPERIENCE</h2>
+                <div id="experiences_dsp"></div>
+            </div>
+        `;
+    } else {
+        previewCnt.innerHTML = `
+            <div class="preview-cnt-l bg-pesat text-white">
+                <div class="preview-blk">
+                    <div class="preview-image">
+                        <img src="" alt="" id="image_dsp">
+                    </div>
+                    <div class="preview-item preview-item-name">
+                        <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-item-val text-uppercase fw-6 ls-1" id="designation_dsp"></span>
+                    </div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>Contact</h3>
+                    </div>
+                    <div class="preview-blk-list">
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="mobileno_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="email_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="address_dsp"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>skills</h3>
+                    </div>
+                    <div class="skills-items preview-blk-list" id="skills_dsp">
+                    </div>
+                </div>
+            </div>
+            <div class="preview-cnt-r bg-white" style="margin-left: 1em;">
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>Self description</h3>
+                    </div>
+                    <div class="achievements-items preview-blk-list" id="summary_dsp"></div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>Achievements</h3>
+                    </div>
+                    <div class="achievements-items preview-blk-list" id="achievements_dsp"></div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>educations</h3>
+                    </div>
+                    <div class="educations-items preview-blk-list" id="educations_dsp"></div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>experiences</h3>
+                    </div>
+                    <div class="experiences-items preview-blk-list" id="experiences_dsp"></div>
+                </div>
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>projects</h3>
+                    </div>
+                    <div class="achievements-items preview-blk-list" id="projects_dsp" style="text-align: justify;"></div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateCV();
+}
+
+    </script>
+
         <script src = "script.js"></script>
         <script src="app.js"></script>
     </body>

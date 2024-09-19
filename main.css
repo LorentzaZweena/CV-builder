@@ -652,6 +652,7 @@ textarea{
     display: block;
 }
 
+/* Container and Label Styles */
 .dropdown-container {
     display: flex;
     flex-direction: column;
@@ -666,8 +667,9 @@ textarea{
 }
 
 .dropdown-select {
-    padding: 0.5em 1em;
-    font-size: 14px;
+    width: 155px;
+    padding: 0.5em 2.5em 0.5em 1em;
+    font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
@@ -678,7 +680,7 @@ textarea{
     appearance: none;
     background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
     background-repeat: no-repeat;
-    background-position: right 1em top 50%;
+    background-position: right 1em center;
     background-size: 1em;
 }
 
@@ -686,6 +688,55 @@ textarea{
 .dropdown-select:focus {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.cv-ats {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.cv-ats h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    /* margin-left: 20em; */
+    text-align: center;
+    width: 70%;
+}
+
+.cv-ats .ats-designation {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    /* margin-left: 27em; */
+    text-align: center;
+    width: 70%;
+}
+
+.cv-ats #contact_dsp {
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.cv-ats a {
+    color: #000;
+    text-decoration: none;
+}
+
+.cv-ats hr {
+    border: 1px solid #000;
+    margin: 20px 0;
+}
+
+.cv-ats h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cv-ats p {
+    font-size: 14px;
 }
 
 
