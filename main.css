@@ -505,7 +505,7 @@ textarea{
     display: block;
     font-weight: 600;
     margin-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0.03);
+    /* background-color: rgba(0, 0, 0, 0.03); */
 }
 
 .educations-items.preview-blk-list .preview-item span:nth-child(2),
@@ -542,6 +542,39 @@ textarea{
     display: block;
 }
 
+.projects-items.preview-blk-list .preview-item span:first-child {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.2em;
+}
+
+.projects-items.preview-blk-list .preview-item span:nth-child(2) {
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+.projects-items.preview-blk-list .preview-item span:nth-child(3) {
+    /* font-style: italic; */
+    margin-right: 1rem;
+}
+
+.projects-items.preview-blk-list .preview-item span:nth-child(4),
+.projects-items.preview-blk-list .preview-item span:nth-child(5) {
+    margin-right: 1rem;
+    background-color: #002e63;
+    color: var(--clr-white);
+    padding: 0 1rem;
+    border-radius: 0.6rem;
+}
+
+.projects-items.preview-blk-list .preview-item span:nth-child(6) {
+    font-size: 13.5px;
+    display: block;
+    opacity: 0.8;
+    margin-top: 1rem;
+}
+
 @media screen and (min-width: 768px){
     .cols-3{
         grid-template-columns: repeat(3, 1fr);
@@ -566,7 +599,6 @@ textarea{
     margin: 2rem 0 6rem 0;
 }
 
-/* print section */
 @media print{
     body *{
         visibility: hidden;
