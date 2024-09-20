@@ -33,7 +33,7 @@
             
             h1 {
                 font-size: 28px;
-                margin-bottom: 5px;
+                /* margin-bottom: 2px; */
             }
             
             p {
@@ -485,42 +485,19 @@
         <div id="cv-ats" class="active">
             <div class="cv-container">
                 <header>
-                    <div class = "preview-item preview-item-name">
-                        <h1 class="fw-6" id="fullname_dsp"></h1>
-                    </div>
-                    <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"></span>
+                    <h1 class="fw-6 preview-item preview-item-name" id="fullname_dsp" style="text-transform: uppercase; margin-bottom: 0;"></h1>
+                    <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp" style="margin-top: -2em;"></span>
                     <p>Email: <span class = "preview-item-val" id = "email_dsp"></span> | Phone: <span class = "preview-item-val" id = "mobileno_dsp"></span> | Address: <span class = "preview-item-val" id = "address_dsp"></span></p>
                 </header>
         
                 <section class="cv-section">
                     <h2>Self description</h2>
-                    <p>
-                        Results-driven software developer with 5+ years of experience in designing and implementing scalable web applications. Proven expertise in PHP, JavaScript, and Laravel, with a passion for solving complex technical challenges.
-                    </p>
+                    <p class = "summary preview-blk-list" id = "summary_dsp"></p>
                 </section>
         
                 <section class="cv-section">
                     <h2>Work Experience</h2>
-        
-                    <div class="experience-item">
-                        <h3>Software Developer</h3>
-                        <p>ABC Tech, City, State | June 2020 - Present</p>
-                        <ul>
-                            <li>Developed and maintained web applications using PHP and Laravel, improving performance by 30%.</li>
-                            <li>Collaborated with cross-functional teams to gather requirements and implement software solutions.</li>
-                            <li>Integrated third-party APIs to streamline data processing, reducing workload by 15%.</li>
-                        </ul>
-                    </div>
-        
-                    <div class="experience-item">
-                        <h3>Junior Developer</h3>
-                        <p>XYZ Solutions, City, State | March 2017 - May 2020</p>
-                        <ul>
-                            <li>Contributed to the development of client-facing applications, focusing on front-end technologies (JavaScript, HTML, CSS).</li>
-                            <li>Assisted in database management and optimized SQL queries to enhance data retrieval speed.</li>
-                            <li>Participated in code reviews and quality assurance processes.</li>
-                        </ul>
-                    </div>
+                    <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
                 </section>
         
                 <section class="cv-section">
@@ -621,8 +598,97 @@
                 addressDisplayATS.textContent = addressInput.value;
             });
 
-            // You can extend this logic for other fields like designation, summary, etc.
+            const designationInput = document.querySelector('input[name="designation"]');
+            const designationDisplayCreative = document.getElementById('designation_dsp');
+            const designationDisplayATS = document.querySelector('#cv-ats #designation_dsp');
+
+            designationInput.addEventListener('input', function () {
+                designationDisplayCreative.textContent = designationInput.value;
+                designationDisplayATS.textContent = designationInput.value;
+            });
+
+            const summaryInput = document.querySelector('input[name="summary"]');
+            const summaryDisplayCreative = document.getElementById('summary_dsp');
+            const summaryDisplayATS = document.querySelector('#cv-ats #summary_dsp');
+
+            summaryInput.addEventListener('input', function () {
+                summaryDisplayCreative.textContent = summaryInput.value;
+                summaryDisplayATS.textContent = summaryInput.value;
+            });
         });
+
+        // New: Update education section
+            const educationInputs = document.querySelectorAll('input[name^="edu_"]');
+            const educationDisplayATS = document.querySelector('#cv-ats .educations-items');
+
+    function updateEducations() {
+        let educationHTML = '';
+        educationInputs.forEach(input => {
+            const school = document.querySelector('input[name="edu_school"]').value;
+            const degree = document.querySelector('input[name="edu_degree"]').value;
+            const city = document.querySelector('input[name="edu_city"]').value;
+            const startDate = document.querySelector('input[name="edu_start_date"]').value;
+            const endDate = document.querySelector('input[name="edu_graduation_date"]').value;
+            const description = document.querySelector('input[name="edu_description"]').value;
+
+            if (school && degree && city && startDate && endDate) {
+                educationHTML += `
+                    <div class="education-item">
+                        <h3>${school} - ${degree}</h3>
+                        <p>${city} | ${startDate} - ${endDate}</p>
+                        <p>${description}</p>
+                    </div>`;
+            }
+            
+        });
+        educationDisplayATS.innerHTML = educationHTML;
+    }
+
+    educationInputs.forEach(input => input.addEventListener('input', updateEducations));
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const experienceDisplayATS = document.querySelector('#cv-ats #experiences_dsp');
+
+    function updateExperiences() {
+        // Select all experience blocks (assuming each experience is grouped)
+        const experienceBlocks = document.querySelectorAll('.cv-form-row-experience'); // or adjust with the correct class name for each experience block
+
+        let experienceHTML = '';
+
+        // Iterate over each experience block
+        experienceBlocks.forEach(block => {
+            const title = block.querySelector('input[name="exp_title"]').value;
+            const organization = block.querySelector('input[name="exp_organization"]').value;
+            const location = block.querySelector('input[name="exp_location"]').value;
+            const startDate = block.querySelector('input[name="exp_start_date"]').value;
+            const endDate = block.querySelector('input[name="exp_end_date"]').value;
+            const description = block.querySelector('input[name="exp_description"]').value;
+
+            // If all fields are filled out, add experience to the HTML
+            if (title && organization && location && startDate && endDate) {
+                experienceHTML += `
+                    <div class="experience-item">
+                        <h3>${title}</h3>
+                        <p>${organization}, ${location} | ${startDate} - ${endDate}</p>
+                        <ul>
+                            <li>${description}</li>
+                        </ul>
+                    </div>`;
+            }
+        });
+
+        // Inject the experiences into the ATS preview
+        experienceDisplayATS.innerHTML = experienceHTML;
+    }
+
+    // Attach event listeners to experience-related input fields
+    const experienceInputs = document.querySelectorAll('input[name^="exp_"]');
+    experienceInputs.forEach(input => input.addEventListener('input', updateExperiences));
+
+    // Initial call to display experiences (in case values are already present)
+    updateExperiences();
+});
+
         </script>
 
         <!-- jquery cdn -->
