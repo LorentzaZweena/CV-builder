@@ -482,7 +482,7 @@
         </section>
 
         <!-- cv ats -->
-        <div id="cv-ats">
+        <div id="cv-ats" class="active">
             <div class="cv-container">
                 <header>
                     <div class = "preview-item preview-item-name">
@@ -493,7 +493,7 @@
                 </header>
         
                 <section class="cv-section">
-                    <h2>Professional Summary</h2>
+                    <h2>Self description</h2>
                     <p>
                         Results-driven software developer with 5+ years of experience in designing and implementing scalable web applications. Proven expertise in PHP, JavaScript, and Laravel, with a passion for solving complex technical challenges.
                     </p>
@@ -560,33 +560,69 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-    const switchDropdown = document.getElementById('cv-type');
-    const cvCreative = document.getElementById('preview-sc');
-    const cvATS = document.getElementById('cv-ats');
+            const switchDropdown = document.getElementById('cv-type');
+            const cvCreative = document.getElementById('preview-sc');
+            const cvATS = document.getElementById('cv-ats');
 
-    switchDropdown.addEventListener('change', function () {
-        if (switchDropdown.value === 'creative') {
-            cvCreative.classList.add('active');
-            cvATS.classList.remove('active');
-        } else if (switchDropdown.value === 'ats') {
-            cvCreative.classList.remove('active');
-            cvATS.classList.add('active');
-        }
-    });
-});
+            function toggleCVs() {
+                if (switchDropdown.value === 'creative') {
+                    cvCreative.style.display = 'block';
+                    cvATS.style.display = 'none';
+                } else if (switchDropdown.value === 'ats') {
+                    cvCreative.style.display = 'none';
+                    cvATS.style.display = 'block';
+                }
+            }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const fullNameInput = document.getElementById('fullname_input'); // Your full name input field
-    const fullNameDisplay = document.getElementById('fullname_dsp'); // The header display element
+            switchDropdown.addEventListener('change', toggleCVs);
+            toggleCVs();
 
-    // Update the full name when input changes
-    fullNameInput.addEventListener('input', function () {
-        fullNameDisplay.textContent = fullNameInput.value;
-    });
-});
+            const firstNameInput = document.querySelector('input[name="firstname"]');
+            const middleNameInput = document.querySelector('input[name="middlename"]');
+            const lastNameInput = document.querySelector('input[name="lastname"]');
 
+            const fullNameDisplayCreative = document.getElementById('fullname_dsp');
+            const fullNameDisplayATS = document.querySelector('#cv-ats #fullname_dsp');
 
+            function updateFullName() {
+                const fullName = `${firstNameInput.value} ${middleNameInput.value} ${lastNameInput.value}`.trim();
+                fullNameDisplayCreative.textContent = fullName;
+                fullNameDisplayATS.textContent = fullName;
+            }
 
+            firstNameInput.addEventListener('input', updateFullName);
+            middleNameInput.addEventListener('input', updateFullName);
+            lastNameInput.addEventListener('input', updateFullName);
+
+            const emailInput = document.querySelector('input[name="email"]');
+            const emailDisplayCreative = document.getElementById('email_dsp');
+            const emailDisplayATS = document.querySelector('#cv-ats #email_dsp');
+
+            emailInput.addEventListener('input', function () {
+                emailDisplayCreative.textContent = emailInput.value;
+                emailDisplayATS.textContent = emailInput.value;
+            });
+
+            const phoneInput = document.querySelector('input[name="mobileno"]');
+            const phoneDisplayCreative = document.getElementById('mobileno_dsp');
+            const phoneDisplayATS = document.querySelector('#cv-ats #mobileno_dsp');
+
+            phoneInput.addEventListener('input', function () {
+                phoneDisplayCreative.textContent = phoneInput.value;
+                phoneDisplayATS.textContent = phoneInput.value;
+            });
+
+            const addressInput = document.querySelector('input[name="address"]');
+            const addressDisplayCreative = document.getElementById('address_dsp');
+            const addressDisplayATS = document.querySelector('#cv-ats #address_dsp');
+
+            addressInput.addEventListener('input', function () {
+                addressDisplayCreative.textContent = addressInput.value;
+                addressDisplayATS.textContent = addressInput.value;
+            });
+
+            // You can extend this logic for other fields like designation, summary, etc.
+        });
         </script>
 
         <!-- jquery cdn -->
