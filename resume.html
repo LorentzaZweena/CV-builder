@@ -9,6 +9,102 @@
         <!-- custom css -->
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+        <style>
+            /* body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f4;
+            } */
+            
+            .cv-container {
+                background-color: white;
+                padding: 20px;
+                margin: 0 auto;
+                width: 800px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+                margin-bottom: 5px;
+            }
+            
+            p {
+                margin: 5px 0;
+            }
+            
+            .cv-section {
+                margin-bottom: 20px;
+            }
+            
+            h2 {
+                font-size: 20px;
+                border-bottom: 1px solid #000;
+                padding-bottom: 5px;
+            }
+            
+            h3 {
+                font-size: 18px;
+                margin: 10px 0 5px;
+            }
+            
+            ul {
+                padding-left: 20px;
+            }
+            
+            ul li {
+                margin-bottom: 8px;
+            }
+            
+            .experience-item, .education-item {
+                margin-bottom: 15px;
+            }
+            
+            .cv-section ul, .cv-section p {
+                font-size: 16px;
+            }
+            
+            .cv-container p, .cv-container ul {
+                line-height: 1.5;
+            }
+            
+            header h1 {
+                font-weight: bold;
+            }
+            
+            header p {
+                font-size: 14px;
+                color: #555;
+            }
+
+            #preview-sc{
+                display: none;
+            }
+
+            #preview-sc.active{
+                display: block;
+            }
+
+            #cv-ats{
+                display: none;
+            }
+
+            #cv-ats.active{
+                display: block;
+            }
+
+            .active{
+                display: block;
+            }
+
+                </style>
         
     </head>
     <body>
@@ -292,7 +388,16 @@
             </div>
         </section>
 
-        <section id = "preview-sc" class = "print_area">
+        <div class="dropdown-container">
+            <label for="cv-type" class="dropdown-label">Choose CV type:</label>
+            <select id="cv-type" class="dropdown-select">
+                <option value="creative">CV Creative</option>
+                <option value="ats">CV ATS</option>
+            </select>
+        </div>        
+        
+        <!-- cv kreatif -->
+        <section id = "preview-sc" class = "print_area active">
             <div class = "container">
                 <div class = "preview-cnt">
                     <div class = "preview-cnt-l bg-pesat text-white">
@@ -376,11 +481,47 @@
             </div>
         </section>
 
+        <!-- cv ats -->
+        <div id="cv-ats">
+            
+        </div>
+
         <section class = "print-btn-sc">
             <div class = "container">
                 <button type = "button" class = "print-btn btn btn-primary" onclick="printCV()">Save CV</button>
             </div>
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    const switchDropdown = document.getElementById('cv-type');
+    const cvCreative = document.getElementById('preview-sc');
+    const cvATS = document.getElementById('cv-ats');
+
+    switchDropdown.addEventListener('change', function () {
+        if (switchDropdown.value === 'creative') {
+            cvCreative.classList.add('active');
+            cvATS.classList.remove('active');
+        } else if (switchDropdown.value === 'ats') {
+            cvCreative.classList.remove('active');
+            cvATS.classList.add('active');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const fullNameInput = document.getElementById('fullname_input'); // Your full name input field
+    const fullNameDisplay = document.getElementById('fullname_dsp'); // The header display element
+
+    // Update the full name when input changes
+    fullNameInput.addEventListener('input', function () {
+        fullNameDisplay.textContent = fullNameInput.value;
+    });
+});
+
+
+
+        </script>
 
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
