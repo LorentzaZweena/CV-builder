@@ -233,41 +233,40 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Title</label>
-                                                    <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" onkeyup="generateCV()" placeholder="e.g Full-stack programmer">
+                                                    <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" placeholder="e.g Full-stack programmer">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Company / Organization</label>
-                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" onkeyup="generateCV()" placeholder="e.g SMK PESAT ITXPRO">
+                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" placeholder="e.g SMK PESAT ITXPRO">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Location</label>
-                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" onkeyup="generateCV()" placeholder="e.g Bogor, Indonesia">
+                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" placeholder="e.g Bogor, Indonesia">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
-
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "exp_start_date" type = "date" class = "form-control exp_start_date" id = "" onkeyup="generateCV()">
+                                        
+                                            <div class="cols-3">
+                                                <div class="form-elem">
+                                                    <label for="exp_start_date" class="form-label">Start Date</label>
+                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007">
                                                     <span class="form-text"></span>
                                                 </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "exp_end_date" type = "date" class = "form-control exp_end_date" id = "" onkeyup="generateCV()">
+                                                <div class="form-elem">
+                                                    <label for="exp_end_date" class="form-label">End Date</label>
+                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004">
                                                     <span class="form-text"></span>
                                                 </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <input name = "exp_description" type = "text" class = "form-control exp_description" id = "" onkeyup="generateCV()" placeholder="e.g Lorem ipsum">
+                                                <div class="form-elem">
+                                                    <label for="exp_description" class="form-label">Description</label>
+                                                    <input name="exp_description" type="text" class="form-control exp_description" id="exp_description" placeholder="e.g Lorem ipsum">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
-
+                                        
                                             <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
                                     </div>
                                 </div>
                                 <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
@@ -304,12 +303,12 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "edu_start_date" type = "date" class = "form-control edu_start_date" id = "" onkeyup="generateCV()">
+                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "" onkeyup="generateCV()" placeholder="20-05-2013">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "edu_graduation_date" type = "date" class = "form-control edu_graduation_date" id = "" onkeyup="generateCV()">
+                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "" onkeyup="generateCV()" placeholder="29-12-2040">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
@@ -615,80 +614,62 @@
                 summaryDisplayCreative.textContent = summaryInput.value;
                 summaryDisplayATS.textContent = summaryInput.value;
             });
-        });
 
-        // New: Update education section
-            const educationInputs = document.querySelectorAll('input[name^="edu_"]');
-            const educationDisplayATS = document.querySelector('#cv-ats .educations-items');
+            const experienceTitle = document.querySelector('input[name="exp_title"]');
+            const experienceOrganization = document.querySelector('input[name="exp_organization"]');
+            const experienceLocation = document.querySelector('input[name="exp_location"]');
+            const experienceStart = document.querySelector('input[name="exp_start_date"]');
+            const experienceEnd = document.querySelector('input[name="exp_end_date"]');
+            const experienceDescription = document.querySelector('input[name="exp_description"]');
 
-    function updateEducations() {
-        let educationHTML = '';
-        educationInputs.forEach(input => {
-            const school = document.querySelector('input[name="edu_school"]').value;
-            const degree = document.querySelector('input[name="edu_degree"]').value;
-            const city = document.querySelector('input[name="edu_city"]').value;
-            const startDate = document.querySelector('input[name="edu_start_date"]').value;
-            const endDate = document.querySelector('input[name="edu_graduation_date"]').value;
-            const description = document.querySelector('input[name="edu_description"]').value;
+            const experienceDisplayCreative = document.getElementById('experiences_dsp');
+            const experienceDisplayATS = document.querySelector('#cv-ats #experiences_dsp');
 
-            if (school && degree && city && startDate && endDate) {
-                educationHTML += `
-                    <div class="education-item">
-                        <h3>${school} - ${degree}</h3>
-                        <p>${city} | ${startDate} - ${endDate}</p>
-                        <p>${description}</p>
-                    </div>`;
-            }
-            
-        });
-        educationDisplayATS.innerHTML = educationHTML;
-    }
+            experienceTitle.addEventListener('input', function () {
+                experienceDisplayCreative.textContent = experienceTitle.value;
+                experienceDisplayATS.textContent = experienceTitle.value;
+            });
 
-    educationInputs.forEach(input => input.addEventListener('input', updateEducations));
-
-    document.addEventListener('DOMContentLoaded', function () {
-    const experienceDisplayATS = document.querySelector('#cv-ats #experiences_dsp');
+            document.addEventListener('DOMContentLoaded', function () {
+    const experienceDisplayATS = document.querySelector('#cv-ats .experiences-items');
 
     function updateExperiences() {
-        // Select all experience blocks (assuming each experience is grouped)
-        const experienceBlocks = document.querySelectorAll('.cv-form-row-experience'); // or adjust with the correct class name for each experience block
+    const experienceItems = document.querySelectorAll('.cv-form-row-experience');
+    let experiencesHTML = '';
 
-        let experienceHTML = '';
+    experienceItems.forEach(experienceItem => {
+        const title = experienceItem.querySelector('.exp_title').value;
+        const organization = experienceItem.querySelector('.exp_organization').value;
+        const location = experienceItem.querySelector('.exp_location').value;
+        const startDate = experienceItem.querySelector('.exp_start_date').value;
+        const endDate = experienceItem.querySelector('.exp_end_date').value;
+        const description = experienceItem.querySelector('.exp_description').value;
 
-        // Iterate over each experience block
-        experienceBlocks.forEach(block => {
-            const title = block.querySelector('input[name="exp_title"]').value;
-            const organization = block.querySelector('input[name="exp_organization"]').value;
-            const location = block.querySelector('input[name="exp_location"]').value;
-            const startDate = block.querySelector('input[name="exp_start_date"]').value;
-            const endDate = block.querySelector('input[name="exp_end_date"]').value;
-            const description = block.querySelector('input[name="exp_description"]').value;
+        experiencesHTML += `
+            <div class="experience-item">
+                <h3>${title}</h3>
+                <p>${organization}, ${location} - ${startDate} - ${endDate}</p>
+                <p>${description}</p>
+            </div>
+        `;
+    });
 
-            // If all fields are filled out, add experience to the HTML
-            if (title && organization && location && startDate && endDate) {
-                experienceHTML += `
-                    <div class="experience-item">
-                        <h3>${title}</h3>
-                        <p>${organization}, ${location} | ${startDate} - ${endDate}</p>
-                        <ul>
-                            <li>${description}</li>
-                        </ul>
-                    </div>`;
-            }
-        });
-
-        // Inject the experiences into the ATS preview
-        experienceDisplayATS.innerHTML = experienceHTML;
-    }
-
-    // Attach event listeners to experience-related input fields
-    const experienceInputs = document.querySelectorAll('input[name^="exp_"]');
-    experienceInputs.forEach(input => input.addEventListener('input', updateExperiences));
-
-    // Initial call to display experiences (in case values are already present)
-    updateExperiences();
+    const experiencesDisplayATS = document.getElementById('experiences_dsp');
+    experiencesDisplayATS.innerHTML = experiencesHTML;
+}
 });
 
+// Document ready function for experiences
+$(function () {
+    $('.repeater').repeater();
+    updateExperiences(); // Call updateExperiences after the Repeater library has initialized the experience blocks
+});
+
+const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
+    inputs.forEach(input => {
+        input.addEventListener('input', generateCV);
+    });
+        });
         </script>
 
         <!-- jquery cdn -->
