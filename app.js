@@ -134,21 +134,9 @@ const getUserInputs = () => {
 };
 
 function validateFormData(elem, elemType, elemName){
-    // checking for text string and non empty string
-    if(elemType == validType.TEXT){
-        if(!strRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
-
     // checking for email
     if(elemType == validType.EMAIL){
         if(!emailRegex.test(elem.value) || elem.value.trim().length == 0) addErrMsg(elem, elemName);
-        else removeErrMsg(elem);
-    }
-
-    // checking for only empty
-    if(elemType == validType.ANY){
-        if(elem.value.trim().length == 0) addErrMsg(elem, elemName);
         else removeErrMsg(elem);
     }
 }

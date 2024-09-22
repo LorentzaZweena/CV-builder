@@ -496,7 +496,13 @@
         
                 <section class="cv-section">
                     <h2>Work Experience</h2>
+                    <p><div class = "preview-item-val text-uppercase fw-6 ls-1" id = "exp_organization" name="exp_organization"></div></p><div class="experiences-items preview-blk-list" id="exp_location"></div>
                     <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
+                    <ul>
+                        <li>Developed and maintained web applications using PHP and Laravel, improving performance by 30%.</li>
+                        <li>Collaborated with cross-functional teams to gather requirements and implement software solutions.</li>
+                        <li>Integrated third-party APIs to streamline data processing, reducing workload by 15%.</li>
+                    </ul>
                 </section>
         
                 <section class="cv-section">
@@ -629,6 +635,17 @@
                 experienceDisplayCreative.textContent = experienceTitle.value;
                 experienceDisplayATS.textContent = experienceTitle.value;
             });
+
+            experienceOrganization.addEventListener('input', function () {
+                const expOrganizationElement = document.getElementById('exp_organization');
+                expOrganizationElement.textContent = experienceOrganization.value;
+            });
+
+            experienceLocation.addEventListener('input', function () {
+                const expLocationElement = document.querySelector('[name="exp_location"]');
+                expLocationElement.textContent = experienceLocation.value;
+            });
+
 
             document.addEventListener('DOMContentLoaded', function () {
     const experienceDisplayATS = document.querySelector('#cv-ats .experiences-items');
