@@ -104,6 +104,14 @@
                 display: block;
             }
 
+            .buat-flex{
+                display: flex;
+            }
+
+            .dua{
+                margin-top: 0.3em;
+            }
+
                 </style>
         
     </head>
@@ -496,13 +504,16 @@
         
                 <section class="cv-section">
                     <h2>Work Experience</h2>
-                    <p><div class = "preview-item-val text-uppercase fw-6 ls-1" id = "exp_organization" name="exp_organization"></div></p><div class="experiences-items preview-blk-list" id="exp_location"></div>
+                    <div class="buat-flex">
+                        <div class="satu">
+                            <p><div class = "preview-item-val text-uppercase fw-6" id = "exp_organization" name="exp_organization"></div></p>
+                        </div>
+                        <div class="dua">
+                            <div class="experiences-items preview-blk-list" id="exp_location" style="margin-left: 0.2em;"></div>
+                        </div>
+                    </div>
                     <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
-                    <ul>
-                        <li>Developed and maintained web applications using PHP and Laravel, improving performance by 30%.</li>
-                        <li>Collaborated with cross-functional teams to gather requirements and implement software solutions.</li>
-                        <li>Integrated third-party APIs to streamline data processing, reducing workload by 15%.</li>
-                    </ul>
+                    <div class = "experiences-items preview-blk-list" id = "exp_description"></div>
                 </section>
         
                 <section class="cv-section">
@@ -624,8 +635,8 @@
             const experienceTitle = document.querySelector('input[name="exp_title"]');
             const experienceOrganization = document.querySelector('input[name="exp_organization"]');
             const experienceLocation = document.querySelector('input[name="exp_location"]');
-            const experienceStart = document.querySelector('input[name="exp_start_date"]');
-            const experienceEnd = document.querySelector('input[name="exp_end_date"]');
+            // const experienceStart = document.querySelector('input[name="exp_start_date"]');
+            // const experienceEnd = document.querySelector('input[name="exp_end_date"]');
             const experienceDescription = document.querySelector('input[name="exp_description"]');
 
             const experienceDisplayCreative = document.getElementById('experiences_dsp');
@@ -642,8 +653,13 @@
             });
 
             experienceLocation.addEventListener('input', function () {
-                const expLocationElement = document.querySelector('[name="exp_location"]');
-                expLocationElement.textContent = experienceLocation.value;
+                const expLocationElement = document.querySelector('#exp_location');
+                expLocationElement.textContent = `${experienceLocation.value}`;
+            });
+
+            experienceDescription.addEventListener('input', function () {
+                const expDescriptionElement = document.querySelector('exp_description');
+                expDescriptionElement.textContent = experienceDescription.value;
             });
 
 
