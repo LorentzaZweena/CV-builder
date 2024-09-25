@@ -296,9 +296,9 @@
                                                     <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" placeholder="e.g SMK INFORMATIKA PESAT">
                                                     <span class="form-text"></span>
                                                 </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Majors</label>
-                                                    <input name = "edu_degree" type = "text" class = "form-control edu_degree" id = "" onkeyup="generateCV()" placeholder="e.g Rekayasa perangkat lunak">
+                                                <div class="form-elem">
+                                                    <label for="edu_degree_input" class="form-label">Majors</label>
+                                                    <input name="edu_degree" type="text" class="form-control edu_degree" id="" placeholder="e.g Rekayasa perangkat lunak">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
@@ -316,7 +316,7 @@
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "" onkeyup="generateCV()" placeholder="29-12-2040">
+                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="29-12-2040">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
@@ -531,11 +531,19 @@
                 <section class="cv-section">
                     <h2>Education</h2>
                     <div class="education-item">
-                        <h3 class = "educations-items preview-blk-list" id = "edu_school" style="font-size: 1em; font-weight: 600;"></h3>
-                        <div class="educations-items preview-blk-list">
-                            <span id="start-date-preview2"></span>
-                            <span id="end-date-preview"></span>
+                        <div class="buat-flex">
+                            <div class="satu">
+                                <h3 class = "educations-items preview-blk-list" id = "edu_school" style="font-size: 1em; font-weight: 600;"></h3>
+                            </div>
+                            <div class="dua" style="margin-top: 9.5px; margin-left: 5px;">
+                                <div class="educations-items preview-blk-list">
+                                    <span id="start-date-preview2" style="font-weight: 600;"></span>
+                                    <span id="end-date-preview2" style="font-weight: 600;"></span>
+                                </div>
+                            </div>
                         </div>
+                        <p style="margin-top: -8px; font-size: 12px;"><div class = "preview-item-val" id = "edu_degree" name="edu_degree"></div></p>
+                        <p><div class = "preview-item-val" id = "edu_description" name="edu_description"></div></p>
                     </div>
                 </section>
         
@@ -694,19 +702,39 @@
             const educationMajors = document.querySelector('input[name="edu_degree"]');
             const educationCity = document.querySelector('input[name="edu_city"]');
             // const educationStart = document.querySelector('input[name="edu_start_date"]');
-            const educationEnd = document.querySelector('input[name="edu_graduation_date"]');
+            // const educationEnd = document.querySelector('input[name="edu_graduation_date"]');
             const educationDescription = document.querySelector('input[name="edu_description"]');
             const educationDisplayCreative = document.getElementById('educations_dsp');
             const educationDisplayATS = document.querySelector('#cv-ats #educations_dsp');
-
             const educationSchoolDisplay = document.getElementById('edu_school');
+
+            const eduDescriptionElement = document.getElementById('edu_description');
+            const eduDegreePreview = document.getElementById('edu_degree');
+            
             educationSchool.addEventListener('input', function() {
                 const schoolValue = educationSchool.value;
                 educationSchoolDisplay.textContent = schoolValue && !/[.,;!?]$/.test(schoolValue) ? schoolValue + ',' : schoolValue; 
             });
 
-            const educationStart = document.getElementById('exp_start_date');
+            const educationStart = document.getElementById('edu_start_date');
             const startDatePreviewElement2 = document.getElementById('start-date-preview2');
+            educationStart.addEventListener('input', function() {
+                startDatePreviewElement2.textContent = `${educationStart.value} -`;
+            });
+
+            const educationEnd = document.getElementById('edu_graduation_date');
+            const endDatePreviewElement2 = document.getElementById('end-date-preview2');
+            educationEnd.addEventListener('input', function() {
+                endDatePreviewElement2.textContent = `${educationEnd.value}`;
+            });
+
+            educationMajors.addEventListener('input', function () {
+                eduDegreePreview.textContent = `(${educationMajors.value})`;
+            });
+
+            educationDescription.addEventListener('input', function () {
+                eduDescriptionElement.textContent = educationDescription.value;
+            });
 
             const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
                 inputs.forEach(input => {

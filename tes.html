@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Majors Display</title>
+</head>
+<body>
+    <div class="form-elem">
+        <label for="" class="form-label">Description</label>
+        <input name="edu_description" type="text" class="form-control edu_description" placeholder="e.g. Lorem ipsum">
+        <span class="form-text"></span>
+    </div>
+    
+    <p>
+        <div class="preview-item-val" id="edu_description" name="edu_description"></div>
+    </p>
+
+    <script>
+        const eduDescription = document.querySelector('input[name="edu_description"]');
+const eduDescriptionElement = document.getElementById('edu_description');
+
+eduDescription.addEventListener('input', function () {
+    eduDescriptionElement.textContent = eduDescription.value; // Update preview with input value
+});
+    </script>
+</body>
+</html>
