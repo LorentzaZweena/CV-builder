@@ -532,7 +532,10 @@
                     <h2>Education</h2>
                     <div class="education-item">
                         <h3 class = "educations-items preview-blk-list" id = "edu_school" style="font-size: 1em; font-weight: 600;"></h3>
-                        <p class = "preview-item-val fw-6" id = "edu_start_date"></p>
+                        <div class="educations-items preview-blk-list">
+                            <span id="start-date-preview2"></span>
+                            <span id="end-date-preview"></span>
+                        </div>
                     </div>
                 </section>
         
@@ -690,7 +693,7 @@
             const educationSchool = document.querySelector('input[name="edu_school"]');
             const educationMajors = document.querySelector('input[name="edu_degree"]');
             const educationCity = document.querySelector('input[name="edu_city"]');
-            const educationStart = document.querySelector('input[name="edu_start_date"]');
+            // const educationStart = document.querySelector('input[name="edu_start_date"]');
             const educationEnd = document.querySelector('input[name="edu_graduation_date"]');
             const educationDescription = document.querySelector('input[name="edu_description"]');
             const educationDisplayCreative = document.getElementById('educations_dsp');
@@ -702,15 +705,8 @@
                 educationSchoolDisplay.textContent = schoolValue && !/[.,;!?]$/.test(schoolValue) ? schoolValue + ',' : schoolValue; 
             });
 
-            educationStart.addEventListener('input', function () {
-                educationDisplayCreative.textContent = educationStart.value;
-                educationDisplayATS.textContent = educationStart.value;
-            });
-
-            $(function () {
-                $('.repeater').repeater();
-                updateExperiences();
-            });
+            const educationStart = document.getElementById('exp_start_date');
+            const startDatePreviewElement2 = document.getElementById('start-date-preview2');
 
             const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
                 inputs.forEach(input => {
