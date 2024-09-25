@@ -259,12 +259,12 @@
                                             <div class="cols-3">
                                                 <div class="form-elem">
                                                     <label for="exp_start_date" class="form-label">Start Date</label>
-                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007">
+                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007 / September">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
                                                     <label for="exp_end_date" class="form-label">End Date</label>
-                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004">
+                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004 / Desember 2004">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
@@ -311,7 +311,7 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "" onkeyup="generateCV()" placeholder="20-05-2013">
+                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="20-05-2013">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
@@ -512,15 +512,27 @@
                             <div class="experiences-items preview-blk-list" id="exp_location" style="margin-left: 0.2em;"></div>
                         </div>
                     </div>
-                    <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
-                    <div class = "experiences-items preview-blk-list" id = "exp_description"></div>
+                <div class="buat-flex">
+                    <div class="satu">
+                        <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
+                    </div>
+                    <div class="dua" style="margin-top: 1px; margin-left: 5px;">
+                        <div class="experiences-items preview-blk-list">
+                            <span id="start-date-preview"></span>
+                            <span id="end-date-preview"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="experiences-items preview-blk-list">
+                    <span id="exp_description_preview"></span>
+                </div>
                 </section>
         
                 <section class="cv-section">
                     <h2>Education</h2>
                     <div class="education-item">
-                        <h3>Bachelor of Science in Computer Science</h3>
-                        <p>University of XYZ, City, State | Graduated: May 2017</p>
+                        <h3 class = "educations-items preview-blk-list" id = "edu_school" style="font-size: 1em; font-weight: 600;"></h3>
+                        <p class = "preview-item-val fw-6" id = "edu_start_date"></p>
                     </div>
                 </section>
         
@@ -638,7 +650,6 @@
             // const experienceStart = document.querySelector('input[name="exp_start_date"]');
             // const experienceEnd = document.querySelector('input[name="exp_end_date"]');
             const experienceDescription = document.querySelector('input[name="exp_description"]');
-
             const experienceDisplayCreative = document.getElementById('experiences_dsp');
             const experienceDisplayATS = document.querySelector('#cv-ats #experiences_dsp');
 
@@ -654,55 +665,58 @@
 
             experienceLocation.addEventListener('input', function () {
                 const expLocationElement = document.querySelector('#exp_location');
-                expLocationElement.textContent = `${experienceLocation.value}`;
+                expLocationElement.textContent = `- ${experienceLocation.value}`;
+            });
+
+            const experienceStart = document.getElementById('exp_start_date');
+            const startDatePreviewElement = document.getElementById('start-date-preview');
+
+            experienceStart.addEventListener('input', function() {
+                startDatePreviewElement.textContent = `(${experienceStart.value}`;
+            });
+
+            const experienceEnd = document.getElementById('exp_end_date');
+            const endDatePreviewElement = document.getElementById('end-date-preview');
+
+            experienceEnd.addEventListener('input', function() {
+                endDatePreviewElement.textContent = `-${experienceEnd.value})`;
             });
 
             experienceDescription.addEventListener('input', function () {
-                const expDescriptionElement = document.querySelector('exp_description');
+                const expDescriptionElement = document.getElementById('exp_description_preview');
                 expDescriptionElement.textContent = experienceDescription.value;
             });
 
+            const educationSchool = document.querySelector('input[name="edu_school"]');
+            const educationMajors = document.querySelector('input[name="edu_degree"]');
+            const educationCity = document.querySelector('input[name="edu_city"]');
+            const educationStart = document.querySelector('input[name="edu_start_date"]');
+            const educationEnd = document.querySelector('input[name="edu_graduation_date"]');
+            const educationDescription = document.querySelector('input[name="edu_description"]');
+            const educationDisplayCreative = document.getElementById('educations_dsp');
+            const educationDisplayATS = document.querySelector('#cv-ats #educations_dsp');
 
-            document.addEventListener('DOMContentLoaded', function () {
-    const experienceDisplayATS = document.querySelector('#cv-ats .experiences-items');
+            const educationSchoolDisplay = document.getElementById('edu_school');
+            educationSchool.addEventListener('input', function() {
+                const schoolValue = educationSchool.value;
+                educationSchoolDisplay.textContent = schoolValue && !/[.,;!?]$/.test(schoolValue) ? schoolValue + ',' : schoolValue; 
+            });
 
-    function updateExperiences() {
-    const experienceItems = document.querySelectorAll('.cv-form-row-experience');
-    let experiencesHTML = '';
+            educationStart.addEventListener('input', function () {
+                educationDisplayCreative.textContent = educationStart.value;
+                educationDisplayATS.textContent = educationStart.value;
+            });
 
-    experienceItems.forEach(experienceItem => {
-        const title = experienceItem.querySelector('.exp_title').value;
-        const organization = experienceItem.querySelector('.exp_organization').value;
-        const location = experienceItem.querySelector('.exp_location').value;
-        const startDate = experienceItem.querySelector('.exp_start_date').value;
-        const endDate = experienceItem.querySelector('.exp_end_date').value;
-        const description = experienceItem.querySelector('.exp_description').value;
+            $(function () {
+                $('.repeater').repeater();
+                updateExperiences();
+            });
 
-        experiencesHTML += `
-            <div class="experience-item">
-                <h3>${title}</h3>
-                <p>${organization}, ${location} - ${startDate} - ${endDate}</p>
-                <p>${description}</p>
-            </div>
-        `;
-    });
-
-    const experiencesDisplayATS = document.getElementById('experiences_dsp');
-    experiencesDisplayATS.innerHTML = experiencesHTML;
-}
-});
-
-// Document ready function for experiences
-$(function () {
-    $('.repeater').repeater();
-    updateExperiences(); // Call updateExperiences after the Repeater library has initialized the experience blocks
-});
-
-const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
-    inputs.forEach(input => {
-        input.addEventListener('input', generateCV);
-    });
-        });
+            const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
+                inputs.forEach(input => {
+                    input.addEventListener('input', generateCV);
+                });
+            });
         </script>
 
         <!-- jquery cdn -->
