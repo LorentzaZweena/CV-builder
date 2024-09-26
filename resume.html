@@ -45,9 +45,10 @@
             }
             
             h2 {
-                font-size: 20px;
+                font-size: 18px;
                 border-bottom: 1px solid #000;
                 padding-bottom: 5px;
+                text-transform: uppercase;
             }
             
             h3 {
@@ -550,10 +551,7 @@
                 <section class="cv-section">
                     <h2>Skills</h2>
                     <ul>
-                        <li>Programming Languages: PHP, JavaScript, HTML, CSS</li>
-                        <li>Frameworks: Laravel, React, Bootstrap</li>
-                        <li>Databases: MySQL, PostgreSQL</li>
-                        <li>Version Control: Git, GitHub</li>
+                        <li class = "skills-items preview-blk-list" id = "skills_dsp"></li>
                     </ul>
                 </section>
         
@@ -690,7 +688,7 @@
             const endDatePreviewElement = document.getElementById('end-date-preview');
 
             experienceEnd.addEventListener('input', function() {
-                endDatePreviewElement.textContent = `-${experienceEnd.value})`;
+                endDatePreviewElement.textContent = `- ${experienceEnd.value})`;
             });
 
             experienceDescription.addEventListener('input', function () {
@@ -734,6 +732,14 @@
 
             educationDescription.addEventListener('input', function () {
                 eduDescriptionElement.textContent = educationDescription.value;
+            });
+
+            const skills = document.querySelector('input[name="skill"]');
+            const skillDisplayCreative = document.getElementById('skills_dsp');
+            const skillDisplayATS = document.querySelector('#cv-ats #skills_dsp');
+            skills.addEventListener('input', function () {
+                skillDisplayCreative.textContent = skills.value;
+                skillDisplayATS.textContent = skills.value;
             });
 
             const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');
