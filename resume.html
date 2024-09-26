@@ -226,7 +226,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
+                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn" id="add-certification-btn">+</button>
                             </div>
                         </div>
 
@@ -558,8 +558,9 @@
                 <section class="cv-section">
                     <h2>Certifications</h2>
                     <div id="certifications-container">
-                        <h4 class = "achievements-items preview-blk-list" id = "achieve_title"></h4>
-                        <p class = "achievements-items preview-blk-list" id = "achieve_description"></p>
+                      <h4 class="achievements-items preview-blk-list" id="achieve_title"></h4>
+                      <p class="achievements-items preview-blk-list" id="achieve_description"></p>
+                      <div id="certification-list"></div>
                     </div>
                 </section>
             </div>
@@ -741,19 +742,47 @@
                 skillDisplayATS.textContent = skills.value;
             });
 
-            const certificationTitle = document.querySelector('input[name="achieve_title"]');
-            const certificationDescription = document.querySelector('input[name="achieve_description"]');
-            const certificationDisplayCreative = document.getElementById('achievements_dsp');
-            const certificationDisplayATS = document.querySelector('#cv-ats #achievements_dsp');
+            const certificationContainer = document.getElementById('certifications-container');
+            const addCertificationBtn = document.getElementById('add-certification-btn');
+            const certificationList = document.getElementById('certification-list');
 
-            certificationTitle.addEventListener('input', function () {
-                const certificationTitleElement = document.getElementById('achieve_title');
-                certificationTitleElement.textContent = certificationTitle.value;
+            let certificationCount = 0;
+
+            addCertificationBtn.addEventListener('click', function () {
+            const newCertification = document.createElement('div');
+            newCertification.classList.add('certification');
+
+            // Create new input elements
+            const titleInput = document.createElement('input');
+            titleInput.name = "achieve_title";
+            titleInput.type = "text";
+            titleInput.placeholder = "e.g. Web application certifications, 2024";
+
+            const descriptionInput = document.createElement('input');
+            descriptionInput.name = "achieve_description";
+            descriptionInput.type = "text";
+            descriptionInput.placeholder = "e.g. Create a hotel booking web application";
+
+            const displayATS = document.createElement('p');
+            displayATS.classList.add('achievements-items', 'preview-blk-list');
+            displayATS.id = `certification_description_${certificationCount}`;
+
+            // Add event listeners once outside the loop
+            titleInput.addEventListener('input', function () {
+                displayATS.textContent = `${titleInput.value}: ${descriptionInput.value}`;
             });
 
-            certificationDescription.addEventListener('input', function () {
-                const certificationDescriptionElement = document.getElementById('achieve_description');
-                certificationDescriptionElement.textContent = certificationDescription.value;
+            descriptionInput.addEventListener('input', function () {
+                displayATS.textContent = `${titleInput.value}: ${descriptionInput.value}`;
+            });
+
+            newCertification.appendChild(titleInput);
+            newCertification.appendChild(descriptionInput);
+            newCertification.appendChild(displayATS);
+
+            certificationList.appendChild(newCertification);
+
+            certificationCount++;
             });
 
             const inputs = document.querySelectorAll('.cv-form-row-experience .form-control');

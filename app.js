@@ -188,6 +188,21 @@ const generateCV = () => {
     let userData = getUserInputs();
     displayCV(userData);
     console.log(userData);
+
+        const certifications = document.querySelectorAll('.certification');
+        const atsCertificationsList = document.getElementById('certifications-list'); 
+      
+        atsCertificationsList.innerHTML = '';
+      
+        for (const certification of certifications) {
+          const title = certification.querySelector('input[name="achieve_title"]').value;
+          const description = certification.querySelector('input[name="achieve_description"]').value;
+      
+          const certificationItem = document.createElement('li');
+          certificationItem.textContent = `${title}: ${description}`;
+          atsCertificationsList.appendChild(certificationItem);
+        }
+      
 }
 
 function previewImage(){
