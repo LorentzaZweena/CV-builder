@@ -189,20 +189,22 @@ const generateCV = () => {
     displayCV(userData);
     console.log(userData);
 
-        const certifications = document.querySelectorAll('.certification');
-        const atsCertificationsList = document.getElementById('certifications-list'); 
-      
-        atsCertificationsList.innerHTML = '';
-      
-        for (const certification of certifications) {
-          const title = certification.querySelector('input[name="achieve_title"]').value;
-          const description = certification.querySelector('input[name="achieve_description"]').value;
-      
-          const certificationItem = document.createElement('li');
-          certificationItem.textContent = `${title}: ${description}`;
-          atsCertificationsList.appendChild(certificationItem);
-        }
-      
+    const certifications = document.querySelectorAll('.certification');
+            console.log(`Found ${certifications.length} certifications.`); // Debugging line
+    
+            const atsCertificationsList = document.getElementById('certifications-list'); 
+            atsCertificationsList.innerHTML = ''; // Clear previous entries
+    
+            for (const certification of certifications) {
+                const title = certification.querySelector('input[name="achieve_title"]').value;
+                const description = certification.querySelector('input[name="achieve_description"]').value;
+    
+                if (title || description) { // Avoid adding empty entries
+                    const certificationItem = document.createElement('li');
+                    certificationItem.textContent = `${title}: ${description}`;
+                    atsCertificationsList.appendChild(certificationItem);
+                }
+            }
 }
 
 function previewImage(){
