@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- custom css -->
         <link rel="stylesheet" href="main2.css">
-        <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         
     </head>
@@ -56,10 +55,6 @@
 
                                 <div class="cols-3">
                                     <div class = "form-elem">
-                                        <label for = "" class = "form-label">Your Image</label>
-                                        <input name = "image" type = "file" class = "form-control image" id = "" accept = "image/*" onchange="previewImage()">
-                                    </div>
-                                    <div class = "form-elem">
                                         <label for = "" class = "form-label">Designation</label>
                                         <input name = "designation" type = "text" class = "form-control designation" id = "" onkeyup="generateCV()" placeholder="e.g. Web programmer">
                                         <span class="form-text"></span>
@@ -67,6 +62,11 @@
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Address</label>
                                         <input name = "address" type = "text" class = "form-control address" id = "" onkeyup="generateCV()" placeholder="e.g. Cilebut barat, sukaraja">
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Self description</label>
+                                        <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -80,11 +80,6 @@
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Phone No:</label>
                                         <input name = "mobileno" type = "text" class = "form-control mobileno" id = "" onkeyup="generateCV()" placeholder="e.g. +62 123-456-7890">
-                                        <span class="form-text"></span>
-                                    </div>
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Self description</label>
-                                        <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -227,40 +222,6 @@
 
                         <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>projects</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-d">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g Sistem voting osis">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <!-- <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project link</label>
-                                                    <input name = "proj_link" type = "text" class = "form-control proj_link" id = "" onkeyup="generateCV()" placeholder="e.g bit.ly/Lorentza">
-                                                    <span class="form-text"></span>
-                                                </div> -->
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g Lorem ipsum">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
                                 <h3>skills</h3>
                             </div>
 
@@ -290,48 +251,34 @@
         <section id = "preview-sc" class = "print_area active">
             <div class = "container">
                 <div class = "preview-cnt">
-                    <div class = "preview-cnt-l bg-pesat text-white">
+                    <div class = "preview-cnt-l text-white">
                         <div class = "preview-blk">
-                            <div class = "preview-image">
-                                <img src = "" alt = "" id = "image_dsp"> 
-                            </div>
                             <div class = "preview-item preview-item-name">
                                 <span class = "preview-item-val fw-6" id = "fullname_dsp"></span>
                             </div>
                             <div class = "preview-item">
-                                <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"></span>
+                                <span class = "preview-item-val text-uppercase fw-6 ls-1 keatasin" id = "designation_dsp"></span>
                             </div>
                         </div>
 
                         <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>about</h3>
-                            </div>
                             <div class = "preview-blk-list">
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "mobileno_dsp"></span>
+                                <div class="buat-flex">
+                                    <div class = "preview-item">
+                                        <span class = "preview-item-val" id = "mobileno_dsp"></span> |
+                                    </div>
+                                    <div class = "preview-item">
+                                         <span class = "preview-item-val" id = "email_dsp"></span> |
+                                    </div>
+                                    <div class = "preview-item">
+                                        <span class = "preview-item-val" id = "address_dsp"></span>
+                                    </div>
                                 </div>
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "email_dsp"></span>
-                                </div>
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "address_dsp"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>skills</h3>
-                            </div>
-                            <div class = "skills-items preview-blk-list" id = "skills_dsp">
-                                <!-- skills list here -->
                             </div>
                         </div>
                     </div>
 
-                    <div class = "preview-cnt-r bg-white">
-
+                    <div class = "preview-cnt-r bg-white" style="margin-top: -4em;">
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
                                 <h3>Self description</h3>
@@ -348,92 +295,28 @@
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
-                                <h3>educations</h3>
+                                <h3>Educations</h3>
                             </div>
                             <div class = "educations-items preview-blk-list" id = "educations_dsp"></div>
                         </div>
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
-                                <h3>experiences</h3>
+                                <h3>Skills</h3>
                             </div>
-                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
+                            <div class = "skills-items preview-blk-list" id = "skills_dsp"></div>
                         </div>
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
-                                <h3>projects</h3>
+                                <h3>Experiences</h3>
                             </div>
-                            <div class = "projects-items preview-blk-list" id = "projects_dsp"></div>
+                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="cv-container">
-            <header>
-                <span class = "preview-item-val fw-6" id = "fullname_dsp"></span>
-            </header>
-    
-            <section class="cv-section">
-                <h2>Professional Summary</h2>
-                <p>
-                    Results-driven software developer with 5+ years of experience in designing and implementing scalable web applications. Proven expertise in PHP, JavaScript, and Laravel, with a passion for solving complex technical challenges.
-                </p>
-            </section>
-    
-            <section class="cv-section">
-                <h2>Work Experience</h2>
-    
-                <div class="experience-item">
-                    <h3>Software Developer</h3>
-                    <p>ABC Tech, City, State | June 2020 - Present</p>
-                    <ul>
-                        <li>Developed and maintained web applications using PHP and Laravel, improving performance by 30%.</li>
-                        <li>Collaborated with cross-functional teams to gather requirements and implement software solutions.</li>
-                        <li>Integrated third-party APIs to streamline data processing, reducing workload by 15%.</li>
-                    </ul>
-                </div>
-    
-                <div class="experience-item">
-                    <h3>Junior Developer</h3>
-                    <p>XYZ Solutions, City, State | March 2017 - May 2020</p>
-                    <ul>
-                        <li>Contributed to the development of client-facing applications, focusing on front-end technologies (JavaScript, HTML, CSS).</li>
-                        <li>Assisted in database management and optimized SQL queries to enhance data retrieval speed.</li>
-                        <li>Participated in code reviews and quality assurance processes.</li>
-                    </ul>
-                </div>
-            </section>
-    
-            <section class="cv-section">
-                <h2>Education</h2>
-                <div class="education-item">
-                    <h3>Bachelor of Science in Computer Science</h3>
-                    <p>University of XYZ, City, State | Graduated: May 2017</p>
-                </div>
-            </section>
-    
-            <section class="cv-section">
-                <h2>Technical Skills</h2>
-                <ul>
-                    <li>Programming Languages: PHP, JavaScript, HTML, CSS</li>
-                    <li>Frameworks: Laravel, React, Bootstrap</li>
-                    <li>Databases: MySQL, PostgreSQL</li>
-                    <li>Version Control: Git, GitHub</li>
-                </ul>
-            </section>
-    
-            <section class="cv-section">
-                <h2>Certifications</h2>
-                <ul>
-                    <li>Certified PHP Developer - PHP Certification Institute (2022)</li>
-                    <li>JavaScript for Web Development - Coursera (2021)</li>
-                </ul>
-            </section>
-    
-        </div>
 
         <section class = "print-btn-sc">
             <div class = "container">
