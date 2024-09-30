@@ -1241,54 +1241,19 @@ const firstNameInput = document.querySelector('input[name="firstname"]');
                 skillDisplayATS.textContent = skills.value;
             });
 
-        const addCertificationBtn = document.getElementById('add-certification-btn');
-        const certificationList = document.getElementById('certification-list');
-        let certificationCount = 0;
-    
-        addCertificationBtn.addEventListener('click', function () {
-            const newCertification = document.createElement('div');
-            newCertification.classList.add('certification');
-    
-            const titleInput = document.createElement('input');
-            titleInput.name = "achieve_title";
-            titleInput.type = "text";
-            titleInput.placeholder = "e.g. Web application certifications, 2024";
-    
-            const descriptionInput = document.createElement('input');
-            descriptionInput.name = "achieve_description";
-            descriptionInput.type = "text";
-            descriptionInput.placeholder = "e.g. Create a hotel booking web application";
-    
-            titleInput.addEventListener('input', generateCV);
-            descriptionInput.addEventListener('input', generateCV);
-    
-            newCertification.appendChild(titleInput);
-            newCertification.appendChild(descriptionInput);
-            certificationList.appendChild(newCertification);
-            certificationCount++;
-    
-            generateCV(); // Update ATS list immediately after adding
-        });
+            const certifications = document.querySelector('input[name="skill"]');
+            const certificationDisplayCreative = document.getElementById('skills_dsp');
+            const certificationDisplayATS = document.querySelector('#cv-ats #skills_dsp');
+            skills.addEventListener('input', function () {
+                skillDisplayCreative.textContent = skills.value;
+                skillDisplayATS.textContent = skills.value;
+            });
     
         const generateCV = () => {
-            const certifications = document.querySelectorAll('.certification');
-            console.log(`Found ${certifications.length} certifications.`);
-
-            const certificationList = document.getElementById('certification-list'); 
-            certificationList.innerHTML = ''; // Clear previous entries
-
-            for (const certification of certifications) {
-                const title = certification.querySelector('input[name="achieve_title"]').value;
-                const description = certification.querySelector('input[name="achieve_description"]').value;
-
-                if (title || description) { // Avoid adding empty entries
-                const certificationItem = document.createElement('li');
-                certificationItem.classList.add('certification'); // Add class
-                certificationItem.textContent = `${title}: ${description}`;
-                certificationList.appendChild(certificationItem);
-                }
-            }
-        };
+            let userData = getUserInputs();
+            displayCV(userData);
+            console.log(userData);
+                };
 
         function printCV(){
             window.print();
@@ -1504,10 +1469,6 @@ const displayCV = (userData) => {
     showListData(userData.educations, educationsDsp);
     showListData(userData.experiences, experiencesDsp);
 }
-
-    let userData = getUserInputs();
-    displayCV(userData);
-    console.log(userData);
 
 function previewImage(){
     let oFReader = new FileReader();
