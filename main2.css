@@ -437,11 +437,11 @@ textarea{
 }
 
 .preview-cnt-l{
-    padding: 3rem 4rem 2rem 3rem;
+    /* padding: 3rem 4rem 2rem 3rem; */
 }
 .preview-cnt-r{
-    padding: 3rem 3rem 3rem 4rem;
-    margin-left: 1em;
+    /* padding: 3rem 3rem 3rem 4rem; */
+    /* margin-left: 1em; */
 }
 .preview-cnt-l .preview-blk:nth-child(1){
     text-align: center;
@@ -459,7 +459,7 @@ textarea{
     height: 100%;
     object-fit: cover;
 } */
- 
+
 .preview-item-name{
     font-size: 2.4rem;
     font-weight: 600;
@@ -472,7 +472,6 @@ textarea{
     bottom: -10px;
     width: 50px;
     height: 1.5px;
-    /* background-color: rgba(255, 255, 255, 0.5); */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -483,17 +482,35 @@ textarea{
 .preview-blk-title h3{
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
-    padding-bottom: 0.5rem;
+    border-bottom: 1px solid black;
+    /* padding-bottom: 0.5rem; */
 }
+
 .preview-blk-title{
     margin-bottom: 1rem;
 }
+
+.preview-blk-list {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.preview-item {
+    /* margin: 0 10px; */
+}
+
+.separator {
+    margin: 3px 4px 11px 2px;
+    line-height: 1;
+}
+
 .preview-blk-list .preview-item{
     font-size: 1.5rem;
     margin-bottom: 0.2rem;
     opacity: 0.95;
 }
+
 .preview-cnt-r .preview-blk-title{
     color: var(--clr-dark);
 }
@@ -504,7 +521,7 @@ textarea{
 .achievements-items.preview-blk-list .preview-item span:first-child,
 .educations-items.preview-blk-list .preview-item span:first-child,
 .experiences-items.preview-blk-list .preview-item span:first-child{
-    display: block;
+    display: flex;
     font-weight: 600;
     margin-bottom: 1em;
     /* background-color: rgba(0, 0, 0, 0.03); */
@@ -514,7 +531,7 @@ textarea{
 .experiences-items.preview-blk-list .preview-item span:nth-child(2){
     font-weight: 600;
     margin-right: 1rem;
-    display: block;
+    display: flex;
     /* margin-top: 1em; */
     margin-bottom: 0.5em;
 }
@@ -539,16 +556,16 @@ textarea{
 .educations-items.preview-blk-list .preview-item span:nth-child(6),
 .experiences-items.preview-blk-list .preview-item span:nth-child(6){
     font-size: 13.5px;
-    display: block;
+    display: flex;
     opacity: 0.8;
     margin-top: 1rem;
 }
 .projects-items.preview-blk-list .preview-item span{
-    display: block;
+    display: flex;
 }
 
 .projects-items.preview-blk-list .preview-item span:first-child {
-    display: block;
+    display: flex;
     font-weight: 600;
     margin-bottom: 1rem;
     font-size: 1em;
@@ -575,18 +592,9 @@ textarea{
 
 .projects-items.preview-blk-list .preview-item span:nth-child(6) {
     font-size: 13.5px;
-    display: block;
+    display: flex;
     opacity: 0.8;
     margin-top: 1rem;
-}
-
-.dropdown-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 1em;
-    margin-left: 6em;
-    margin-top: -4em;
 }
 
 
