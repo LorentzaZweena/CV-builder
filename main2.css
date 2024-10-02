@@ -539,17 +539,18 @@ textarea{
 .educations-items.preview-blk-list .preview-item span:nth-child(3),
 .experiences-items.preview-blk-list .preview-item span:nth-child(3){
     font-style: italic;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 
 .educations-items.preview-blk-list .preview-item span:nth-child(4),
 .educations-items.preview-blk-list .preview-item span:nth-child(5),
 .experiences-items.preview-blk-list .preview-item span:nth-child(4),
 .experiences-items.preview-blk-list .preview-item span:nth-child(5){
-    margin-right: 0.5em;
-    background-color: #002e63;
-    color: var(--clr-white);
-    padding: 0 1rem;
+    /* margin-right: 0.5em; */
+    /* background-color: #002e63; */
+    color: black;
+    /* padding: 0 1rem; */
+    padding-left: 0.5em;
     border-radius: 0.6rem;
 }
 
@@ -583,9 +584,9 @@ textarea{
 
 .projects-items.preview-blk-list .preview-item span:nth-child(4),
 .projects-items.preview-blk-list .preview-item span:nth-child(5) {
-    margin-right: 1rem;
-    background-color: #002e63;
-    color: var(--clr-white);
+    /* margin-right: 1rem; */
+    /* background-color: #002e63; */
+    color: black;
     padding: 0 1rem;
     border-radius: 0.6rem;
 }
@@ -596,7 +597,6 @@ textarea{
     opacity: 0.8;
     margin-top: 1rem;
 }
-
 
 @media screen and (min-width: 768px){
     .cols-3{
