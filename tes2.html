@@ -26,6 +26,7 @@
             </div>
         </nav>
 
+        <p style="margin-left: 23em; margin-top: 1.5em;"><i>Please fill in all fields first to see the results - Zweena</i></p>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
             <div class = "container">
                 <div class = "about-cnt">
@@ -55,10 +56,6 @@
 
                                 <div class="cols-3">
                                     <div class = "form-elem">
-                                        <label for = "" class = "form-label">Your Image</label>
-                                        <input name = "image" type = "file" class = "form-control image" id = "" accept = "image/*" onchange="previewImage()">
-                                    </div>
-                                    <div class = "form-elem">
                                         <label for = "" class = "form-label">Designation</label>
                                         <input name = "designation" type = "text" class = "form-control designation" id = "" onkeyup="generateCV()" placeholder="e.g. Web programmer">
                                         <span class="form-text"></span>
@@ -66,6 +63,11 @@
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Address</label>
                                         <input name = "address" type = "text" class = "form-control address" id = "" onkeyup="generateCV()" placeholder="e.g. Cilebut barat, sukaraja">
+                                        <span class="form-text"></span>
+                                    </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Self description</label>
+                                        <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -79,11 +81,6 @@
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Phone No:</label>
                                         <input name = "mobileno" type = "text" class = "form-control mobileno" id = "" onkeyup="generateCV()" placeholder="e.g. +62 123-456-7890">
-                                        <span class="form-text"></span>
-                                    </div>
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Self description</label>
-                                        <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -149,12 +146,12 @@
                                             <div class="cols-3">
                                                 <div class="form-elem">
                                                     <label for="exp_start_date" class="form-label">Start Date</label>
-                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007 / September">
+                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="September">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
                                                     <label for="exp_end_date" class="form-label">End Date</label>
-                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004 / Desember 2004">
+                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="Desember 2004">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
@@ -201,12 +198,12 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="20-05-2013">
+                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="2013">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="29-12-2040">
+                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="2040">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
@@ -226,7 +223,7 @@
 
                         <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>projects</h3>
+                                <h3>Achievement</h3>
                             </div>
 
                             <div class = "row-separator repeater">
@@ -235,13 +232,13 @@
                                         <div class = "cv-form-row cv-form-row-experience">
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g Sistem voting osis">
+                                                    <label for = "" class = "form-label">Achievement Name</label>
+                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g English, 2023">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g Lorem ipsum">
+                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g Won a gold medal in the national Science">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -323,6 +320,20 @@
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
+                                <h3>experiences</h3>
+                            </div>
+                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp" style="text-align: justify; margin-top: 1em; display: block;"></div>
+                        </div>
+
+                        <div class = "preview-blk">
+                            <div class = "preview-blk-title">
+                                <h3>skills</h3>
+                            </div>
+                            <div class = "skills-items preview-blk-list" id = "skills_dsp" style="text-align: justify; display: block; margin-top: -0.5em;"></div>
+                        </div>
+
+                        <div class = "preview-blk">
+                            <div class = "preview-blk-title">
                                 <h3>Certifications</h3>
                             </div>
                             <div class = "achievements-items preview-blk-list" id = "achievements_dsp" style="text-align: justify; margin-top: 1em; display: block;"></div>
@@ -337,20 +348,7 @@
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
-                                <h3>experiences</h3>
-                            </div>
-                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp" style="text-align: justify; margin-top: 1em; display: block;"></div>
-                        </div>
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>skills</h3>
-                            </div>
-                            <div class = "skills-items preview-blk-list" id = "skills_dsp" style="text-align: justify; display: block; margin-top: -0.5em;"></div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>projects</h3>
+                                <h3>Achievement</h3>
                             </div>
                             <div class = "projects-items preview-blk-list" id = "projects_dsp" style="text-align: justify; margin-top: 1em; display: block;"></div>
                         </div>
