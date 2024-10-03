@@ -436,13 +436,6 @@ textarea{
     overflow: hidden;
 }
 
-.preview-cnt-l{
-    /* padding: 3rem 4rem 2rem 3rem; */
-}
-.preview-cnt-r{
-    /* padding: 3rem 3rem 3rem 4rem; */
-    /* margin-left: 1em; */
-}
 .preview-cnt-l .preview-blk:nth-child(1){
     text-align: center;
 }
@@ -494,10 +487,6 @@ textarea{
     display: flex;
     justify-content: center;
     text-align: center;
-}
-
-.preview-item {
-    /* margin: 0 10px; */
 }
 
 .separator {
