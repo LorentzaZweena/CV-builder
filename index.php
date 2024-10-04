@@ -2,12 +2,6 @@
     session_start();
     include 'connection.php';
     include 'function-register.php';
-
-    if(isset($_SESSION['username'])){
-        $username = $_SESSION['username'];
-    } else {
-        $username = 'Guest'; // Default value if username is not set
-    }
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +38,7 @@
         <div class="container">
             <div class="header-content text-center">
                 <br><br>
-                <h6 class="text-uppercase text-blue-dark fs-14 fw-16 ls-1">Welcome, <?= $_SESSION['username'] ?></h6>
+                <h6 class="text-uppercase text-blue-dark fs-14 fw-16 ls-1">Online resume builder</h6>
                 <h1 class="lg-title">Create a professional resume online in minutes.</h1>
                 <p class="text-dark fs-18">Create a standout professional resume online in just minutes with a perfectly crafted showcase of your skills and achievements.</p>
                 <a href="#create" class="btn btn-primary text-uppercase">Create my resume</a>
@@ -77,7 +71,6 @@
         <div class="container">
             <div class="section-two-content">
                 <div class="section-items">
-
                     <div class="section-item">
                         <div class="section-item-icon">
                             <img src="images/undraw_Web_search_re_efla-removebg-preview.png" alt="">
