@@ -8,7 +8,7 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($connection, "SELECT * FROM user WHERE username = '$username'");
         $row = mysqli_fetch_assoc($result);
-             header("Location: hasilvoting.php");
+             header("Location: index.php");
             $error = true;
 }
 ?>
@@ -18,7 +18,7 @@ if (isset($_POST["login"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | OSIS</title>
+    <title>Login | CV</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font -->

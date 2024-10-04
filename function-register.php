@@ -23,6 +23,13 @@ function registrasi($data){
 
     //insert db
     mysqli_query($connection, "INSERT INTO user VALUES('', '$username', '$password')");
+    
+    // Start the session
+    session_start();
+    
+    // Store the username in a session variable
+    $_SESSION['username'] = $username;
+    
     return mysqli_affected_rows($connection);
 }
 ?>
