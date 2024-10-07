@@ -8,7 +8,7 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($connection, "SELECT * FROM user WHERE username = '$username'");
         $row = mysqli_fetch_assoc($result);
-             header("Location: index.php");
+             header("Location: index2.php");
             $error = true;
 }
 ?>

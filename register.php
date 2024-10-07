@@ -4,7 +4,7 @@
     if (isset($_POST["register"])) {
         if (registrasi($_POST) > 0) {
             echo "<script>alert('Register succesful!');</script>";
-            header("Location:index.php");
+            header("Location:index2.php");
         } else{
             echo mysqli_error($connection);
         }
