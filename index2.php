@@ -47,10 +47,10 @@
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="home.php">
+          <a class="nav-link text-white active bg-gradient-primary" href="index2.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">dashboard</i>
             </div>
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="admin/login.php">
+          <a class="nav-link text-white " href="resume-creative.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>
@@ -162,14 +162,17 @@
     </div>
     <div class="p-2">
           <div class="card ms-1" style="width: 15rem;">
-          <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png"><img src="images/image3.png" class="card-img-top"></a>
+          <a href="https://i.pinimg.com/736x/fc/7e/3e/fc7e3eecb7d8b373df00fd125458318b.jpg"><img src="images/creative.png" class="card-img-top"></a>
           <div class="card-body">
-            <p class="card-text fw-semibold">Network computer engineering</p>
-            <p class="card-text mt-n2">Efficient data transmission strategies.</p>
+            <p class="card-text fw-semibold">Stylish career overview</p>
+            <p class="card-text mt-n2">Concise summary showcasing professional journey and achievements.</p>
           </div>
       </div>
     </div>
 </div>
+<h4 class="mt-4 ms-4">My resume</h4>
+  <p class="ms-4">Take the time to design your own personalized resume that highlights your unique skills</p>
+
 </body>
 </html>
 
