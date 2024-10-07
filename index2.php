@@ -120,6 +120,59 @@
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume builder | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" type='text/css'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <h4 class="mt-5 ms-4">Resume sample</h4>
+  <p class="ms-4">Here are some sample resumes that you can follow</p>
+  <div class="d-flex flex-row mb-2">
+    <div class="p-2">
+    <div class="card ms-3" style="width: 15rem;">
+    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png"><img src="images/image.png" class="card-img-top"></a>
+    <div class="card-body">
+      <p class="card-text fw-semibold">Software development engineering</p>
+      <p class="card-text mt-n2">Problem solver creating efficient, scalable software solutions.</p>
+    </div>
+</div>
+    </div>
+    <div class="p-2">
+    <div class="card ms-1" style="width: 15rem;">
+    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png"><img src="images/image2.png" class="card-img-top"></a>
+    <div class="card-body">
+      <p class="card-text fw-semibold">Visual communication design</p>
+      <p class="card-text mt-n2">Crafting engaging visuals to communicate complex messages.</p>
+    </div>
+</div>
+    </div>
+    <div class="p-2">
+          <div class="card ms-1" style="width: 15rem;">
+          <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png"><img src="images/image3.png" class="card-img-top"></a>
+          <div class="card-body">
+            <p class="card-text fw-semibold">Network computer engineering</p>
+            <p class="card-text mt-n2">Efficient data transmission strategies.</p>
+          </div>
+      </div>
+    </div>
+    <div class="p-2">
+          <div class="card ms-1" style="width: 15rem;">
+          <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png"><img src="images/image3.png" class="card-img-top"></a>
+          <div class="card-body">
+            <p class="card-text fw-semibold">Network computer engineering</p>
+            <p class="card-text mt-n2">Efficient data transmission strategies.</p>
+          </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
@@ -135,6 +188,12 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+    <!-- bootstrap :3  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
