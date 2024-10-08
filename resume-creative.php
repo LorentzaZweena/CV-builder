@@ -1,5 +1,6 @@
 <?php
-    // sleep(1);
+    include 'connection.php';
+    
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +147,7 @@ a:hover {
         <li><a href="#" class="active">Creative</a></li>
         <li><a href="#">ATS</a></li>
         <li><a href="#">Profile</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="logout.php">Logout</a></li>
         </ul>
   </nav>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
@@ -227,12 +228,14 @@ a:hover {
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Title</label>
-                                                    <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "" onkeyup="generateCV()" placeholder="e.g. Web application certifications, 2024">
+                                                    <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "" onkeyup="generateCV()" placeholder="e.g. Web application certifications, 2024" style="width: 204%;">
                                                     <span class="form-text"></span>
                                                 </div>
+                                            </div>
+                                            <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "achieve_description" type = "text" class = "form-control achieve_description" id = "" onkeyup="generateCV()" placeholder="e.g. Create a hotel booking web application">
+                                                    <textarea name = "achieve_description" type = "text" class = "form-control achieve_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -271,7 +274,7 @@ a:hover {
                                                 </div>
                                             </div>
                                         
-                                            <div class="cols-3">
+                                            <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_start_date" class="form-label">Start Date</label>
                                                     <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007">
@@ -282,13 +285,14 @@ a:hover {
                                                     <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004">
                                                     <span class="form-text"></span>
                                                 </div>
+                                            </div>
+                                            <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_description" class="form-label">Description</label>
-                                                    <input name="exp_description" type="text" class="form-control exp_description" id="exp_description" placeholder="e.g Lorem ipsum">
+                                                    <textarea name="exp_description" type="text" class="form-control exp_description" id="exp_description" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
-                                        
                                             <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
                                     </div>
                                 </div>
@@ -323,7 +327,7 @@ a:hover {
                                                 </div>
                                             </div>
 
-                                            <div class = "cols-3">
+                                            <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Start Date</label>
                                                     <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="20-05-2013">
@@ -334,9 +338,11 @@ a:hover {
                                                     <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="29-12-2040">
                                                     <span class="form-text"></span>
                                                 </div>
+                                            </div>
+                                            <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "edu_description" type = "text" class = "form-control edu_description" id = "" onkeyup="generateCV()" placeholder="e.g Lorem ipsum">
+                                                    <textarea name = "edu_description" type = "text" class = "form-control edu_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -358,20 +364,17 @@ a:hover {
                                 <div class = "repeater" data-repeater-list = "group-d">
                                     <div data-repeater-item>
                                         <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
+                                            <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g Sistem voting osis">
+                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g Sistem voting osis" style="width: 204%;">
                                                     <span class="form-text"></span>
                                                 </div>
-                                                <!-- <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project link</label>
-                                                    <input name = "proj_link" type = "text" class = "form-control proj_link" id = "" onkeyup="generateCV()" placeholder="e.g bit.ly/Lorentza">
-                                                    <span class="form-text"></span>
-                                                </div> -->
+                                            </div>
+                                            <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g Lorem ipsum">
+                                                    <textarea name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -497,7 +500,7 @@ a:hover {
 
         <section class = "print-btn-sc">
             <div class = "container">
-                <button type = "button" class = "print-btn btn btn-primary" onclick="printCV()">Save CV</button>
+                <button type = "button" class = "print-btn btn btn-primary" onclick="printCV()">Save as PDF</button>
             </div>
         </section>
 
