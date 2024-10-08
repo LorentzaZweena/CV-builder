@@ -1,5 +1,5 @@
 <?php
-    sleep(1);
+    // sleep(1);
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +53,10 @@ nav ul li a {
 
 a.active,
 a:hover {
-  background: #1b9bff;
+  background: #284260;
   transition: .5s;
+  /* opacity: 0.5; */
+  color: white;
 }
 
 .checkbtn {
@@ -191,7 +193,7 @@ a:hover {
                                     </div>
                                 </div>
 
-                                <div class = "cols-3">
+                                <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Email</label>
                                         <input name = "email" type = "text" class = "form-control email" id = "" onkeyup="generateCV()" placeholder="e.g. ariva02zweena@gmail.com">
@@ -202,9 +204,11 @@ a:hover {
                                         <input name = "mobileno" type = "text" class = "form-control mobileno" id = "" onkeyup="generateCV()" placeholder="e.g. +62 123-456-7890">
                                         <span class="form-text"></span>
                                     </div>
+                                </div>
+                                <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Self description</label>
-                                        <input name = "summary" type = "text" class = "form-control summary" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum">
+                                        <textarea name="summary" class="form-control summary" id="" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>

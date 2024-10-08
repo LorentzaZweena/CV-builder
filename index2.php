@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -69,7 +70,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">More about this web</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="https://smkpesat.sch.id/">
+          <a class="nav-link text-white " href="https://smkpesat.sch.id/" target="_blank">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             
             <span class="material-symbols-outlined"> public </span>
@@ -78,7 +79,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="https://smkpesat.sch.id/contact/">
+          <a class="nav-link text-white " href="https://smkpesat.sch.id/contact/" target="_blank">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <span class="material-symbols-outlined"> Call </span>
             </div>
@@ -86,7 +87,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="https://www.instagram.com/smkpesat_itxpro?igsh=ZnVldWUzZjN5bWJx">
+          <a class="nav-link text-white " href="https://www.instagram.com/smkpesat_itxpro?igsh=ZnVldWUzZjN5bWJx" target="_blank">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             <span class="material-symbols-outlined"> apartment </span>
             </div>
@@ -172,6 +173,27 @@
 </div>
 <h4 class="mt-4 ms-4">My resume</h4>
   <p class="ms-4">Take the time to design your own personalized resume that highlights your unique skills</p>
+  <table class="table table-striped ms-4 w-95">
+  <thead class="text-center">
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">
+    <tr>
+      <th scope="row">1</th>
+      <td>Zweena Ariva</td>
+      <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Ariva Zweena</td>
+      <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
+    </tr>
+  </tbody>
+  </table>
 
 </body>
 </html>
@@ -197,6 +219,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
