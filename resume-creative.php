@@ -1,6 +1,21 @@
 <?php
     include 'connection.php';
-    
+    if(isset($_POST["submit"])){
+        $firstname = $_POST['firstname'] ?? '';
+        $middlename = $_POST['middlename'] ?? '';
+        $lastname = $_POST['lastname'] ?? '';
+        $designation = $_POST['designation'];
+        $address = $_POST['address'];
+
+        $firstname = htmlspecialchars(trim($firstname));
+        $middlename = htmlspecialchars(trim($middlename));
+        $lastname = htmlspecialchars(trim($lastname));
+
+        $full_name = $firstname . " " . $middlename . " " . $lastname;
+        $full_name = trim($full_name);
+
+        echo "Full Name: " . $full_name;
+        }
 ?>
 
 <!DOCTYPE html>
