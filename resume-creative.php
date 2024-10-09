@@ -1,21 +1,52 @@
 <?php
     include 'connection.php';
     if(isset($_POST["submit"])){
-        $firstname = $_POST['firstname'] ?? '';
-        $middlename = $_POST['middlename'] ?? '';
-        $lastname = $_POST['lastname'] ?? '';
-        $designation = $_POST['designation'];
-        $address = $_POST['address'];
+    $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''));
+    $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''));
+    $lastname = htmlspecialchars(trim($_POST['lastname'] ?? ''));
+    $designation = htmlspecialchars(trim($_POST['designation'] ?? ''));
+    $address = htmlspecialchars(trim($_POST['address'] ?? ''));
+    $full_name = trim($firstname . " " . $middlename . " " . $lastname);
+    
+    $photo = '';
+    if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $allowed_ext = array("jpg" => "images/jpg", "jpeg" => "images/jpeg", "gif" => "images/gif", "png" => "images/png");
+        $file_name = $_FILES["image"]["name"];
+        $file_type = $_FILES["image"]["type"];
+        $file_size = $_FILES["image"]["size"];
 
-        $firstname = htmlspecialchars(trim($firstname));
-        $middlename = htmlspecialchars(trim($middlename));
-        $lastname = htmlspecialchars(trim($lastname));
-
-        $full_name = $firstname . " " . $middlename . " " . $lastname;
-        $full_name = trim($full_name);
-
-        echo "Full Name: " . $full_name;
+        $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+        if(!array_key_exists($ext, $allowed_ext)) {
+            die("Error: Please select a valid file format.");
         }
+
+        //maximum file
+        $maxsize = 5 * 1024 * 1024;
+        if($file_size > $maxsize) {
+            die("Error: File size is larger than the allowed limit.");
+        }
+        } else {
+            echo "Error: " . $_FILES["image"]["error"];
+        }
+        
+        $email = $_POST['email'];
+        $mobileno = $_POST['mobileno'];
+        $selfDescription = $_POST['summary'];
+        $achieve_title = $_POST['achieve_title'];
+        $achieve_description = $_POST['achieve_description'];
+        $experience_title = $_POST['exp_title'];
+        $experience_description = $_POST['exp_description'];
+        $experience_location = $_POST['exp_location'];
+        $experience_start =  $_POST['exp_start_date'];
+        $experience_end  = $_POST['exp_end_date'];
+
+        $education_school =  $_POST['edu_school'];
+        $education_degree =  $_POST['edu_degree'];
+        $education_city = $_POST['edu_city'];
+        $education_start =  $_POST['edu_start_date'];
+        $education_end =  $_POST['edu_graduation_date'];
+        
+    }
 ?>
 
 <!DOCTYPE html>
