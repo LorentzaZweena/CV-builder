@@ -178,11 +178,34 @@
     <tr>
       <th scope="col">No</th>
       <th scope="col">Name</th>
+      <th scope="col">Designation</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody class="text-center">
-    <tr>
+    <?php
+      $sql = "SELECT id, full_name, designation FROM creative";
+      $query = mysqli_query($connection, $sql);
+      
+      if (!$query) {
+          die("Error: " . mysqli_error($connection));
+      }
+      
+      while($data = mysqli_fetch_assoc($query)){
+          echo "<tr>";
+          echo "<td>" . $data['id']++ . "</td>";
+          echo "<td>" . htmlspecialchars($data['full_name']) . "</td>";
+          echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
+          echo "<td>";
+          echo "<a class='btn btn-danger btn-sm' href='delete2.php?id=" . $data['id'] . "'>Delete</a>";
+          echo "<a class='btn btn-primary btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "'>Edit</a>";
+          echo "<a class='btn btn-success btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "'>Preview</a>";
+          echo "</td>";
+          echo "</tr>";
+      }
+      
+    ?>
+    <!-- <tr>
       <th scope="row">1</th>
       <td>Zweena Ariva</td>
       <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
@@ -191,7 +214,7 @@
       <th scope="row">2</th>
       <td>Ariva Zweena</td>
       <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
-    </tr>
+    </tr> -->
   </tbody>
   </table>
 
