@@ -1,111 +1,9 @@
 <?php
-include 'connection.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-    // Basic information
-    $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''));
-    $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''));
-    $lastname = htmlspecialchars(trim($_POST['lastname'] ?? ''));
-    $full_name = trim($firstname . " " . $middlename . " " . $lastname);
-    $designation = htmlspecialchars(trim($_POST['designation'] ?? ''));
-    $address = htmlspecialchars(trim($_POST['address'] ?? ''));
-    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
-    $mobileno = htmlspecialchars(trim($_POST['mobileno'] ?? ''));
-    $summary = htmlspecialchars(trim($_POST['summary'] ?? ''));
-
-    // Handle file upload
-    $photo = '';
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $upload_dir = 'uploads/';
-        $filename = uniqid() . '_' . $_FILES['image']['name'];
-        $upload_file = $upload_dir . $filename;
-        
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
-            $photo = $upload_file;
-        } else {
-            echo "Error uploading file.";
-        }
-    }
-
-    // Prepare and execute the SQL statement for basic info
-    $stmt = $connection->prepare("INSERT INTO creative (full_name, designation, address, photo, email, mobileno, selfDescription) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $full_name, $designation, $address, $photo, $email, $mobileno, $summary);
-
-    if ($stmt->execute()) {
-        $cv_id = $stmt->insert_id;
-        echo "<script>alert('Basic information saved successfully!');</script>";
-
-        // Handle certifications
-        if (isset($_POST['group-a'])) {
-            foreach ($_POST['group-a'] as $certification) {
-                $title = htmlspecialchars(trim($certification['achieve_title'] ?? ''));
-                $description = htmlspecialchars(trim($certification['achieve_description'] ?? ''));
-                
-                $cert_stmt = $connection->prepare("INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)");
-                $cert_stmt->bind_param("iss", $cv_id, $title, $description);
-                $cert_stmt->execute();
-            }
-        }
-
-        // Handle experiences
-        if (isset($_POST['group-b'])) {
-            foreach ($_POST['group-b'] as $experience) {
-                $title = htmlspecialchars(trim($experience['exp_title'] ?? ''));
-                $organization = htmlspecialchars(trim($experience['exp_organization'] ?? ''));
-                $location = htmlspecialchars(trim($experience['exp_location'] ?? ''));
-                $start_date = htmlspecialchars(trim($experience['exp_start_date'] ?? ''));
-                $end_date = htmlspecialchars(trim($experience['exp_end_date'] ?? ''));
-                $description = htmlspecialchars(trim($experience['exp_description'] ?? ''));
-                
-                $exp_stmt = $connection->prepare("INSERT INTO experiences (cv_id, title, organization, location, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $exp_stmt->bind_param("issssss", $cv_id, $title, $organization, $location, $start_date, $end_date, $description);
-                $exp_stmt->execute();
-            }
-        }
-
-        // Handle education
-        if (isset($_POST['group-c'])) {
-            foreach ($_POST['group-c'] as $education) {
-                $school = htmlspecialchars(trim($education['edu_school'] ?? ''));
-                $degree = htmlspecialchars(trim($education['edu_degree'] ?? ''));
-                $city = htmlspecialchars(trim($education['edu_city'] ?? ''));
-                $start_date = htmlspecialchars(trim($education['edu_start_date'] ?? ''));
-                $end_date = htmlspecialchars(trim($education['edu_graduation_date'] ?? ''));
-                $description = htmlspecialchars(trim($education['edu_description'] ?? ''));
-                
-                $edu_stmt = $connection->prepare("INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $edu_stmt->bind_param("issssss", $cv_id, $school, $degree, $city, $start_date, $end_date, $description);
-                $edu_stmt->execute();
-            }
-        }
-
-        // Handle projects
-        if (isset($_POST['group-d'])) {
-            foreach ($_POST['group-d'] as $project) {
-                $title = htmlspecialchars(trim($project['proj_title'] ?? ''));
-                $description = htmlspecialchars(trim($project['proj_description'] ?? ''));
-                
-                $proj_stmt = $connection->prepare("INSERT INTO projects (cv_id, title, description) VALUES (?, ?, ?)");
-                $proj_stmt->bind_param("iss", $cv_id, $title, $description);
-                $proj_stmt->execute();
-            }
-        }
-
-        // Handle skills
-        if (isset($_POST['group-e'])) {
-            foreach ($_POST['group-e'] as $skill) {
-                $skill_name = htmlspecialchars(trim($skill['skill'] ?? ''));
-                
-                $skill_stmt = $connection->prepare("INSERT INTO skills (cv_id, skill_name) VALUES (?, ?)");
-                $skill_stmt->bind_param("is", $cv_id, $skill_name);
-                $skill_stmt->execute();
-            }
-        }
-
-        echo "<script>alert('All CV information saved successfully!');</script>";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    echo "<script>alert('CV saved successfully!');</script>";
+}
+if (isset($_GET['error']) && $_GET['error'] == 1) {
+    echo "<script>alert('Error saving CV. Please try again.');</script>";
 }
 ?>
 
@@ -921,7 +819,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
             <div class = "container">
                 <div class = "about-cnt">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" class="cv-form" id="cv-form">
+                <form action="index2.php" method="POST" enctype="multipart/form-data" class="cv-form" id="cv-form">
+
                         <div class = "cv-form-blk">
                             <div class = "cv-form-row-title">
                                 <h3>about section</h3>
@@ -1268,13 +1167,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
         <div class="buat-flex">
             <div class="satu" style="margin-left: 4.5em;">
-                <section class = "print-btn-sc">
+                <!-- <section class = "print-btn-sc">
                     <div class = "container">
                         <button id="download-pdf-btn" type="button" class="print-btn btn btn-primary" onclick="print()">Download as PDF</button>
-                    </div>
-                </section>
+                    </di>
+                </section> -->
             </div>
-            <div class="dua" style="margin-left: -1.5em;">
+            <div class="dua">
                 <section class = "print-btn-sc">
                     <div class = "container">
                     <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
