@@ -42,7 +42,7 @@
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" href="afterlogin.css?v=3.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="../css/afterlogin.css?v=3.1.0" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -50,7 +50,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="index2.php">
-        <img src="images/logo2.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="../images/logo2.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Resume builder</span>
       </a>
     </div>
@@ -143,7 +143,7 @@
   <div class="d-flex flex-row mb-2">
     <div class="p-2">
     <div class="card ms-3" style="width: 15rem;">
-    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png"><img src="images/image.png" class="card-img-top"></a>
+    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png"><img src="../images/image.png" class="card-img-top"></a>
     <div class="card-body">
       <p class="card-text fw-semibold">Software development engineering</p>
       <p class="card-text mt-n2">Problem solver creating efficient, scalable software solutions.</p>
@@ -152,7 +152,7 @@
     </div>
     <div class="p-2">
     <div class="card ms-1" style="width: 15rem;">
-    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png"><img src="images/image2.png" class="card-img-top"></a>
+    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png"><img src="../images/image2.png" class="card-img-top"></a>
     <div class="card-body">
       <p class="card-text fw-semibold">Visual communication design</p>
       <p class="card-text mt-n2">Crafting engaging visuals to communicate complex messages.</p>
@@ -161,7 +161,7 @@
     </div>
     <div class="p-2">
           <div class="card ms-1" style="width: 15rem;">
-          <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png"><img src="images/image3.png" class="card-img-top"></a>
+          <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png"><img src="../images/image3.png" class="card-img-top"></a>
           <div class="card-body">
             <p class="card-text fw-semibold">Network computer engineering</p>
             <p class="card-text mt-n2">Efficient data transmission strategies.</p>
@@ -170,7 +170,7 @@
     </div>
     <div class="p-2">
           <div class="card ms-1" style="width: 15rem;">
-          <a href="https://i.pinimg.com/736x/fc/7e/3e/fc7e3eecb7d8b373df00fd125458318b.jpg"><img src="images/creative.png" class="card-img-top"></a>
+          <a href="https://i.pinimg.com/736x/fc/7e/3e/fc7e3eecb7d8b373df00fd125458318b.jpg"><img src="../images/creative.png" class="card-img-top"></a>
           <div class="card-body">
             <p class="card-text fw-semibold">Stylish career overview</p>
             <p class="card-text mt-n2">Concise summary showcasing professional journey and achievements.</p>
