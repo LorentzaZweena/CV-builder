@@ -204,9 +204,9 @@
           echo "<td>" . htmlspecialchars($data['full_name']) . "</td>";
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";
-          echo "<a class='btn btn-danger btn-sm' href='delete2.php?id=" . $data['id'] . "'>Delete</a>";
+          echo "<a class='btn btn-danger btn-sm' href='delete.php?id=" . $data['id'] . "'>Delete</a>";
           echo "<a class='btn btn-primary btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "'>Edit</a>";
-          echo "<a class='btn btn-success btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "'>Preview</a>";
+          echo "<a class='btn btn-success btn-sm ms-1' href='preview.php?id=" . $data['id'] . "'>Preview</a>";
           echo "</td>";
           echo "</tr>";
       }
