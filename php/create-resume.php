@@ -915,8 +915,8 @@
         <!-- Navigation links -->
         <ul>
         <li><a href="index2.php">Home</a></li>
-        <li><a href="#" class="active">Creative</a></li>
-        <li><a href="#">ATS</a></li>
+        <li><a href="#" class="active">Create resume</a></li>
+        <!-- <li><a href="#">ATS</a></li> -->
         <li><a href="#">Profile</a></li>
         <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -1186,7 +1186,7 @@
         </section>        
         
         <!-- cv kreatif -->
-        <section id = "preview-sc" class = "print_area active">
+        <!-- <section id = "preview-sc" class = "print_area active">
             <div class = "container">
                 <div class = "preview-cnt">
                     <div class = "preview-cnt-l bg-pesat text-white">
@@ -1224,7 +1224,7 @@
                                 <h3>skills</h3>
                             </div>
                             <div class = "skills-items preview-blk-list" id = "skills_dsp">
-                                <!-- skills list here -->
+                                
                             </div>
                         </div>
                     </div>
@@ -1268,24 +1268,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
-        <div class="buat-flex">
-            <div class="satu" style="margin-left: 4.5em;">
-                <!-- <section class = "print-btn-sc">
-                    <div class = "container">
-                        <button id="download-pdf-btn" type="button" class="print-btn btn btn-primary" onclick="print()">Download as PDF</button>
-                    </di>
-                </section> -->
-            </div>
-            <div class="dua">
-                <section class = "print-btn-sc">
+                <section class = "print-btn-sc" style="margin-top: -4em;">
                     <div class = "container">
                     <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
                     </div>
                 </section>
-            </div>
-        </div>
 
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>

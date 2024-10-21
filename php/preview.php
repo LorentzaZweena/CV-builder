@@ -805,13 +805,13 @@
                     <div class = "preview-cnt-l bg-pesat text-white">
                         <div class = "preview-blk">
                             <div class = "preview-image">
-                                <img src = "" alt = "" id = "image_dsp"> 
+                                <img src = "images/<?= $datacv['photo']?>" alt = "" id = "image_dsp"> 
                             </div>
                             <div class = "preview-item preview-item-name">
                                 <span class = "preview-item-val fw-6" id = "fullname_dsp"><?= $datacv['full_name']; ?></span>
                             </div>
                             <div class = "preview-item">
-                                <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"></span>
+                                <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"><?= $datacv['designation']?></span>
                             </div>
                         </div>
 
@@ -821,13 +821,13 @@
                             </div>
                             <div class = "preview-blk-list">
                                 <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "mobileno_dsp"></span>
+                                    <span class = "preview-item-val" id = "mobileno_dsp"><?= $datacv['mobileno']?></span>
                                 </div>
                                 <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "email_dsp"></span>
+                                    <span class = "preview-item-val" id = "email_dsp"><?= $datacv['email']?></span>
                                 </div>
                                 <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "address_dsp"></span>
+                                    <span class = "preview-item-val" id = "address_dsp"><?= $datacv['address']?></span>
                                 </div>
                             </div>
                         </div>
@@ -837,7 +837,7 @@
                                 <h3>skills</h3>
                             </div>
                             <div class = "skills-items preview-blk-list" id = "skills_dsp">
-                                <!-- skills list here -->
+                                <?= $datacv['skill_name'] ?>
                             </div>
                         </div>
                     </div>
@@ -848,14 +848,14 @@
                             <div class = "preview-blk-title">
                                 <h3>Self description</h3>
                             </div>
-                            <div class = "summary preview-blk-list" id = "summary_dsp"></div>
+                            <div class = "summary preview-blk-list" id = "summary_dsp" style="text-align: justify;"><?= $datacv['selfDescription']?></div>
                         </div>
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
                                 <h3>Certifications</h3>
                             </div>
-                            <div class = "achievements-items preview-blk-list" id = "achievements_dsp"></div>
+                            <div class = "achievements-items preview-blk-list" id = "achievements_dsp"><?= $datacv['certification_title']?><?= $datacv['certification_description']?></div>
                         </div>
 
                         <div class = "preview-blk">
