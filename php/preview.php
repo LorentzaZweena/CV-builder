@@ -805,7 +805,7 @@
                     <div class = "preview-cnt-l bg-pesat text-white">
                         <div class = "preview-blk">
                             <div class = "preview-image">
-                                <img src = "images/<?= $datacv['photo']?>" alt = "" id = "image_dsp"> 
+                            <img src="images/<?= $datacv['photo']?>" alt="" width="100px" height="100px"> 
                             </div>
                             <div class = "preview-item preview-item-name">
                                 <span class = "preview-item-val fw-6" id = "fullname_dsp"><?= $datacv['full_name']; ?></span>
@@ -855,14 +855,56 @@
                             <div class = "preview-blk-title">
                                 <h3>Certifications</h3>
                             </div>
-                            <div class = "achievements-items preview-blk-list" id = "achievements_dsp"><?= $datacv['certification_title']?><?= $datacv['certification_description']?></div>
+                            <div class = "achievements-items preview-blk-list" id = "achievements_dsp">
+                                <?php
+                                    $sql_certificate = "SELECT * FROM certifications WHERE cv_id = ?";
+                                    $stmt_certificate = mysqli_prepare($connection, $sql_certificate);
+                                    mysqli_stmt_bind_param($stmt_certificate, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_certificate);
+                                    $result_certificate = mysqli_stmt_get_result($stmt_certificate);
+
+                                    if (mysqli_num_rows($result_certificate) > 0) {
+                                        // Ulangi hasilnya dan tampilin setiap sertifikasi si user
+                                        while ($row = mysqli_fetch_assoc($result_certificate)) {
+                                        echo "<div class='satu' style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['title']); 
+                                        echo "</div>";
+                                        echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
+                                    }
+                                        } else {
+                                            echo "No certifications found for this CV.";
+                                        }
+                                            mysqli_stmt_close($stmt_certificate);
+                                ?>
+                            </div>
                         </div>
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
                                 <h3>educations</h3>
                             </div>
-                            <div class = "educations-items preview-blk-list" id = "educations_dsp"></div>
+                            <div class = "educations-items preview-blk-list" id = "educations_dsp">
+                            <?php
+                                    $sql_education = "SELECT * FROM education WHERE cv_id = ?";
+                                    $stmt_education = mysqli_prepare($connection, $sql_education);
+                                    mysqli_stmt_bind_param($stmt_education, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_education);
+                                    $result_education = mysqli_stmt_get_result($stmt_education);
+
+                                    if (mysqli_num_rows($result_education) > 0) {
+                                        // Ulangi hasilnya dan tampilin setiap sertifikasi si user
+                                        while ($row = mysqli_fetch_assoc($result_education)) {
+                                        echo "<div class='satu' style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['title']); 
+                                        echo "</div>";
+                                        echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
+                                    }
+                                        } else {
+                                            echo "No certifications found for this CV.";
+                                        }
+                                            mysqli_stmt_close($stmt_certificate);
+                                ?>
+                            </div>
                         </div>
 
                         <div class = "preview-blk">
