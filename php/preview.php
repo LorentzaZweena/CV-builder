@@ -892,15 +892,17 @@
                                     $result_education = mysqli_stmt_get_result($stmt_education);
 
                                     if (mysqli_num_rows($result_education) > 0) {
-                                        // Ulangi hasilnya dan tampilin setiap sertifikasi si user
                                         while ($row = mysqli_fetch_assoc($result_education)) {
-                                        echo "<div class='satu' style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
-                                        echo htmlspecialchars($row['title']); 
+                                        echo "<div style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['school']);
+                                        echo "</div>";
+                                        echo "<div style='font-weight: 700; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['degree']); 
                                         echo "</div>";
                                         echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
                                     }
                                         } else {
-                                            echo "No certifications found for this CV.";
+                                            echo "No education found for this CV.";
                                         }
                                             mysqli_stmt_close($stmt_certificate);
                                 ?>
