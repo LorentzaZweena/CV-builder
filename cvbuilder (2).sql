@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2024 at 04:47 AM
+-- Generation Time: Oct 24, 2024 at 10:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,7 +40,9 @@ CREATE TABLE `certifications` (
 
 INSERT INTO `certifications` (`id`, `cv_id`, `title`, `description`) VALUES
 (1, 1, 'Web application, 2024', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
-(2, 2, 'UI / UX Design, 2022', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+(2, 2, 'UI / UX Design, 2022', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+(3, 1, 'C++ certifications, 2022', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Quisque fusce faucibus senectus class ante. Ipsum per auctor ipsum netus condimentum et aliquam donec convallis. Commodo pulvinar feugiat fusce auctor eleifend. Massa lectus vulputate elementum facilisis leo cursus efficitur erat. Vehicula accumsan mi ultricies aliquam himenaeos dolor facilisi fringilla.'),
+(4, 2, 'Web design certifications, 2023', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Quisque fusce faucibus senectus class ante. Ipsum per auctor ipsum netus condimentum et aliquam donec convallis. Commodo pulvinar feugiat fusce auctor eleifend. Massa lectus vulputate elementum facilisis leo cursus efficitur erat. Vehicula accumsan mi ultricies aliquam himenaeos dolor facilisi fringilla.');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,7 @@ CREATE TABLE `creative` (
 
 INSERT INTO `creative` (`id`, `full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES
 (1, 'Zweena Ariva', 'Web programmer', 'Sukaraja, bogor', 'images/creative.png', 'abc@gmail.com', '+62 123-456-7890', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
-(2, 'Ariva Zweena', 'UI / UX Designer', 'Sukaraja, Jakarta', 'images/image2.png', 'abc@gmail.com', '1234567890', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+(2, 'Ariva Zweena', 'UI / UX Designer', 'Sukaraja, Jakarta', 'images/image2.png', 'xyz@gmail.com', '+1 234-567-8901', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 -- --------------------------------------------------------
 
@@ -89,8 +91,10 @@ CREATE TABLE `education` (
 --
 
 INSERT INTO `education` (`id`, `cv_id`, `school`, `degree`, `city`, `start_date`, `end_date`, `description`) VALUES
-(1, 1, 'SMK INFORMATIKA PESAT', 'software engineer', 'Bogor, Indonesia', '12-07-1995', '29-01-2007', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
-(2, 2, 'SMA PESAT', 'Network computer engineering', 'Bogor', '08-12-2022', '20-10-2027', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n');
+(1, 1, 'SMK INFORMATIKA PESAT', 'software engineer', 'Bogor, Indonesia', '1995', '2007', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
+(2, 2, 'SMA PESAT', 'Network computer engineering', 'Bogor', '2022', '2027', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n\r\n'),
+(3, 1, 'SMK INFOKOM', 'Software engineering technology', 'Jakarta, USA', '2019', '2022', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Non id tellus eleifend sem potenti elementum dictumst tempor? Commodo ornare vel sociosqu dictum rhoncus sociosqu. Integer aptent massa consectetur curae per cursus justo. Faucibus enim erat nibh natoque ultrices bibendum urna.'),
+(4, 2, 'SMAN 2 ', 'IPA', 'London, United Kingdom', '1203', '1780', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Non id tellus eleifend sem potenti elementum dictumst tempor? Commodo ornare vel sociosqu dictum rhoncus sociosqu. Integer aptent massa consectetur curae per cursus justo.');
 
 -- --------------------------------------------------------
 
@@ -114,8 +118,10 @@ CREATE TABLE `experiences` (
 --
 
 INSERT INTO `experiences` (`id`, `cv_id`, `title`, `organization`, `location`, `start_date`, `end_date`, `description`) VALUES
-(1, 1, 'Full-stack programmer', 'SMK INFORMATIKA PESAT', 'Bogor, Indonesia', '28-06-1200', '02-10-2080', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
-(2, 2, 'UI / UX Designer', 'SMP PESAT', 'Jakarta, Indonesia', '19-05-2022', '18-05-2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+(1, 1, 'Full-stack programmer', 'SMK INFORMATIKA PESAT', 'Bogor, Indonesia', 'Mei', 'Desember 5087', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
+(2, 2, 'UI / UX Designer', 'SMP PESAT', 'Jakarta, Indonesia', 'Februari', 'November 9058', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+(3, 1, 'Web developer', 'Google', 'California, USA', 'Agustus', 'September 2090', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Cursus vestibulum sapien a orci etiam proin in. Primis varius ullamcorper sagittis placerat turpis curae ut. Magnis ligula penatibus volutpat efficitur placerat laoreet est litora.'),
+(4, 2, 'Game developer', 'Tesla.inc', 'Shurugwi, Zimbabwe', 'Juli', 'Januari 3080', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Cursus vestibulum sapien a orci etiam proin in. Primis varius ullamcorper sagittis placerat turpis curae ut. Magnis ligula penatibus volutpat efficitur placerat laoreet est litora.');
 
 -- --------------------------------------------------------
 
@@ -136,7 +142,9 @@ CREATE TABLE `projects` (
 
 INSERT INTO `projects` (`id`, `cv_id`, `title`, `description`) VALUES
 (1, 1, 'Sistem voting osis', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Lectus porta per aptent mus dictum platea sodales non pulvinar. Pulvinar tempor purus aliquet etiam fames. Metus platea inceptos laoreet sodales placerat platea placerat odio. Taciti eget imperdiet praesent sagittis condimentum porttitor gravida. Felis pharetra odio molestie dis eros ipsum vel massa. Posuere magnis iaculis cubilia fames, in metus finibus eget convallis. Class amet nec a conubia turpis penatibus ligula commodo. Quis est risus erat ex metus.'),
-(2, 2, 'CV builder', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+(2, 2, 'CV builder', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+(3, 1, 'Landing page', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Cursus vestibulum sapien a orci etiam proin in. Primis varius ullamcorper sagittis placerat turpis curae ut. Magnis ligula penatibus volutpat efficitur placerat laoreet est litora.'),
+(4, 2, 'Prototype mobile music app', 'Lorem ipsum odor amet, consectetuer adipiscing elit. Cursus vestibulum sapien a orci etiam proin in. Primis varius ullamcorper sagittis placerat turpis curae ut. Magnis ligula penatibus volutpat efficitur placerat laoreet est litora.');
 
 -- --------------------------------------------------------
 
@@ -237,7 +245,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `certifications`
 --
 ALTER TABLE `certifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `creative`
@@ -249,19 +257,19 @@ ALTER TABLE `creative`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `experiences`
 --
 ALTER TABLE `experiences`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `skills`

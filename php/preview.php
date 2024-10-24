@@ -899,12 +899,25 @@
                                         echo "<div style='font-weight: 700; margin-bottom: 3px; margin-top: 10px;'>";
                                         echo htmlspecialchars($row['degree']); 
                                         echo "</div>";
+                                        echo "<div class='buat-flex' style='margin-bottom: 8px; margin-top: 10px;'>";
+                                            echo "<div class='satu' style='font-style: italic;'>";
+                                            echo htmlspecialchars($row['city']); 
+                                            echo "</div>";
+
+                                            echo "<div class='dua bg-pesat' style='margin-left: 10px; color: white; padding: 0.2em 0.8em 0.2em 0.8em; border-radius : 8px;'>";
+                                            echo htmlspecialchars($row['start_date']); 
+                                            echo "</div>";
+
+                                            echo "<div class='tiga bg-pesat' style='margin-left: 10px; color: white; padding: 0.2em 0.8em 0.2em 0.8em; border-radius : 8px;'>";
+                                            echo htmlspecialchars($row['end_date']); 
+                                            echo "</div>";
+                                        echo "</div>";
                                         echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
                                     }
                                         } else {
                                             echo "No education found for this CV.";
                                         }
-                                            mysqli_stmt_close($stmt_certificate);
+                                            // mysqli_stmt_close($stmt_certificate);
                                 ?>
                             </div>
                         </div>
@@ -913,14 +926,70 @@
                             <div class = "preview-blk-title">
                                 <h3>experiences</h3>
                             </div>
-                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
+                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp">
+                            <?php
+                                    $sql_experience = "SELECT * FROM experiences WHERE cv_id = ?";
+                                    $stmt_experience = mysqli_prepare($connection, $sql_experience);
+                                    mysqli_stmt_bind_param($stmt_experience, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_experience);
+                                    $result_experience = mysqli_stmt_get_result($stmt_experience);
+
+                                    if (mysqli_num_rows($result_experience) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_experience)) {
+                                        echo "<div style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['title']);
+                                        echo "</div>";
+                                        echo "<div style='font-weight: 700; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['organization']); 
+                                        echo "</div>";
+                                        echo "<div class='buat-flex' style='margin-bottom: 8px; margin-top: 10px;'>";
+                                            echo "<div class='satu' style='font-style: italic;'>";
+                                            echo htmlspecialchars($row['location']); 
+                                            echo "</div>";
+
+                                            echo "<div class='dua bg-pesat' style='margin-left: 10px; color: white; padding: 0.2em 0.8em 0.2em 0.8em; border-radius : 8px;'>";
+                                            echo htmlspecialchars($row['start_date']); 
+                                            echo "</div>";
+
+                                            echo "<div class='tiga bg-pesat' style='margin-left: 10px; color: white; padding: 0.2em 0.8em 0.2em 0.8em; border-radius : 8px;'>";
+                                            echo htmlspecialchars($row['end_date']); 
+                                            echo "</div>";
+                                        echo "</div>";
+                                        echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
+                                    }
+                                        } else {
+                                            echo "No experience found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+                            </div>
                         </div>
 
                         <div class = "preview-blk">
                             <div class = "preview-blk-title">
                                 <h3>projects</h3>
                             </div>
-                            <div class = "projects-items preview-blk-list" id = "projects_dsp"></div>
+                            <div class = "projects-items preview-blk-list" id = "projects_dsp">
+                                <?php
+                                    $sql_projects = "SELECT * FROM projects WHERE cv_id = ?";
+                                    $stmt_projects = mysqli_prepare($connection, $sql_projects);
+                                    mysqli_stmt_bind_param($stmt_projects, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_projects);
+                                    $result_projects = mysqli_stmt_get_result($stmt_projects);
+
+                                    if (mysqli_num_rows($result_projects) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_projects)) {
+                                        echo "<div style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['title']);
+                                        echo "</div>";
+                                        echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
+                                    }
+                                        } else {
+                                            echo "No projects found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,8 @@
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+    include "connection.php";
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Basic information
         $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''));
         $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''));
@@ -31,7 +34,6 @@
     
         if ($stmt->execute()) {
             $cv_id = $stmt->insert_id;
-            echo "<script>alert('Basic information saved successfully!');</script>";
     
             // Handle certifications
             if (isset($_POST['group-a'])) {
@@ -101,14 +103,16 @@
             }
     
             // After all data is saved successfully
-            header("Location: index2.php?success=1");
+            echo json_encode(['success' => true, 'message' => 'CV saved successfully']);
             exit();
-            
-          } else {
-            echo "Error: " . $stmt->error;
-            header("Location: index2.php?error=1");
+        } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
+            // If it's a GET request, just display the form
+            // You can include your HTML form here or use a separate PHP file for the form
+            include 'create-resume.php'; // Make sure this file exists and contains your form HTML
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
             exit();
-        }    
+        }
     }
 ?>
 
@@ -924,7 +928,8 @@
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
             <div class = "container">
                 <div class = "about-cnt">
-                <form action="index2.php" method="POST" enctype="multipart/form-data" class="cv-form" id="cv-form">
+                <form id="cv-form" action="index2.php" method="POST" enctype="multipart/form-data" class="cv-form">
+
 
                         <div class = "cv-form-blk">
                             <div class = "cv-form-row-title">
@@ -1272,7 +1277,8 @@
 
                 <section class = "print-btn-sc" style="margin-top: -4em;">
                     <div class = "container">
-                    <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
+                    <!-- <button type="submit" name="submit" class="btn btn-primary">Save CV</button> -->
+                    <button type="submit" name="submit" class="submit-btn btn btn-primary">Save CV</button>
                     </div>
                 </section>
 
@@ -1286,17 +1292,30 @@
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
         <script>
-            const downloadPdfBtn = document.getElementById('download-pdf-btn');
-            downloadPdfBtn.addEventListener('click', () => {
-                const pdf = new jsPDF();
-                pdf.fromHTML(document.body);
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cv-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = new FormData(this);
 
-                const pdfBlob = pdf.output('blob');
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(pdfBlob);
-                link.download = 'download.pdf';
-                link.click();
+                fetch('index2.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        // Optionally redirect or clear form here
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             });
+        });
         </script>
     </body>
 </html>
