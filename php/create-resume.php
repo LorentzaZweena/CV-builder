@@ -1106,9 +1106,9 @@
                             <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
                         </div> -->
                         <input type="submit" value="Save CV"></input>
+                        <?= var_dump($_POST); ?>
                     </form>
                 </div>
-                <?= var_dump($_POST); ?>
             </div>
         </section>
 
@@ -1121,26 +1121,5 @@
         <!-- app js -->
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
-        <script>
-        document.getElementById('cv-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    let formData = new FormData(this);
-    
-    fetch('index2.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('CV saved successfully!');
-        } else {
-            alert('Error saving CV: ' + data.message);
-        }
-    });
-});
-
-        </script>
     </body>
 </html>
