@@ -1,118 +1,34 @@
 <?php
     include "connection.php";
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Basic information
+    if (isset($_POST['firstname'])) {
         $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''));
         $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''));
         $lastname = htmlspecialchars(trim($_POST['lastname'] ?? ''));
+        
         $full_name = trim($firstname . " " . $middlename . " " . $lastname);
-        $designation = htmlspecialchars(trim($_POST['designation'] ?? ''));
-        $address = htmlspecialchars(trim($_POST['address'] ?? ''));
-        $email = htmlspecialchars(trim($_POST['email'] ?? ''));
-        $mobileno = htmlspecialchars(trim($_POST['mobileno'] ?? ''));
-        $summary = htmlspecialchars(trim($_POST['summary'] ?? ''));
-    
-        // Handle file upload
         $photo = '';
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $upload_dir = 'uploads/';
-            $filename = uniqid() . '_' . $_FILES['image']['name'];
-            $upload_file = $upload_dir . $filename;
-            
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
-                $photo = $upload_file;
-            } else {
-                echo "Error uploading file.";
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+                $photoTmpName = $_FILES['image']['tmp_name'];
+                $photoName = basename($_FILES['image']['name']);
+                $photoPath = '../images/' . $photoName;
+                move_uploaded_file($photoTmpName, $photoPath);
+                $photo = $photoPath;
             }
-        }
-    
-        // Prepare and execute the SQL statement for basic info
-        $stmt = $connection->prepare("INSERT INTO creative (full_name, designation, address, photo, email, mobileno, selfDescription) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $full_name, $designation, $address, $photo, $email, $mobileno, $summary);
-    
-        if ($stmt->execute()) {
-            $cv_id = $stmt->insert_id;
-    
-            // Handle certifications
-            if (isset($_POST['group-a'])) {
-                foreach ($_POST['group-a'] as $certification) {
-                    $title = htmlspecialchars(trim($certification['achieve_title'] ?? ''));
-                    $description = htmlspecialchars(trim($certification['achieve_description'] ?? ''));
-                    
-                    $cert_stmt = $connection->prepare("INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)");
-                    $cert_stmt->bind_param("iss", $cv_id, $title, $description);
-                    $cert_stmt->execute();
-                }
-            }
-    
-            // Handle experiences
-            if (isset($_POST['group-b'])) {
-                foreach ($_POST['group-b'] as $experience) {
-                    $title = htmlspecialchars(trim($experience['exp_title'] ?? ''));
-                    $organization = htmlspecialchars(trim($experience['exp_organization'] ?? ''));
-                    $location = htmlspecialchars(trim($experience['exp_location'] ?? ''));
-                    $start_date = htmlspecialchars(trim($experience['exp_start_date'] ?? ''));
-                    $end_date = htmlspecialchars(trim($experience['exp_end_date'] ?? ''));
-                    $description = htmlspecialchars(trim($experience['exp_description'] ?? ''));
-                    
-                    $exp_stmt = $connection->prepare("INSERT INTO experiences (cv_id, title, organization, location, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    $exp_stmt->bind_param("issssss", $cv_id, $title, $organization, $location, $start_date, $end_date, $description);
-                    $exp_stmt->execute();
-                }
-            }
-    
-            // Handle education
-            if (isset($_POST['group-c'])) {
-                foreach ($_POST['group-c'] as $education) {
-                    $school = htmlspecialchars(trim($education['edu_school'] ?? ''));
-                    $degree = htmlspecialchars(trim($education['edu_degree'] ?? ''));
-                    $city = htmlspecialchars(trim($education['edu_city'] ?? ''));
-                    $start_date = htmlspecialchars(trim($education['edu_start_date'] ?? ''));
-                    $end_date = htmlspecialchars(trim($education['edu_graduation_date'] ?? ''));
-                    $description = htmlspecialchars(trim($education['edu_description'] ?? ''));
-                    
-                    $edu_stmt = $connection->prepare("INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                    $edu_stmt->bind_param("issssss", $cv_id, $school, $degree, $city, $start_date, $end_date, $description);
-                    $edu_stmt->execute();
-                }
-            }
-    
-            // Handle projects
-            if (isset($_POST['group-d'])) {
-                foreach ($_POST['group-d'] as $project) {
-                    $title = htmlspecialchars(trim($project['proj_title'] ?? ''));
-                    $description = htmlspecialchars(trim($project['proj_description'] ?? ''));
-                    
-                    $proj_stmt = $connection->prepare("INSERT INTO projects (cv_id, title, description) VALUES (?, ?, ?)");
-                    $proj_stmt->bind_param("iss", $cv_id, $title, $description);
-                    $proj_stmt->execute();
-                }
-            }
-    
-            // Handle skills
-            if (isset($_POST['group-e'])) {
-                foreach ($_POST['group-e'] as $skill) {
-                    $skill_name = htmlspecialchars(trim($skill['skill'] ?? ''));
-                    
-                    $skill_stmt = $connection->prepare("INSERT INTO skills (cv_id, skill_name) VALUES (?, ?)");
-                    $skill_stmt->bind_param("is", $cv_id, $skill_name);
-                    $skill_stmt->execute();
-                }
-            }
-    
-            // After all data is saved successfully
-            echo json_encode(['success' => true, 'message' => 'CV saved successfully']);
-            exit();
-        } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-            // If it's a GET request, just display the form
-            // You can include your HTML form here or use a separate PHP file for the form
-            include 'create-resume.php'; // Make sure this file exists and contains your form HTML
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Invalid request method']);
-            exit();
-        }
+        
+        $designation = $_POST['designation'];
+        $address = $_POST['address'];
+        $email = $_POST['email'];
+        $phone = $_POST['mobileno'];
+        $selfDescription = $_POST['summary'];
+
+        $stmt = $connection->prepare("INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $full_name, $designation, $address, $photo,  $email, $phone, $selfDescription);
+
+            $stmt->execute();
+            $stmt->close();
+
+            header('Location: index2.php');
+            exit;
     }
 ?>
 
@@ -939,17 +855,17 @@
                                 <div class = "cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">First Name</label>
-                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "" onkeyup="generateCV()" placeholder="e.g. Ariva">
+                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "firstname" placeholder="e.g. Ariva">
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Middle Name <span class = "opt-text">(optional)</span></label>
-                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "" onkeyup="generateCV()" placeholder="e.g Lorentza">
+                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "middlename" placeholder="e.g Lorentza">
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Last Name</label>
-                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "" onkeyup="generateCV()" placeholder="e.g. Zweena">
+                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "lastname" placeholder="e.g. Zweena">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -957,16 +873,16 @@
                                 <div class="cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Your Image</label>
-                                        <input name = "image" type = "file" class = "form-control image" id = "" accept = "image/*" onchange="previewImage()">
+                                        <input name = "image" type = "file" class = "form-control image" id = "image" accept = "image/*" onchange="previewImage()">
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Designation</label>
-                                        <input name = "designation" type = "text" class = "form-control designation" id = "" onkeyup="generateCV()" placeholder="e.g. Web programmer">
+                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" placeholder="e.g. Web programmer">
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Address</label>
-                                        <input name = "address" type = "text" class = "form-control address" id = "" onkeyup="generateCV()" placeholder="e.g. Cilebut barat, sukaraja">
+                                        <input name = "address" type = "text" class = "form-control address" id = "address" placeholder="e.g. Cilebut barat, sukaraja">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -974,19 +890,19 @@
                                 <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Email</label>
-                                        <input name = "email" type = "text" class = "form-control email" id = "" onkeyup="generateCV()" placeholder="e.g. ariva02zweena@gmail.com">
+                                        <input name = "email" type = "text" class = "form-control email" id = "email" placeholder="e.g. ariva02zweena@gmail.com" onkeyup="generateCV()">
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
-                                        <label for = "" class = "form-label">Phone No:</label>
-                                        <input name = "mobileno" type = "text" class = "form-control mobileno" id = "" onkeyup="generateCV()" placeholder="e.g. +62 123-456-7890">
+                                        <label for = "" class = "form-label">Phone number:</label>
+                                        <input name = "mobileno" type = "text" class = "form-control mobileno" id = "mobileno" placeholder="e.g. +62 123-456-7890">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
                                 <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Self description</label>
-                                        <textarea name="summary" class="form-control summary" id="" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
+                                        <textarea name="summary" class="form-control summary" id="summary" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -1041,12 +957,12 @@
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Company / Organization</label>
-                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" placeholder="e.g SMK PESAT ITXPRO">
+                                                    <input name="group-b[0][exp_organization]" type="text" class="form-control exp_organization" placeholder="e.g Google">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Location</label>
-                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" placeholder="e.g Bogor, Indonesia">
+                                                    <input name="group-b[0][exp_location]" type="text" class="form-control exp_location" placeholder="e.g Bogor, Indonesia">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -1054,19 +970,20 @@
                                             <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_start_date" class="form-label">Start Date</label>
-                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="02-09-2007">
+                                                    <input name="group-b[0][exp_start_date]" type="text" class="form-control exp_start_date" placeholder="e.g August">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
                                                     <label for="exp_end_date" class="form-label">End Date</label>
-                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="02-12-2004">
+                                                    <input name="group-b[0][exp_end_date]" type="text" class="form-control exp_end_date" placeholder="e.g September 2020">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
                                             <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_description" class="form-label">Description</label>
-                                                    <textarea name="exp_description" type="text" class="form-control exp_description" id="exp_description" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
+                                                    <textarea name="group-b[0][exp_description]" class="form-control exp_description" placeholder="e.g Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro tempore quod praesentium nam itaque dolorem nostrum quo ipsam, modi, ut et earum sit perspiciatis inventore fugit, molestias suscipit doloremque voluptates?"  rows="5" style="width: 204%;"></textarea>
+
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -1144,7 +1061,7 @@
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onkeyup="generateCV()" placeholder="e.g Sistem voting osis" style="width: 204%;">
+                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = ""  placeholder="e.g Sistem voting osis" style="width: 204%;">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -1174,7 +1091,7 @@
                                         <div class = "cv-form-row cv-form-row-skills">
                                             <div class = "form-elem">
                                                 <label for = "" class = "form-label">Skill</label>
-                                                <input name = "skill" type = "text" class = "form-control skill" id = "" onkeyup="generateCV()" placeholder="e.g PHP">
+                                                <input name = "skill" type = "text" class = "form-control skill" id = "" placeholder="e.g PHP">
                                                 <span class="form-text"></span>
                                             </div>
                                             
@@ -1185,102 +1102,15 @@
                                 <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
                             </div>
                         </div>
+                        <!-- <div class="form-submit">
+                            <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
+                        </div> -->
+                        <input type="submit" value="Save CV"></input>
                     </form>
                 </div>
+                <?= var_dump($_POST); ?>
             </div>
-        </section>        
-        
-        <!-- cv kreatif -->
-        <!-- <section id = "preview-sc" class = "print_area active">
-            <div class = "container">
-                <div class = "preview-cnt">
-                    <div class = "preview-cnt-l bg-pesat text-white">
-                        <div class = "preview-blk">
-                            <div class = "preview-image">
-                                <img src = "" alt = "" id = "image_dsp"> 
-                            </div>
-                            <div class = "preview-item preview-item-name">
-                                <span class = "preview-item-val fw-6" id = "fullname_dsp"></span>
-                            </div>
-                            <div class = "preview-item">
-                                <span class = "preview-item-val text-uppercase fw-6 ls-1" id = "designation_dsp"></span>
-                            </div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>about</h3>
-                            </div>
-                            <div class = "preview-blk-list">
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "mobileno_dsp"></span>
-                                </div>
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "email_dsp"></span>
-                                </div>
-                                <div class = "preview-item">
-                                    <span class = "preview-item-val" id = "address_dsp"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>skills</h3>
-                            </div>
-                            <div class = "skills-items preview-blk-list" id = "skills_dsp">
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class = "preview-cnt-r bg-white">
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>Self description</h3>
-                            </div>
-                            <div class = "summary preview-blk-list" id = "summary_dsp"></div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>Certifications</h3>
-                            </div>
-                            <div class = "achievements-items preview-blk-list" id = "achievements_dsp"></div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>educations</h3>
-                            </div>
-                            <div class = "educations-items preview-blk-list" id = "educations_dsp"></div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>experiences</h3>
-                            </div>
-                            <div class = "experiences-items preview-blk-list" id = "experiences_dsp"></div>
-                        </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>projects</h3>
-                            </div>
-                            <div class = "projects-items preview-blk-list" id = "projects_dsp"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-                <section class = "print-btn-sc" style="margin-top: -4em;">
-                    <div class = "container">
-                    <!-- <button type="submit" name="submit" class="btn btn-primary">Save CV</button> -->
-                    <button type="submit" name="submit" class="submit-btn btn btn-primary">Save CV</button>
-                    </div>
-                </section>
+        </section>
 
         <!-- jquery cdn -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
@@ -1292,30 +1122,25 @@
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('cv-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                var formData = new FormData(this);
+        document.getElementById('cv-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let formData = new FormData(this);
+    
+    fetch('index2.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('CV saved successfully!');
+        } else {
+            alert('Error saving CV: ' + data.message);
+        }
+    });
+});
 
-                fetch('index2.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert(data.message);
-                        // Optionally redirect or clear form here
-                    } else {
-                        alert('Error: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            });
-        });
         </script>
     </body>
 </html>
