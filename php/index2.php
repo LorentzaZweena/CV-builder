@@ -1,19 +1,6 @@
 <?php
     session_start();
     include 'connection.php';
-    include 'function-register.php';
-
-    // if (!isset($_SESSION['login'])) {
-    //     header('location:index.php');
-    //     exit();
-    // }
-
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
-      echo "<script>alert('CV saved successfully!');</script>";
-  }
-  if (isset($_GET['error']) && $_GET['error'] == 1) {
-      echo "<script>alert('Error saving CV. Please try again.');</script>";
-  }
 ?>
 
 <!DOCTYPE html>
@@ -200,7 +187,7 @@
       
       while($data = mysqli_fetch_assoc($query)){
           echo "<tr>";
-          echo "<td>" . $data['id']++ . "</td>";
+          echo "<td>" . $data['id'] . "</td>";
           echo "<td>" . htmlspecialchars($data['full_name']) . "</td>";
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";

@@ -21,14 +21,15 @@
         $phone = $_POST['mobileno'];
         $selfDescription = $_POST['summary'];
 
-        $stmt = $connection->prepare("INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssss", $full_name, $designation, $address, $photo,  $email, $phone, $selfDescription);
+        $sql = "INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES ('".$full_name."', '".$designation."', '".$address."', '".$photo."', '".$email."', '".$phone."', '".$selfDescription."')";
 
-            $stmt->execute();
-            $stmt->close();
-
-            header('Location: index2.php');
-            exit;
+        mysqli_query($connection, $sql);
+        if(mysqli_query($connection, $sql)){
+            header("location:index2.php");
+        } else {
+            echo "Error: " . mysqli_error($connection);
+        }
+        
     }
 ?>
 
@@ -844,8 +845,7 @@
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
             <div class = "container">
                 <div class = "about-cnt">
-                <form id="cv-form" action="index2.php" method="POST" enctype="multipart/form-data" class="cv-form">
-
+                <form id="cv-form" action="create-resume.php" method="POST" enctype="multipart/form-data" class="cv-form">
 
                         <div class = "cv-form-blk">
                             <div class = "cv-form-row-title">
@@ -909,7 +909,7 @@
                             </div>
                         </div>
 
-                        <div class="cv-form-blk">
+                        <!-- <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
                                 <h3>Certifications</h3>
                             </div>
@@ -1101,12 +1101,11 @@
                                 </div>
                                 <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="form-submit">
                             <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
                         </div> -->
                         <input type="submit" value="Save CV"></input>
-                        <?= var_dump($_POST); ?>
                     </form>
                 </div>
             </div>
