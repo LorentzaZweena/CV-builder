@@ -251,7 +251,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="update_basic.php" method="POST">
+                <form action="update_basic.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                     <div class="mb-3">
                         <label>Full Name</label>
@@ -261,12 +261,33 @@
                         <label>Designation</label>
                         <input type="text" class="form-control" id="basic_designation" name="designation">
                     </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="basic_email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label>Mobile Number</label>
+                        <input type="tel" class="form-control" id="basic_mobileno" name="mobileno">
+                    </div>
+                    <div class="mb-3">
+                        <label>Address</label>
+                        <textarea class="form-control" id="basic_address" name="address" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Self Description</label>
+                        <textarea class="form-control" id="basic_selfDescription" name="selfDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Photo</label>
+                        <input type="file" class="form-control" id="basic_photo" name="photo">
+                    </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 
 
 
@@ -296,20 +317,23 @@
       new bootstrap.Modal(document.getElementById('editModal')).show();
   }
 
-  function showForm(type, id) {
-    bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
-    const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
-    document.querySelector('#basicFormModal input[name="id"]').value = id;
+function showForm(type, id) {
+  bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+  const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
+  document.querySelector('#basicFormModal input[name="id"]').value = id;
     
-    fetch(`get_form_data.php?type=${type}&id=${id}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('basic_full_name').value = data.full_name;
-            document.getElementById('basic_designation').value = data.designation;
-            formModal.show();
-        });
+  fetch(`get_form_data.php?type=${type}&id=${id}`)
+      .then(response => response.json())
+      .then(data => {
+          document.getElementById('basic_full_name').value = data.full_name;
+          document.getElementById('basic_designation').value = data.designation;
+          document.getElementById('basic_email').value = data.email;
+          document.getElementById('basic_mobileno').value = data.mobileno;
+          document.getElementById('basic_address').value = data.address;
+          document.getElementById('basic_selfDescription').value = data.selfDescription;
+          formModal.show();
+      });
 }
-
   </script>
 
     <!-- bootstrap :3  -->

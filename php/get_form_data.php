@@ -6,7 +6,7 @@ if (isset($_GET['type']) && isset($_GET['id'])) {
     $id = mysqli_real_escape_string($connection, $_GET['id']);
     
     if ($type === 'basic') {
-        $sql = "SELECT full_name, designation FROM creative WHERE id = '$id'";
+        $sql = "SELECT full_name, designation, email, mobileno, address, selfDescription, photo FROM creative WHERE id = '$id'";
         $result = mysqli_query($connection, $sql);
         
         if ($row = mysqli_fetch_assoc($result)) {
@@ -14,6 +14,5 @@ if (isset($_GET['type']) && isset($_GET['id'])) {
             echo json_encode($row);
         }
     }
-    // Add other type cases here for experiences, skills etc.
 }
 ?>
