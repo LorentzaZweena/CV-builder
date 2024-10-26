@@ -123,6 +123,25 @@
   <title>Resume builder | Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" type='text/css'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    .modal-content {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-body button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.modal-body button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+  </style>
 </head>
 <body>
   <h4 class="mt-5 ms-4">Resume sample</h4>
@@ -192,23 +211,13 @@
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";
           echo "<a class='btn btn-danger btn-sm' href='delete.php?id=" . $data['id'] . "'>Delete</a>";
-          echo "<a class='btn btn-primary btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "' onclick='showEditAlert()'>Edit</a>";
+          echo "<button class='btn btn-primary btn-sm ms-1' onclick='showEditAlert(" . $data['id'] . ")'>Edit</button>";
           echo "<a class='btn btn-success btn-sm ms-1' href='preview.php?id=" . $data['id'] . "'>Preview</a>";
           echo "</td>";
           echo "</tr>";
       }
       
     ?>
-    <!-- <tr>
-      <th scope="row">1</th>
-      <td>Zweena Ariva</td>
-      <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Ariva Zweena</td>
-      <td><a href=""><i class='bx bx-trash bx-sm' style="color: red;"></i></a><a href=""><i class='bx bxs-edit bx-sm' style="color: green; margin-left: 0.5em;"></i></a><a href=""><span class="material-symbols-outlined" style="margin-left: 0.5em;"> visibility </span></a></td>
-    </tr> -->
   </tbody>
   </table>
 
@@ -221,15 +230,45 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body d-flex flex-wrap gap-2 justify-content-center">
-        <button class="btn btn-outline-primary" onclick="editSection('experiences')">Experiences</button>
-        <button class="btn btn-outline-success" onclick="editSection('skills')">Skills</button>
-        <button class="btn btn-outline-info" onclick="editSection('certifications')">Certifications</button>
-        <button class="btn btn-outline-warning" onclick="editSection('educations')">Educations</button>
-        <button class="btn btn-outline-danger" onclick="editSection('projects')">Projects</button>
-      </div>
+    <button class="btn btn-primary" onclick="showForm('basic', currentCvId)">Basic information</button>
+    <button class="btn btn-secondary" onclick="showForm('experience', currentCvId)">Experiences</button>
+    <button class="btn btn-success" onclick="showForm('skills', currentCvId)">Skills</button>
+    <button class="btn btn-info" onclick="showForm('certifications', currentCvId)">Certifications</button>
+    <button class="btn btn-warning" onclick="showForm('education', currentCvId)">Educations</button>
+    <button class="btn btn-danger" onclick="showForm('projects', currentCvId)">Projects</button>
+</div>
+
     </div>
   </div>
 </div>
+
+<!-- Basic Information Form Modal -->
+<div class="modal fade" id="basicFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Basic Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="update_basic.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <div class="mb-3">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" id="basic_full_name" name="full_name">
+                    </div>
+                    <div class="mb-3">
+                        <label>Designation</label>
+                        <input type="text" class="form-control" id="basic_designation" name="designation">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 </html>
@@ -249,17 +288,29 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+  let currentCvId = null;
 
-<script>
-function showEditAlert() {
-    new bootstrap.Modal(document.getElementById('editModal')).show();
+  function showEditAlert(id) {
+      currentCvId = id;
+      new bootstrap.Modal(document.getElementById('editModal')).show();
+  }
+
+  function showForm(type, id) {
+    bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+    const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
+    document.querySelector('#basicFormModal input[name="id"]').value = id;
+    
+    fetch(`get_form_data.php?type=${type}&id=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('basic_full_name').value = data.full_name;
+            document.getElementById('basic_designation').value = data.designation;
+            formModal.show();
+        });
 }
 
-function editSection(section) {
-    const id = /* get your CV ID here */;
-    window.location.href = `edit-${section}.php?id=${id}`;
-}
-</script>
+  </script>
 
     <!-- bootstrap :3  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

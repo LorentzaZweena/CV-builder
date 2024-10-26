@@ -805,7 +805,8 @@
                     <div class = "preview-cnt-l bg-pesat text-white">
                         <div class = "preview-blk">
                             <div class = "preview-image">
-                            <img src="images/<?= $datacv['photo']?>" alt="" width="100px" height="100px"> 
+                            <img src="../images/<?= $datacv['photo']?>" alt="" width="100px" height="100px">
+
                             </div>
                             <div class = "preview-item preview-item-name">
                                 <span class = "preview-item-val fw-6" id = "fullname_dsp"><?= $datacv['full_name']; ?></span>
