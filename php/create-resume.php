@@ -23,7 +23,6 @@
 
         $sql = "INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES ('".$full_name."', '".$designation."', '".$address."', '".$photo."', '".$email."', '".$phone."', '".$selfDescription."')";
 
-        mysqli_query($connection, $sql);
         if(mysqli_query($connection, $sql)){
             header("location:index2.php");
         } else {

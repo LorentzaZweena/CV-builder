@@ -192,7 +192,7 @@
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";
           echo "<a class='btn btn-danger btn-sm' href='delete.php?id=" . $data['id'] . "'>Delete</a>";
-          echo "<a class='btn btn-primary btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "'>Edit</a>";
+          echo "<a class='btn btn-primary btn-sm ms-1' href='delete2.php?id=" . $data['id'] . "' onclick='showEditAlert()'>Edit</a>";
           echo "<a class='btn btn-success btn-sm ms-1' href='preview.php?id=" . $data['id'] . "'>Preview</a>";
           echo "</td>";
           echo "</tr>";
@@ -212,6 +212,25 @@
   </tbody>
   </table>
 
+  <!-- Custom Alert Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">What would you like to edit?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-wrap gap-2 justify-content-center">
+        <button class="btn btn-outline-primary" onclick="editSection('experiences')">Experiences</button>
+        <button class="btn btn-outline-success" onclick="editSection('skills')">Skills</button>
+        <button class="btn btn-outline-info" onclick="editSection('certifications')">Certifications</button>
+        <button class="btn btn-outline-warning" onclick="editSection('educations')">Educations</button>
+        <button class="btn btn-outline-danger" onclick="editSection('projects')">Projects</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
@@ -230,6 +249,17 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+<script>
+function showEditAlert() {
+    new bootstrap.Modal(document.getElementById('editModal')).show();
+}
+
+function editSection(section) {
+    const id = /* get your CV ID here */;
+    window.location.href = `edit-${section}.php?id=${id}`;
+}
+</script>
 
     <!-- bootstrap :3  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
