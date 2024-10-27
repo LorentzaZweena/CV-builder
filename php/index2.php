@@ -346,6 +346,22 @@
     </div>
 </div>
 
+<!-- Experience List Modal -->
+<div class="modal fade" id="experienceListModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Experience to Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="experienceList" class="list-group">
+                    <!-- Experiences will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
@@ -399,9 +415,51 @@
   }
 
   function showExperienceForm(action) {
-      bootstrap.Modal.getInstance(document.getElementById('experienceChoiceModal')).hide();
-      new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
-  }  </script>
+    if (action === 'edit') {
+        // Hide choice modal
+        bootstrap.Modal.getInstance(document.getElementById('experienceChoiceModal')).hide();
+        
+        // Fetch experiences for this CV
+        fetch(`get_experiences.php?cv_id=${currentCvId}`)
+            .then(response => response.json())
+            .then(experiences => {
+                const experienceList = document.getElementById('experienceList');
+                experienceList.innerHTML = experiences.map(exp => `
+                    <button class="list-group-item list-group-item-action" 
+                            onclick="loadExperienceData(${exp.id})">
+                        ${exp.title} at ${exp.organization}
+                    </button>
+                `).join('');
+                
+                new bootstrap.Modal(document.getElementById('experienceListModal')).show();
+            });
+    } else {
+        // Show empty form for new experience
+        new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
+    }
+}
+
+function loadExperienceData(expId) {
+    // Hide experience list modal
+    bootstrap.Modal.getInstance(document.getElementById('experienceListModal')).hide();
+    
+    // Fetch specific experience data
+    fetch(`get_experience.php?id=${expId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Populate form with existing data
+            document.querySelector('[name="exp_title"]').value = data.title;
+            document.querySelector('[name="exp_organization"]').value = data.organization;
+            document.querySelector('[name="exp_location"]').value = data.location;
+            document.querySelector('[name="exp_start_date"]').value = data.start_date;
+            document.querySelector('[name="exp_end_date"]').value = data.end_date;
+            document.querySelector('[name="exp_description"]').value = data.description;
+            
+            // Show the form modal
+            new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
+        });
+}
+</script>
 
     <!-- bootstrap :3  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
