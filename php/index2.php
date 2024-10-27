@@ -288,6 +288,63 @@
     </div>
 </div>
 
+<!-- Experience Choice Modal -->
+<div class="modal fade" id="experienceChoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">What would you like to do?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <button class="btn btn-primary" onclick="showExperienceForm('add')">Add New</button>
+                <button class="btn btn-secondary" onclick="showExperienceForm('edit')">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Experience Form Modal -->
+<div class="modal fade" id="experienceFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Experience</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="update_experience.php" method="POST">
+                    <input type="hidden" name="cv_id" id="exp_cv_id">
+                    <div class="mb-3">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="exp_title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Organization</label>
+                        <input type="text" class="form-control" name="exp_organization" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Location</label>
+                        <input type="text" class="form-control" name="exp_location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Start Date</label>
+                        <input type="date" class="form-control" name="exp_start_date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>End Date</label>
+                        <input type="date" class="form-control" name="exp_end_date">
+                    </div>
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea class="form-control" name="exp_description" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Experience</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -316,25 +373,35 @@
       currentCvId = id;
       new bootstrap.Modal(document.getElementById('editModal')).show();
   }
-
-function showForm(type, id) {
-  bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
-  const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
-  document.querySelector('#basicFormModal input[name="id"]').value = id;
+  function showForm(type, id) {
+      bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
     
-  fetch(`get_form_data.php?type=${type}&id=${id}`)
-      .then(response => response.json())
-      .then(data => {
-          document.getElementById('basic_full_name').value = data.full_name;
-          document.getElementById('basic_designation').value = data.designation;
-          document.getElementById('basic_email').value = data.email;
-          document.getElementById('basic_mobileno').value = data.mobileno;
-          document.getElementById('basic_address').value = data.address;
-          document.getElementById('basic_selfDescription').value = data.selfDescription;
-          formModal.show();
-      });
-}
-  </script>
+      if (type === 'experience') {
+          document.getElementById('exp_cv_id').value = id;
+          new bootstrap.Modal(document.getElementById('experienceChoiceModal')).show();
+          return;
+      }
+    
+      const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
+      document.querySelector('#basicFormModal input[name="id"]').value = id;
+    
+      fetch(`get_form_data.php?type=${type}&id=${id}`)
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById('basic_full_name').value = data.full_name;
+              document.getElementById('basic_designation').value = data.designation;
+              document.getElementById('basic_email').value = data.email;
+              document.getElementById('basic_mobileno').value = data.mobileno;
+              document.getElementById('basic_address').value = data.address;
+              document.getElementById('basic_selfDescription').value = data.selfDescription;
+              formModal.show();
+          });
+  }
+
+  function showExperienceForm(action) {
+      bootstrap.Modal.getInstance(document.getElementById('experienceChoiceModal')).hide();
+      new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
+  }  </script>
 
     <!-- bootstrap :3  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

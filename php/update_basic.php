@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation', email = '$email', mobileno = '$mobileno', address = '$address', selfDescription = '$selfDescription', photo = '$photo' WHERE id = '$id'";
     } else {
-        $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation', email = '$email', mobileno = '$mobileno' address = '$address', selfDescription = '$selfDescription' WHERE id = '$id'";
+        $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation', email = '$email', mobileno = '$mobileno', address = '$address', selfDescription = '$selfDescription' WHERE id = '$id'";
     }
     
     if (mysqli_query($connection, $sql)) {
