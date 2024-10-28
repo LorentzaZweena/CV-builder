@@ -235,7 +235,6 @@
     <button class="btn btn-success" onclick="showForm('skills', currentCvId)">Skills</button>
     <button class="btn btn-info" onclick="showForm('certifications', currentCvId)">Certifications</button>
     <button class="btn btn-warning" onclick="showForm('education', currentCvId)">Educations</button>
-    <button class="btn btn-danger" onclick="showForm('projects', currentCvId)">Projects</button>
 </div>
 
     </div>

@@ -10,8 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $edu_end_date = $_POST['edu_end_date'];
     $edu_description = $_POST['edu_description'];
 
-    $sql = "INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) 
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("issssss", $cv_id, $edu_school, $edu_degree, $edu_city, $edu_start_date, $edu_end_date, $edu_description);
 
