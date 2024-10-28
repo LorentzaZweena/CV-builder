@@ -92,7 +92,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Other menu</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="https://smkpesat.sch.id/">
+          <a class="nav-link text-white " href="https://smkpesat.sch.id/civitas/" target="_blank">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
             
             <span class="material-symbols-outlined"> person </span>
@@ -317,27 +317,27 @@
                     <input type="hidden" name="cv_id" id="exp_cv_id">
                     <div class="mb-3">
                         <label>Title</label>
-                        <input type="text" class="form-control" name="exp_title" required>
+                        <input type="text" class="form-control" name="exp_title" required placeholder="UI / UX Designer">
                     </div>
                     <div class="mb-3">
                         <label>Organization</label>
-                        <input type="text" class="form-control" name="exp_organization" required>
+                        <input type="text" class="form-control" name="exp_organization" required placeholder="Google">
                     </div>
                     <div class="mb-3">
                         <label>Location</label>
-                        <input type="text" class="form-control" name="exp_location" required>
+                        <input type="text" class="form-control" name="exp_location" required placeholder="Cilandak, Jakarta">
                     </div>
                     <div class="mb-3">
                         <label>Start Date</label>
-                        <input type="date" class="form-control" name="exp_start_date" required>
+                        <input type="text" class="form-control" name="exp_start_date" required placeholder="August">
                     </div>
                     <div class="mb-3">
                         <label>End Date</label>
-                        <input type="date" class="form-control" name="exp_end_date">
+                        <input type="text" class="form-control" name="exp_end_date" placeholder="November 2024">
                     </div>
                     <div class="mb-3">
                         <label>Description</label>
-                        <textarea class="form-control" name="exp_description" rows="3"></textarea>
+                        <textarea class="form-control" name="exp_description" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto vitae quae esse cupiditate officiis molestiae ducimus ab nihil, incidunt recusandae quidem praesentium consequuntur nesciunt ipsum labore quaerat in totam alias."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Experience</button>
                 </form>
@@ -417,6 +417,107 @@
     </div>
 </div>
 
+<!-- Certifications Choice Modal -->
+<div class="modal fade" id="certificationsChoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">What would you like to do?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <button class="btn btn-primary" onclick="showCertificationsForm('add')">Add New</button>
+                <button class="btn btn-secondary" onclick="showCertificationsForm('edit')">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Certifications Form Modal -->
+<div class="modal fade" id="certificationsFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Certification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="update_certifications.php" method="POST">
+                    <input type="hidden" name="cv_id" id="cert_cv_id">
+                    <div class="mb-3">
+                        <label>Certification Name</label>
+                        <input type="text" class="form-control" name="cert_name" required placeholder="Python, 2022">
+                    </div>
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <input type="text" class="form-control" name="cert_date" required placeholder="Lorem ipsum">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Certification</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education Choice Modal -->
+<div class="modal fade" id="educationChoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">What would you like to do?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <button class="btn btn-primary" onclick="showEducationForm('add')">Add New</button>
+                <button class="btn btn-secondary" onclick="showEducationForm('edit')">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Education Form Modal -->
+<div class="modal fade" id="educationFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Education</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="update_education.php" method="POST">
+                    <input type="hidden" name="cv_id" id="edu_cv_id">
+                    <div class="mb-3">
+                        <label>School Name</label>
+                        <input type="text" class="form-control" name="edu_school" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Major</label>
+                        <input type="text" class="form-control" name="edu_degree" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="edu_city" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Start Date</label>
+                        <input type="date" class="form-control" name="edu_start_date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>End Date</label>
+                        <input type="date" class="form-control" name="edu_end_date">
+                    </div>
+                    <div class="mb-3">
+                        <label>Description</label>
+                        <textarea class="form-control" name="edu_description" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Education</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
 
@@ -457,6 +558,18 @@
         bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
         return;
     }
+
+    if (type === 'certifications') {
+        document.getElementById('cert_cv_id').value = id;
+        new bootstrap.Modal(document.getElementById('certificationsChoiceModal')).show();
+        return;
+    }
+
+    if (type === 'education') {
+        document.getElementById('edu_cv_id').value = id;
+        new bootstrap.Modal(document.getElementById('educationChoiceModal')).show();
+        return;
+    }
     
       const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
       document.querySelector('#basicFormModal input[name="id"]').value = id;
@@ -473,6 +586,26 @@
               formModal.show();
           });
   }
+
+  function showCertificationsForm(action) {
+    const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+    if (editModal) {
+        editModal.hide();
+    }
+    
+    document.getElementById('cert_cv_id').value = currentCvId;
+    new bootstrap.Modal(document.getElementById('certificationsFormModal')).show();
+}
+
+function showEducationForm(action) {
+    const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+    if (editModal) {
+        editModal.hide();
+    }
+    
+    document.getElementById('edu_cv_id').value = currentCvId;
+    new bootstrap.Modal(document.getElementById('educationFormModal')).show();
+}
 
   function showExperienceForm(action) {
       const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));

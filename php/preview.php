@@ -982,33 +982,6 @@
                                 ?>
                             </div>
                         </div>
-
-                        <div class = "preview-blk">
-                            <div class = "preview-blk-title">
-                                <h3>projects</h3>
-                            </div>
-                            <div class = "projects-items preview-blk-list" id = "projects_dsp">
-                                <?php
-                                    $sql_projects = "SELECT * FROM projects WHERE cv_id = ?";
-                                    $stmt_projects = mysqli_prepare($connection, $sql_projects);
-                                    mysqli_stmt_bind_param($stmt_projects, "i", $cv_id);
-                                    mysqli_stmt_execute($stmt_projects);
-                                    $result_projects = mysqli_stmt_get_result($stmt_projects);
-
-                                    if (mysqli_num_rows($result_projects) > 0) {
-                                        while ($row = mysqli_fetch_assoc($result_projects)) {
-                                        echo "<div style='font-weight: bold; margin-bottom: 3px; margin-top: 10px;'>";
-                                        echo htmlspecialchars($row['title']);
-                                        echo "</div>";
-                                        echo "<div style='text-align: justify;'>" . htmlspecialchars($row['description']) . "</div>";
-                                    }
-                                        } else {
-                                            echo "No projects found for this CV.";
-                                        }
-                                            // mysqli_stmt_close($stmt_certificate);
-                                ?>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
