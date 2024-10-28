@@ -379,6 +379,43 @@
     </div>
 </div>
 
+<!-- Skills Choice Modal -->
+<div class="modal fade" id="skillsChoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">What would you like to do?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <button class="btn btn-primary" onclick="showSkillsForm('add')">Add New</button>
+                <button class="btn btn-secondary" onclick="showSkillsForm('edit')">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Skills Form Modal -->
+<div class="modal fade" id="skillsFormModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Skill</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form action="update_skills.php" method="POST">
+                    <input type="hidden" name="cv_id" id="skill_cv_id">
+                    <div class="mb-3">
+                        <label>Skill Name</label>
+                        <input type="text" class="form-control" name="skill_name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Skill</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
@@ -413,6 +450,13 @@
           new bootstrap.Modal(document.getElementById('experienceChoiceModal')).show();
           return;
       }
+
+      if (type === 'skills') {
+        document.getElementById('skill_cv_id').value = id;
+        new bootstrap.Modal(document.getElementById('skillsChoiceModal')).show();
+        bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
+        return;
+    }
     
       const formModal = new bootstrap.Modal(document.getElementById(`${type}FormModal`));
       document.querySelector('#basicFormModal input[name="id"]').value = id;
@@ -431,14 +475,12 @@
   }
 
   function showExperienceForm(action) {
-      // Close the edit modal first
       const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
       if (editModal) {
           editModal.hide();
       }
     
       if (action === 'edit') {
-          // Fetch experiences for this CV
           fetch(`get_experiences.php?cv_id=${currentCvId}`)
               .then(response => response.json())
               .then(experiences => {
@@ -450,27 +492,20 @@
                       </button>
                   `).join('');
                 
-                  // Show the experience list modal
                   new bootstrap.Modal(document.getElementById('experienceListModal')).show();
               });
       } else {
-          // Show empty form for new experience
           new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
       }
   }
 function loadExperienceData(expId) {
-    // Hide the list modal
     bootstrap.Modal.getInstance(document.getElementById('experienceListModal')).hide();
-    
-    // Fetch the specific experience data
     fetch(`get_experience.php?id=${expId}`)
         .then(response => response.json())
         .then(data => {
-            // Update form action for editing
             const form = document.querySelector('#experienceFormModal form');
             form.action = 'update_experience.php';
             
-            // Populate form fields
             form.querySelector('[name="exp_id"]').value = data.id;
             form.querySelector('[name="exp_title"]').value = data.title;
             form.querySelector('[name="exp_organization"]').value = data.organization;
@@ -479,19 +514,14 @@ function loadExperienceData(expId) {
             form.querySelector('[name="exp_end_date"]').value = data.end_date;
             form.querySelector('[name="exp_description"]').value = data.description;
             
-            // Show the form modal
             new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
         });
 }
 function loadExperienceData(expId) {
-    // Hide experience list modal
     bootstrap.Modal.getInstance(document.getElementById('experienceListModal')).hide();
-    
-    // Fetch specific experience data
     fetch(`get_experience.php?id=${expId}`)
         .then(response => response.json())
         .then(data => {
-            // Populate form with existing data
             const form = document.getElementById('experienceFormModal');
             form.querySelector('[name="exp_title"]').value = data.title;
             form.querySelector('[name="exp_organization"]').value = data.organization;
@@ -500,7 +530,6 @@ function loadExperienceData(expId) {
             form.querySelector('[name="exp_end_date"]').value = data.end_date;
             form.querySelector('[name="exp_description"]').value = data.description;
             
-            // Show the form modal with populated data
             new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
         });
 }</script>
@@ -514,6 +543,18 @@ function loadExperienceData(expId) {
     atsBtn.href = 'preview2.php?id=' + id + '&type=ats';
     
     modal.show();
+}
+
+</script>
+<script>
+  function showSkillsForm(action) {
+    const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+    if (editModal) {
+        editModal.hide();
+    }
+    
+    document.getElementById('skill_cv_id').value = currentCvId;
+    new bootstrap.Modal(document.getElementById('skillsFormModal')).show();
 }
 
 </script>

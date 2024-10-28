@@ -838,7 +838,24 @@
                                 <h3>skills</h3>
                             </div>
                             <div class = "skills-items preview-blk-list" id = "skills_dsp">
-                                <?= $datacv['skill_name'] ?>
+                            <?php
+                                    $sql_certificate = "SELECT * FROM skills WHERE cv_id = ?";
+                                    $stmt_certificate = mysqli_prepare($connection, $sql_certificate);
+                                    mysqli_stmt_bind_param($stmt_certificate, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_certificate);
+                                    $result_certificate = mysqli_stmt_get_result($stmt_certificate);
+
+                                    if (mysqli_num_rows($result_certificate) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_certificate)) {
+                                        echo "<div class='satu' style='margin-bottom: 3px; margin-top: 10px;'>";
+                                        echo htmlspecialchars($row['skill_name']); 
+                                        echo "</div>";
+                                    }
+                                        } else {
+                                            echo "No skill found for this CV.";
+                                        }
+                                            mysqli_stmt_close($stmt_certificate);
+                                ?>
                             </div>
                         </div>
                     </div>

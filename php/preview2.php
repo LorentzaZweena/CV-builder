@@ -316,7 +316,7 @@ header p {
         </section>
 
         <section class="cv-section">
-            <h2>Technical Skills</h2>
+            <h2>Skills</h2>
             <ul>
             <?php
                                     $sql_experience = "SELECT * FROM skills WHERE cv_id = ?";
