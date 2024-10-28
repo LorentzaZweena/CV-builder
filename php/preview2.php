@@ -96,6 +96,47 @@ header p {
 .buat-flex{
     display: flex;
 }
+
+@media print {
+        body * {
+            visibility: hidden;
+        }
+        .cv-container, .cv-container * {
+            visibility: visible;
+        }
+        .cv-container {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        .print-btn-sc {
+            display: none;
+        }
+    }
+    
+    .export-btn {
+        background-color: #1A91F0;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .export-btn:hover {
+        background-color: #1170CD;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
     </style>
 </head>
 <body>
@@ -323,9 +364,15 @@ header p {
                                             // mysqli_stmt_close($stmt_certificate);
                                 ?>
             </ul>
-        </section>
+                                    </section>
 
     </div>
-
+    <section class="print-btn-sc">
+    <div class="container">
+        <button type="button" onclick="window.print()" class="export-btn" style="margin-left: 5em;">
+            <span class="material-symbols-outlined" style="margin-right: 8px;">Download as PDF</span>
+        </button>
+    </div>
+</section>
 </body>
 </html>

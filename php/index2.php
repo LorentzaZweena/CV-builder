@@ -431,30 +431,58 @@
   }
 
   function showExperienceForm(action) {
-    if (action === 'edit') {
-        // Hide choice modal
-        bootstrap.Modal.getInstance(document.getElementById('experienceChoiceModal')).hide();
-        
-        // Fetch experiences for this CV
-        fetch(`get_experiences.php?cv_id=${currentCvId}`)
-            .then(response => response.json())
-            .then(experiences => {
-                const experienceList = document.getElementById('experienceList');
-                experienceList.innerHTML = experiences.map(exp => `
-                    <button class="list-group-item list-group-item-action" 
-                            onclick="loadExperienceData(${exp.id})">
-                        ${exp.title} at ${exp.organization}
-                    </button>
-                `).join('');
+      // Close the edit modal first
+      const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+      if (editModal) {
+          editModal.hide();
+      }
+    
+      if (action === 'edit') {
+          // Fetch experiences for this CV
+          fetch(`get_experiences.php?cv_id=${currentCvId}`)
+              .then(response => response.json())
+              .then(experiences => {
+                  const experienceList = document.getElementById('experienceList');
+                  experienceList.innerHTML = experiences.map(exp => `
+                      <button class="list-group-item list-group-item-action" 
+                              onclick="loadExperienceData(${exp.id})">
+                          ${exp.title} at ${exp.organization}
+                      </button>
+                  `).join('');
                 
-                new bootstrap.Modal(document.getElementById('experienceListModal')).show();
-            });
-    } else {
-        // Show empty form for new experience
-        new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
-    }
+                  // Show the experience list modal
+                  new bootstrap.Modal(document.getElementById('experienceListModal')).show();
+              });
+      } else {
+          // Show empty form for new experience
+          new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
+      }
+  }
+function loadExperienceData(expId) {
+    // Hide the list modal
+    bootstrap.Modal.getInstance(document.getElementById('experienceListModal')).hide();
+    
+    // Fetch the specific experience data
+    fetch(`get_experience.php?id=${expId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Update form action for editing
+            const form = document.querySelector('#experienceFormModal form');
+            form.action = 'update_experience.php';
+            
+            // Populate form fields
+            form.querySelector('[name="exp_id"]').value = data.id;
+            form.querySelector('[name="exp_title"]').value = data.title;
+            form.querySelector('[name="exp_organization"]').value = data.organization;
+            form.querySelector('[name="exp_location"]').value = data.location;
+            form.querySelector('[name="exp_start_date"]').value = data.start_date;
+            form.querySelector('[name="exp_end_date"]').value = data.end_date;
+            form.querySelector('[name="exp_description"]').value = data.description;
+            
+            // Show the form modal
+            new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
+        });
 }
-
 function loadExperienceData(expId) {
     // Hide experience list modal
     bootstrap.Modal.getInstance(document.getElementById('experienceListModal')).hide();
@@ -464,18 +492,18 @@ function loadExperienceData(expId) {
         .then(response => response.json())
         .then(data => {
             // Populate form with existing data
-            document.querySelector('[name="exp_title"]').value = data.title;
-            document.querySelector('[name="exp_organization"]').value = data.organization;
-            document.querySelector('[name="exp_location"]').value = data.location;
-            document.querySelector('[name="exp_start_date"]').value = data.start_date;
-            document.querySelector('[name="exp_end_date"]').value = data.end_date;
-            document.querySelector('[name="exp_description"]').value = data.description;
+            const form = document.getElementById('experienceFormModal');
+            form.querySelector('[name="exp_title"]').value = data.title;
+            form.querySelector('[name="exp_organization"]').value = data.organization;
+            form.querySelector('[name="exp_location"]').value = data.location;
+            form.querySelector('[name="exp_start_date"]').value = data.start_date;
+            form.querySelector('[name="exp_end_date"]').value = data.end_date;
+            form.querySelector('[name="exp_description"]').value = data.description;
             
-            // Show the form modal
+            // Show the form modal with populated data
             new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
         });
-}
-</script>
+}</script>
 <script>
   function showPreviewChoice(id) {
     const modal = new bootstrap.Modal(document.getElementById('previewChoiceModal'));
