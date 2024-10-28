@@ -1,0 +1,331 @@
+<?php
+    include "connection.php";
+    $cv_id = $_GET['id'];
+
+        $sql = "SELECT creative.*, certifications.title AS certification_title, certifications.description AS certification_description, education.school, education.degree, education.city AS education_city, education.start_date AS education_start_date, education.end_date AS education_end_date, education.description AS education_description, experiences.title AS experience_title, experiences.organization, experiences.location AS experience_location, experiences.start_date AS experience_start_date, experiences.end_date AS experience_end_date, experiences.description AS experience_description, projects.title AS project_title, projects.description AS project_description, skills.skill_name FROM creative LEFT JOIN certifications ON creative.id = certifications.cv_id LEFT JOIN education ON creative.id = education.cv_id LEFT JOIN experiences ON creative.id = experiences.cv_id LEFT JOIN projects ON creative.id = projects.cv_id LEFT JOIN skills ON creative.id = skills.cv_id WHERE creative.id = ?";
+
+        $stmt = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stmt, "i", $cv_id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $datacv = mysqli_fetch_assoc($result);
+
+        mysqli_stmt_close($stmt);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS CV</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.cv-container {
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    width: 800px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 5px 0;
+}
+
+.cv-section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 15px;
+}
+
+.cv-section ul, .cv-section p {
+    font-size: 16px;
+}
+
+.cv-container p, .cv-container ul {
+    line-height: 1.5;
+}
+
+header h1 {
+    font-weight: bold;
+}
+
+header p {
+    font-size: 14px;
+    color: #555;
+}
+
+.buat-flex{
+    display: flex;
+}
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <header>
+            <h1><?= $datacv['full_name']?></h1>
+            <p>Email: <?= $datacv['email']?> | Phone: <?= $datacv['mobileno']?></p>
+            <p>Address: <?= $datacv['address'] ?></p>
+        </header>
+
+        <section class="cv-section">
+            <h2>Self description</h2>
+            <p style="text-align: justify;">
+                <?= $datacv['selfDescription']?>
+            </p>
+        </section>
+
+        <section class="cv-section">
+            <h2>Work Experience</h2>
+
+            <div class="experience-item">
+                <!-- <h3>Software Developer</h3>
+                <p>ABC Tech, City, State | June 2020 - Present</p>
+                <ul>
+                    <li>Developed and maintained web applications using PHP and Laravel, improving performance by 30%.</li>
+                    <li>Collaborated with cross-functional teams to gather requirements and implement software solutions.</li>
+                    <li>Integrated third-party APIs to streamline data processing, reducing workload by 15%.</li>
+                </ul> -->
+                <?php
+                                    $sql_experience = "SELECT * FROM experiences WHERE cv_id = ?";
+                                    $stmt_experience = mysqli_prepare($connection, $sql_experience);
+                                    mysqli_stmt_bind_param($stmt_experience, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_experience);
+                                    $result_experience = mysqli_stmt_get_result($stmt_experience);
+
+                                    if (mysqli_num_rows($result_experience) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_experience)) {
+                                            echo "<div class='buat-flex' style='margin-bottom: 8px; margin-top: 10px;'>";
+
+                                            echo "<div class='satu'>";
+                                            echo "<p style='font-weight: 600;'>";
+                                            echo htmlspecialchars($row['organization']); 
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "<div class='tiga' style='margin-left: 5px; margin-right: 5px;'>";
+                                            echo "<p>- </p>";
+                                            echo "</div>";
+                                            
+                                            echo "<div class='dua'>";
+                                            echo "<p style='font-weight: 600;'>";
+                                            echo htmlspecialchars($row['location']); 
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "</div>";
+
+                                        echo "<div class='buat-flex'>";
+
+                                        echo "<div class='satu'>";
+                                        echo "<h4 style='margin-top: -5px;'>";
+                                        echo htmlspecialchars($row['title']);
+                                        echo "</h4>";
+                                        echo "</div>";
+
+                                        echo "<div class='dua' style='margin-top: -12px; margin-left: 4px;'>";
+                                        echo "<p>(</p>";
+                                        echo "</div>";
+
+                                        echo "<div class='tiga' style='margin-top: -11px;'>";
+                                        echo "<p>";
+                                        echo htmlspecialchars($row['start_date']);
+                                        echo "</p>";
+                                        echo "</div>";
+
+                                        echo "<div class='empat' style='margin-top: -11px; margin-left: 5px;'>";
+                                        echo "<p>-</p>";
+                                        echo "</div>";
+
+                                        echo "<div class='lima' style='margin-top: -11px; margin-left: 5px;'>";
+                                        echo "<p>";
+                                        echo htmlspecialchars($row['end_date']);
+                                        echo "</p>";
+                                        echo "</div>";
+
+                                        echo "<div class='enam' style='margin-top: -11px;'>";
+                                        echo "<p>)</p>";
+                                        echo "</div>";
+
+                                        echo "</div>";
+
+                                        echo "<p style='text-align: justify; margin-top: -7px;'>";
+                                        echo htmlspecialchars($row['description']);
+                                        echo "</p>";
+                                    }
+                                        } else {
+                                            echo "No experience found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+            </div>
+
+            <!-- <div class="experience-item">
+                <h3>Junior Developer</h3>
+                <p>XYZ Solutions, City, State | March 2017 - May 2020</p>
+                <ul>
+                    <li>Contributed to the development of client-facing applications, focusing on front-end technologies (JavaScript, HTML, CSS).</li>
+                    <li>Assisted in database management and optimized SQL queries to enhance data retrieval speed.</li>
+                    <li>Participated in code reviews and quality assurance processes.</li>
+                </ul>
+            </div> -->
+        </section>
+
+        <section class="cv-section">
+            <h2>Education</h2>
+            <div class="education-item">
+            <?php
+                                    $sql_experience = "SELECT * FROM education WHERE cv_id = ?";
+                                    $stmt_experience = mysqli_prepare($connection, $sql_experience);
+                                    mysqli_stmt_bind_param($stmt_experience, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_experience);
+                                    $result_experience = mysqli_stmt_get_result($stmt_experience);
+
+                                    if (mysqli_num_rows($result_experience) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_experience)) {
+                                            echo "<div class='buat-flex' style='margin-bottom: 8px; margin-top: 10px;'>";
+
+                                            echo "<div class='satu'>";
+                                            echo "<p style='font-weight: 600;'>";
+                                            echo htmlspecialchars($row['school']); 
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "<div class='tiga' style='margin-left: 2px; margin-right: 5px;'>";
+                                            echo "<p>,</p>";
+                                            echo "</div>";
+                                            
+                                            echo "<div class='dua'>";
+                                            echo "<p style='font-weight: 600;'>";
+                                            echo htmlspecialchars($row['start_date']); 
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "<div class='empat' style='margin-left: 5px; margin-right: 5px;'>";
+                                            echo "<p>-</p>";
+                                            echo "</div>";
+
+                                            echo "<div class='dua'>";
+                                            echo "<p style='font-weight: 600;'>";
+                                            echo htmlspecialchars($row['end_date']); 
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "</div>";
+
+                                        echo "<div class='buat-flex'>";
+
+                                        echo "<div class='satu'>";
+                                        echo "<h4 style='margin-top: -5px;'>";
+                                        echo htmlspecialchars($row['degree']);
+                                        echo "</h4>";
+                                        echo "</div>";
+
+                                        echo "</div>";
+
+                                        echo "<p style='text-align: justify; margin-top: -7px;'>";
+                                        echo htmlspecialchars($row['description']);
+                                        echo "</p>";
+                                    }
+                                        } else {
+                                            echo "No education found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h2>Technical Skills</h2>
+            <ul>
+            <?php
+                                    $sql_experience = "SELECT * FROM skills WHERE cv_id = ?";
+                                    $stmt_experience = mysqli_prepare($connection, $sql_experience);
+                                    mysqli_stmt_bind_param($stmt_experience, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_experience);
+                                    $result_experience = mysqli_stmt_get_result($stmt_experience);
+
+                                    if (mysqli_num_rows($result_experience) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_experience)) {
+                                           echo "<li>";
+                                            echo htmlspecialchars($row['skill_name']);
+                                            echo "</li>";
+                                    }
+                                        } else {
+                                            echo "No skills found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h2>Certifications</h2>
+            <ul>
+            <?php
+                                    $sql_experience = "SELECT * FROM certifications WHERE cv_id = ?";
+                                    $stmt_experience = mysqli_prepare($connection, $sql_experience);
+                                    mysqli_stmt_bind_param($stmt_experience, "i", $cv_id);
+                                    mysqli_stmt_execute($stmt_experience);
+                                    $result_experience = mysqli_stmt_get_result($stmt_experience);
+
+                                    if (mysqli_num_rows($result_experience) > 0) {
+                                        while ($row = mysqli_fetch_assoc($result_experience)) {
+                                           echo "<p style='margin-left: -15px; font-weight: 600; text-align: justify;'>";
+                                            echo htmlspecialchars($row['title']);
+                                            echo "</p>";
+                                            echo "<p style='margin-left: -15px; margin-bottom: 10px; text-align: justify;'>";
+                                            echo htmlspecialchars($row['description']);
+                                            echo "</p>";
+                                    }
+                                        } else {
+                                            echo "No skills found for this CV.";
+                                        }
+                                            // mysqli_stmt_close($stmt_certificate);
+                                ?>
+            </ul>
+        </section>
+
+    </div>
+
+</body>
+</html>

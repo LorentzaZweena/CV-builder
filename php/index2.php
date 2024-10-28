@@ -212,7 +212,7 @@
           echo "<td>";
           echo "<a class='btn btn-danger btn-sm' href='delete.php?id=" . $data['id'] . "'>Delete</a>";
           echo "<button class='btn btn-primary btn-sm ms-1' onclick='showEditAlert(" . $data['id'] . ")'>Edit</button>";
-          echo "<a class='btn btn-success btn-sm ms-1' href='preview.php?id=" . $data['id'] . "'>Preview</a>";
+          echo "<button class='btn btn-success btn-sm ms-1' onclick='showPreviewChoice(" . $data['id'] . ")'>Preview</button>";
           echo "</td>";
           echo "</tr>";
       }
@@ -363,6 +363,23 @@
     </div>
 </div>
 
+<!-- Preview Choice Modal -->
+<div class="modal fade" id="previewChoiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Which one?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center gap-3">
+                <a id="creativePreviewBtn" class="btn btn-primary">Creative</a>
+                <a id="atsPreviewBtn" class="btn btn-secondary">ATS</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
 
@@ -458,6 +475,19 @@ function loadExperienceData(expId) {
             new bootstrap.Modal(document.getElementById('experienceFormModal')).show();
         });
 }
+</script>
+<script>
+  function showPreviewChoice(id) {
+    const modal = new bootstrap.Modal(document.getElementById('previewChoiceModal'));
+    const creativeBtn = document.getElementById('creativePreviewBtn');
+    const atsBtn = document.getElementById('atsPreviewBtn');
+    
+    creativeBtn.href = 'preview.php?id=' + id + '&type=creative';
+    atsBtn.href = 'preview2.php?id=' + id + '&type=ats';
+    
+    modal.show();
+}
+
 </script>
 
     <!-- bootstrap :3  -->
