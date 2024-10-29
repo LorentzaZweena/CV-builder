@@ -3,13 +3,13 @@ include 'connection.php';
 
 $cv_id = $_GET['cv_id'];
 $sql = "SELECT * FROM experiences WHERE cv_id = ?";
-$stmt = mysqli_prepare($connection, $sql);
-mysqli_stmt_bind_param($stmt, "i", $cv_id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+$stmt = $connection->prepare($sql);
+$stmt->bind_param("i", $cv_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $experiences = array();
-while($row = mysqli_fetch_assoc($result)) {
+while ($row = $result->fetch_assoc()) {
     $experiences[] = $row;
 }
 

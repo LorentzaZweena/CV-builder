@@ -307,7 +307,7 @@ header p {
 
                                         echo "</div>";
 
-                                        echo "<p style='text-align: justify; margin-top: -7px;'>";
+                                        echo "<p style='text-align: justify;'>";
                                         echo htmlspecialchars($row['description']);
                                         echo "</p>";
                                     }
