@@ -19,6 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATS CV</title>
+    <link rel="stylesheet" href="../css/main.css">
     <style>
 body {
     font-family: Arial, sans-serif;
@@ -140,6 +141,9 @@ header p {
     </style>
 </head>
 <body>
+<section style="margin-left: 6em; margin-bottom: 1em;">
+        <a href="index2.php" class="print-btn btn btn-primary">Go back</a>
+    </section>
 
     <div class="cv-container">
         <header>

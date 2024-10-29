@@ -706,14 +706,6 @@
                     /* text-transform: uppercase; */
                     }
 
-                    a.active,
-                    a:hover {
-                    background: #284260;
-                    transition: .5s;
-                    /* opacity: 0.5; */
-                    color: white;
-                    }
-
                     .checkbtn {
                     font-size: 22px;
                     color: white;
@@ -769,12 +761,6 @@
                         font-size: 20px;
                     }
 
-                    a:hover,
-                    a.active {
-                        background: none;
-                        color: #0082e6;
-                    }
-
                     #check:checked~ul {
                         left: 0;
                     }
@@ -786,6 +772,10 @@
         </style>
 </head>
 <body>
+    <section style="margin-left: 1em; margin-bottom: 1em;">
+        <a href="index2.php" class="print-btn btn btn-primary">Go back</a>
+    </section>
+
 <section id = "preview-sc" class = "print_area active">
     <?php
         $cv_id = $_GET['id'];
@@ -990,7 +980,7 @@
                 <section class = "print-btn-sc">
                     <div class = "container">
                         <button id="download-pdf-btn" type="button" class="print-btn btn btn-primary" onclick="print()">Download as PDF</button>
-                    </di>
+                    </div>
                 </section>
             
 </body>
