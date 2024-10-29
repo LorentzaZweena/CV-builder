@@ -1,14 +1,18 @@
 <?php
 include 'connection.php';
 
-$exp_id = $_GET['id'];
-$sql = "SELECT * FROM experiences WHERE id = ?";
+$cv_id = $_GET['cv_id'];
+$sql = "SELECT * FROM experiences WHERE cv_id = ?";
 $stmt = mysqli_prepare($connection, $sql);
-mysqli_stmt_bind_param($stmt, "i", $exp_id);
+mysqli_stmt_bind_param($stmt, "i", $cv_id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
-$experience = mysqli_fetch_assoc($result);
+
+$experiences = array();
+while($row = mysqli_fetch_assoc($result)) {
+    $experiences[] = $row;
+}
 
 header('Content-Type: application/json');
-echo json_encode($experience);
+echo json_encode($experiences);
 ?>

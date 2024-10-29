@@ -80,7 +80,7 @@ if (isset($_POST["login"])) {
                 <input type="password" class="form-control" name="password" placeholder="Enter your password" required autocomplete="off">
             </div>
             <button type="submit" class="btn btn-custom" name="login">Login</button>
-            <p class="text-center mt-3">No account? <a href="register.php">Sign in</a></p>
+            <p class="text-center mt-3">No account? <a href="register.php">Sign up</a></p>
         </form>
     </div>
     <!-- Bootstrap JS and dependencies -->
