@@ -477,7 +477,7 @@
                     <div class="p-2">
                         <p class="text-danger mt-1">This action is irreversible</p>
                     </div>
-                </div>
+            </div>
                 
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -515,7 +515,7 @@
             </div>
             <div class="modal-body d-flex justify-content-center gap-3">
                 <button class="btn btn-primary" onclick="showEducationForm('add')">Add New</button>
-                <button class="btn btn-secondary" onclick="showEducationForm('edit')">Edit</button>
+                <button class="btn btn-danger" onclick="showEducationForm('edit')">Delete</button>
             </div>
         </div>
     </div>
@@ -526,7 +526,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Education</h5>
+            <div class="d-flex flex-row mb-n3">
+                    <div class="p-2">
+                        <h5 class="modal-title">Add Education</h5>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-danger mt-1">This action is irreversible</p>
+                    </div>
+            </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -546,11 +553,11 @@
                     </div>
                     <div class="mb-3">
                         <label>Start Date</label>
-                        <input type="date" class="form-control" name="edu_start_date" required>
+                        <input type="text" class="form-control" name="edu_start_date" required>
                     </div>
                     <div class="mb-3">
                         <label>End Date</label>
-                        <input type="date" class="form-control" name="edu_end_date">
+                        <input type="" class="form-control" name="edu_end_date">
                     </div>
                     <div class="mb-3">
                         <label>Description</label>
@@ -563,6 +570,10 @@
     </div>
 </div>
 
+<!-- Education List Modal -->
+<div class="modal fade" id="educationListModal" tabindex="-1">
+    <!-- Content will be dynamically inserted here -->
+</div>
 
 </body>
 </html>
@@ -634,14 +645,13 @@
   }
 
   // Add this function to handle certification deletion
-function showCertificationsForm(action) {
+  function showCertificationsForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     if (editModal) {
         editModal.hide();
     }
 
     if (action === 'edit') {
-        // Fetch and display certifications for deletion
         fetch(`get_certifications.php?cv_id=${currentCvId}`)
             .then(response => response.json())
             .then(certifications => {
@@ -655,20 +665,23 @@ function showCertificationsForm(action) {
                             </div>
                             <div class="modal-body">
                                 <div class="list-group">
-                                    ${certifications.map(cert => `
-                                        <div class="list-group-item list-group-item-action">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <h6 class="mb-1">${cert.cert_name}</h6>
-                                                    <p class="mb-1 text-muted">${cert.cert_date}</p>
+                                    ${certifications.length > 0 ? 
+                                        certifications.map(cert => `
+                                            <div class="list-group-item list-group-item-action" data-cert-id="${cert.id}">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="mb-1">${cert.title || ''}</h6>
+                                                        <p class="mb-1 text-muted">${cert.description || ''}</p>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger btn-sm" 
+                                                        onclick="deleteCertification(${cert.id})">
+                                                        Delete
+                                                    </button>
                                                 </div>
-                                                <button type="button" class="btn btn-danger btn-sm" 
-                                                    onclick="deleteCertification(${cert.id})">
-                                                    Delete
-                                                </button>
                                             </div>
-                                        </div>
-                                    `).join('') || '<div class="list-group-item">No certifications found</div>'}
+                                        `).join('')
+                                        : '<div class="list-group-item">No certifications found</div>'
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -676,13 +689,17 @@ function showCertificationsForm(action) {
                 `;
                 certificationsList.innerHTML = modalContent;
                 new bootstrap.Modal(certificationsList).show();
+            })
+            .catch(error => {
+                console.error('Error fetching certifications:', error);
+                alert('Error loading certifications');
             });
     } else {
-        // Show add certification form
         document.getElementById('cert_cv_id').value = currentCvId;
         new bootstrap.Modal(document.getElementById('certificationsFormModal')).show();
     }
 }
+
 
 // Add this function to handle the actual deletion
 function deleteCertification(certId) {
@@ -723,15 +740,103 @@ function deleteCertification(certId) {
 }
 
 
+// Modify the showEducationForm function
 function showEducationForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     if (editModal) {
         editModal.hide();
     }
-    
-    document.getElementById('edu_cv_id').value = currentCvId;
-    new bootstrap.Modal(document.getElementById('educationFormModal')).show();
+
+    if (action === 'edit') {
+        // Fetch and display education list for deletion
+        fetch(`get_education.php?cv_id=${currentCvId}`)
+            .then(response => response.json())
+            .then(educations => {
+                const modalContent = `
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Select education to delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="list-group">
+                                    ${educations.length > 0 ? 
+                                        educations.map(edu => `
+                                            <div class="list-group-item list-group-item-action" data-edu-id="${edu.id}">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="mb-1">${edu.school}</h6>
+                                                        <p class="mb-1 text-muted">${edu.degree}</p>
+                                                        <small>${edu.start_date} - ${edu.end_date}</small>
+                                                    </div>
+                                                    <button type="button" class="btn btn-danger btn-sm" 
+                                                        onclick="deleteEducation(${edu.id})">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        `).join('')
+                                        : '<div class="list-group-item">No education entries found</div>'
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                const educationListModal = document.getElementById('educationListModal');
+                educationListModal.innerHTML = modalContent;
+                new bootstrap.Modal(educationListModal).show();
+            })
+            .catch(error => {
+                console.error('Error fetching education:', error);
+                alert('Error loading education entries');
+            });
+    } else {
+        document.getElementById('edu_cv_id').value = currentCvId;
+        new bootstrap.Modal(document.getElementById('educationFormModal')).show();
+    }
 }
+
+// Add function to handle education deletion
+function deleteEducation(eduId) {
+    if (confirm('Are you sure you want to delete this education entry?')) {
+        fetch('delete_education.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `edu_id=${eduId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the education entry from the list
+                const eduElement = document.querySelector(`[data-edu-id="${eduId}"]`);
+                if (eduElement) {
+                    eduElement.remove();
+                }
+                
+                // Refresh the education list
+                showEducationForm('edit');
+                
+                // Show success message
+                alert('Education entry deleted successfully');
+                
+                // Refresh the page to update the table
+                location.reload();
+            } else {
+                alert('Error deleting education entry');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting education entry');
+        });
+    }
+}
+
 
 function showExperienceForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
