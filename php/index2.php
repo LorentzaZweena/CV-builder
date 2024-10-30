@@ -297,18 +297,25 @@
             </div>
             <div class="modal-body d-flex justify-content-center gap-3">
                 <button class="btn btn-primary" onclick="showExperienceForm('add')">Add New</button>
-                <button class="btn btn-secondary" onclick="showExperienceForm('edit')">Edit</button>
+                <button class="btn btn-danger" onclick="showExperienceForm('edit')">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Experience Form Modal -->
 <div class="modal fade" id="experienceFormModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Experience</h5>
+                <div class="d-flex flex-row mb-n3">
+                    <div class="p-2">
+                        <h5 class="modal-title">Add Experience</h5>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-danger mt-1">This action is irreversible</p>
+                    </div>
+                </div>
+                
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -351,7 +358,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Select Experience to Edit</h5>
+                <h5 class="modal-title">Select experience to delete</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -389,7 +396,7 @@
             </div>
             <div class="modal-body d-flex justify-content-center gap-3">
                 <button class="btn btn-primary" onclick="showSkillsForm('add')">Add New</button>
-                <button class="btn btn-secondary" onclick="showSkillsForm('edit')">Edit</button>
+                <button class="btn btn-danger" onclick="showSkillsForm('edit')">Delete</button>
             </div>
         </div>
     </div>
@@ -400,7 +407,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Skill</h5>
+            <div class="d-flex flex-row mb-n3">
+                    <div class="p-2">
+                    <h5 class="modal-title">Add Skill</h5>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-danger mt-1">This action is irreversible</p>
+                    </div>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -417,6 +431,24 @@
     </div>
 </div>
 
+<!-- Skills List Modal -->
+<div class="modal fade" id="skillsListModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select skill to delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="skillsList" class="list-group">
+                    <!-- Skills will be loaded here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Certifications Choice Modal -->
 <div class="modal fade" id="certificationsChoiceModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -427,7 +459,7 @@
             </div>
             <div class="modal-body d-flex justify-content-center gap-3">
                 <button class="btn btn-primary" onclick="showCertificationsForm('add')">Add New</button>
-                <button class="btn btn-secondary" onclick="showCertificationsForm('edit')">Edit</button>
+                <button class="btn btn-danger" onclick="showCertificationsForm('edit')">Delete</button>
             </div>
         </div>
     </div>
@@ -438,7 +470,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Certification</h5>
+            <div class="d-flex flex-row mb-n3">
+                    <div class="p-2">
+                    <h5 class="modal-title">Add Certification</h5>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-danger mt-1">This action is irreversible</p>
+                    </div>
+                </div>
+                
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -458,6 +498,12 @@
         </div>
     </div>
 </div>
+
+<!-- Certifications List Modal -->
+<div class="modal fade" id="certificationsListModal" tabindex="-1">
+    <!-- Content will be dynamically inserted here -->
+</div>
+
 
 <!-- Education Choice Modal -->
 <div class="modal fade" id="educationChoiceModal" tabindex="-1">
@@ -587,15 +633,95 @@
           });
   }
 
-  function showCertificationsForm(action) {
+  // Add this function to handle certification deletion
+function showCertificationsForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     if (editModal) {
         editModal.hide();
     }
-    
-    document.getElementById('cert_cv_id').value = currentCvId;
-    new bootstrap.Modal(document.getElementById('certificationsFormModal')).show();
+
+    if (action === 'edit') {
+        // Fetch and display certifications for deletion
+        fetch(`get_certifications.php?cv_id=${currentCvId}`)
+            .then(response => response.json())
+            .then(certifications => {
+                const certificationsList = document.getElementById('certificationsListModal');
+                const modalContent = `
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Select certification to delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="list-group">
+                                    ${certifications.map(cert => `
+                                        <div class="list-group-item list-group-item-action">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <h6 class="mb-1">${cert.cert_name}</h6>
+                                                    <p class="mb-1 text-muted">${cert.cert_date}</p>
+                                                </div>
+                                                <button type="button" class="btn btn-danger btn-sm" 
+                                                    onclick="deleteCertification(${cert.id})">
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    `).join('') || '<div class="list-group-item">No certifications found</div>'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                certificationsList.innerHTML = modalContent;
+                new bootstrap.Modal(certificationsList).show();
+            });
+    } else {
+        // Show add certification form
+        document.getElementById('cert_cv_id').value = currentCvId;
+        new bootstrap.Modal(document.getElementById('certificationsFormModal')).show();
+    }
 }
+
+// Add this function to handle the actual deletion
+function deleteCertification(certId) {
+    if (confirm('Are you sure you want to delete this certification?')) {
+        fetch('delete_certification.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `cert_id=${certId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the certification from the list
+                const certElement = document.querySelector(`[data-cert-id="${certId}"]`);
+                if (certElement) {
+                    certElement.remove();
+                }
+                
+                // Refresh the certifications list
+                showCertificationsForm('edit');
+                
+                // Show success message
+                alert('Certification deleted successfully');
+                
+                // Refresh the page to update the table
+                location.reload();
+            } else {
+                alert('Error deleting certification');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting certification');
+        });
+    }
+}
+
 
 function showEducationForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
@@ -625,10 +751,12 @@ function showExperienceForm(action) {
                                 <h6 class="mb-1">${exp.title}</h6>
                                 <p class="mb-1 text-muted">${exp.organization}</p>
                             </div>
-                            <button type="button" class="btn btn-primary btn-sm" 
-                                onclick="loadExperienceData(${exp.id})">
-                                Edit
-                            </button>
+                            <div>
+                                <button type="button" class="btn btn-danger btn-sm me-2" 
+                                    onclick="deleteExperience(${exp.id})">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `).join('') || '<div class="list-group-item">No experiences found</div>';
@@ -646,14 +774,46 @@ function showExperienceForm(action) {
     }
 }
 
+function deleteExperience(expId) {
+    if (confirm('Are you sure you want to delete this experience?')) {
+        fetch('delete_experience.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `exp_id=${expId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the experience from the list
+                const expElement = document.querySelector(`[data-exp-id="${expId}"]`);
+                if (expElement) {
+                    expElement.remove();
+                }
+                
+                // Refresh the experience list
+                showExperienceForm('edit');
+                
+                // Show success message
+                alert('Experience deleted successfully');
+            } else {
+                alert('Error deleting experience');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting experience');
+        });
+    }
+}
 
 function editExperience(expId) {
     fetch(`get_experience.php?id=${expId}`)
         .then(response => response.json())
         .then(data => {
             const form = document.querySelector('#experienceFormModal form');
-            
-            // Pre-fill the form with experience data
+        
             form.querySelector('[name="exp_id"]').value = data.id;
             form.querySelector('[name="exp_title"]').value = data.title;
             form.querySelector('[name="exp_organization"]').value = data.organization;
@@ -662,7 +822,6 @@ function editExperience(expId) {
             form.querySelector('[name="exp_end_date"]').value = data.end_date;
             form.querySelector('[name="exp_description"]').value = data.description;
             
-            // Hide the list modal and show the form modal
             const listModal = bootstrap.Modal.getInstance(document.getElementById('experienceListModal'));
             listModal.hide();
             
@@ -718,10 +877,72 @@ function loadExperienceData(expId) {
     if (editModal) {
         editModal.hide();
     }
-    
-    document.getElementById('skill_cv_id').value = currentCvId;
-    new bootstrap.Modal(document.getElementById('skillsFormModal')).show();
+
+    if (action === 'edit') {
+        // Fetch and display skills for deletion
+        fetch(`get_skills.php?cv_id=${currentCvId}`)
+            .then(response => response.json())
+            .then(skills => {
+                const skillsList = document.getElementById('skillsList');
+                skillsList.innerHTML = skills.map(skill => `
+                    <div class="list-group-item list-group-item-action">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">${skill.skill_name}</h6>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger btn-sm" 
+                                    onclick="deleteSkill(${skill.id})">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('') || '<div class="list-group-item">No skills found</div>';
+                
+                new bootstrap.Modal(document.getElementById('skillsListModal')).show();
+            });
+    } else {
+        // Show add skill form
+        document.getElementById('skill_cv_id').value = currentCvId;
+        new bootstrap.Modal(document.getElementById('skillsFormModal')).show();
+    }
 }
+
+function deleteSkill(skillId) {
+    if (confirm('Are you sure you want to delete this skill?')) {
+        fetch('delete_skill.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `skill_id=${skillId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the skill from the list
+                const skillElement = document.querySelector(`[data-skill-id="${skillId}"]`);
+                if (skillElement) {
+                    skillElement.remove();
+                }
+                
+                // Refresh the skills list
+                showSkillsForm('edit');
+                
+                // Show success message
+                alert('Skill deleted successfully');
+            } else {
+                alert('Error deleting skill');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting skill');
+        });
+    }
+}
+
 
 </script>
 
