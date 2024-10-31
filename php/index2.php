@@ -225,7 +225,7 @@
   </tbody>
   </table>
 
-  <!-- Custom Alert Modal -->
+  <!-- Alert -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -245,7 +245,7 @@
   </div>
 </div>
 
-<!-- Basic Information Form Modal -->
+<!-- Edit basic info -->
 <div class="modal fade" id="basicFormModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -291,7 +291,7 @@
     </div>
 </div>
 
-<!-- Experience Choice Modal -->
+<!-- Experience Choice -->
 <div class="modal fade" id="experienceChoiceModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
