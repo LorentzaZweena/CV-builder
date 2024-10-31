@@ -837,7 +837,7 @@
         <li><a href="index2.php">Home</a></li>
         <li><a href="#" class="active">Create resume</a></li>
         <!-- <li><a href="#">ATS</a></li> -->
-        <li><a href="#">Profile</a></li>
+        <li><a href="https://smkpesat.sch.id/civitas/" target="_blank">Profile</a></li>
         <li><a href="logout.php">Logout</a></li>
         </ul>
   </nav>
@@ -854,17 +854,17 @@
                                 <div class = "cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">First Name</label>
-                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "firstname" placeholder="e.g. Ariva">
+                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "firstname" placeholder="e.g. Ariva" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Middle Name <span class = "opt-text">(optional)</span></label>
-                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "middlename" placeholder="e.g Lorentza">
+                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "middlename" placeholder="e.g Lorentza" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Last Name</label>
-                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "lastname" placeholder="e.g. Zweena">
+                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "lastname" placeholder="e.g. Zweena" required>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -872,16 +872,16 @@
                                 <div class="cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Your Image</label>
-                                        <input name = "image" type = "file" class = "form-control image" id = "image" accept = "image/*" onchange="previewImage()">
+                                        <input name = "image" type = "file" class = "form-control image" id = "image" accept = "image/*" onchange="previewImage()" required>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Designation</label>
-                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" placeholder="e.g. Web programmer">
+                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" placeholder="e.g. Web programmer" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Address</label>
-                                        <input name = "address" type = "text" class = "form-control address" id = "address" placeholder="e.g. Cilebut barat, sukaraja">
+                                        <input name = "address" type = "text" class = "form-control address" id = "address" placeholder="e.g. Cilebut barat, sukaraja" required>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -889,19 +889,20 @@
                                 <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Email</label>
-                                        <input name = "email" type = "text" class = "form-control email" id = "email" placeholder="e.g. ariva02zweena@gmail.com" onkeyup="generateCV()">
+                                        <input name = "email" type = "text" class = "form-control email" id = "email" placeholder="e.g. ariva02zweena@gmail.com" onkeyup="generateCV()" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Phone number:</label>
-                                        <input name = "mobileno" type = "text" class = "form-control mobileno" id = "mobileno" placeholder="e.g. +62 123-456-7890">
+                                        <input name = "mobileno" type = "text" class = "form-control mobileno" id = "mobileno" placeholder="e.g. +62 123-456-7890" required>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
                                 <div class = "cols-2">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Self description</label>
-                                        <textarea name="summary" class="form-control summary" id="summary" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
+                                        <textarea name="summary" class="form-control summary" id="summary" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;" required></textarea>
+
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -1104,7 +1105,7 @@
                         <!-- <div class="form-submit">
                             <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
                         </div> -->
-                        <input type="submit" value="Save CV"></input>
+                        <input type="submit" value="Save CV" class="btn btn-primary"></input>
                     </form>
                 </div>
             </div>

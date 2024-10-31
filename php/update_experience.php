@@ -2,7 +2,7 @@
 include 'connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['exp_id'];
+    $cv_id = $_POST['cv_id'];
     $title = $_POST['exp_title'];
     $organization = $_POST['exp_organization'];
     $location = $_POST['exp_location'];
@@ -10,14 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $end_date = $_POST['exp_end_date'];
     $description = $_POST['exp_description'];
 
-    $sql = "UPDATE experiences SET title=?, organization=?, location=?, start_date=?, end_date=?, description=? WHERE id=?";
+    $sql = "INSERT INTO experiences (cv_id, title, organization, location, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $connection->prepare($sql);
-    $stmt->bind_param("ssssssi", $title, $organization, $location, $start_date, $end_date, $description, $id);
-    $stmt->execute();
+    $stmt->bind_param("issssss", $cv_id, $title, $organization, $location, $start_date, $end_date, $description);
 
-    if (mysqli_stmt_execute($stmt)) {
+    if ($stmt->execute()) {
         header("Location: index2.php");
     } else {
-        echo "Error updating experience: " . mysqli_error($connection);
+        echo "Error adding experience: " . $connection->error;
     }
 }
+?>

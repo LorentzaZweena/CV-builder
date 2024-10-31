@@ -769,6 +769,116 @@
                     .buat-flex{
                         display: flex;
                     }
+
+                    /* Responsive styles for the preview container */
+@media screen and (max-width: 992px) {
+    .preview-cnt {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-cnt-l, .preview-cnt-r {
+        padding: 2rem;
+    }
+
+    .preview-cnt-r {
+        margin-left: 0;
+    }
+
+    .preview-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .preview-item-name {
+        font-size: 2rem;
+    }
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .preview-cnt-l, .preview-cnt-r {
+        padding: 1.5rem;
+    }
+
+    .preview-blk-title h3 {
+        font-size: 1.6rem;
+    }
+
+    .preview-item {
+        font-size: 1.4rem;
+    }
+
+    .buat-flex {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .buat-flex > div {
+        margin-left: 0 !important;
+    }
+
+    .print-btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Responsive styles for extra small screens */
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 9px;
+    }
+
+    .preview-cnt-l, .preview-cnt-r {
+        padding: 1rem;
+    }
+
+    .preview-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .preview-item-name {
+        font-size: 1.8rem;
+    }
+
+    .preview-blk {
+        padding: 0.5rem 0;
+    }
+
+    .educations-items.preview-blk-list .preview-item span,
+    .experiences-items.preview-blk-list .preview-item span,
+    .projects-items.preview-blk-list .preview-item span {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Print media query refinements */
+@media print {
+    .preview-cnt {
+        grid-template-columns: 32% auto;
+    }
+
+    .non_print_area,
+    .print-btn-sc {
+        display: none !important;
+    }
+
+    .preview-cnt-l,
+    .preview-cnt-r {
+        padding: 2rem;
+    }
+
+    html {
+        font-size: 10px;
+    }
+}
+
         </style>
 </head>
 <body>
@@ -790,7 +900,7 @@
 
         mysqli_stmt_close($stmt);
     ?>
-            <div class = "container">
+            <div class = "container responsive-container">
                 <div class = "preview-cnt">
                     <div class = "preview-cnt-l bg-pesat text-white">
                         <div class = "preview-blk">
