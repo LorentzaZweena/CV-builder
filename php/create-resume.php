@@ -859,7 +859,7 @@
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Middle Name <span class = "opt-text">(optional)</span></label>
-                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "middlename" placeholder="e.g Lorentza" required>
+                                        <input name = "middlename" type = "text" class = "form-control middlename" id = "middlename" placeholder="e.g Lorentza">
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">

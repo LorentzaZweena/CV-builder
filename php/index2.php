@@ -34,6 +34,56 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../css/afterlogin.css?v=3.1.0" rel="stylesheet" />
+  <style>
+    /* Add these styles to your existing CSS file */
+
+/* Sidebar overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1035;
+    display: none;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
+
+/* Sidebar mobile styles */
+@media (max-width: 991.98px) {
+    .sidenav {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1036;
+        height: 100vh;
+    }
+
+    .sidenav.show {
+        transform: translateX(0);
+    }
+}
+
+/* Hamburger menu button */
+#sidebarToggle {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#sidebarToggle .material-symbols-outlined {
+    font-size: 24px;
+    color: #333;
+}
+
+  </style>
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -118,6 +168,19 @@
 
   </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+<!-- Replace your existing navbar with this -->
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+  <div class="container-fluid py-1 px-3">
+    <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+      <!-- Your existing navbar content -->
+    </div>
+  </div>
+</nav>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -1065,6 +1128,48 @@ function deleteSkill(skillId) {
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <!-- Add this before closing body tag -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidenav = document.querySelector('.sidenav');
+  const body = document.body;
+
+  // Create overlay element
+  const overlay = document.createElement('div');
+  overlay.className = 'sidebar-overlay';
+  body.appendChild(overlay);
+
+  function toggleSidebar() {
+    sidenav.classList.toggle('show');
+    overlay.classList.toggle('show');
+  }
+
+  sidebarToggle.addEventListener('click', toggleSidebar);
+  
+  // Close sidebar when clicking overlay
+  overlay.addEventListener('click', toggleSidebar);
+
+  // Close sidebar when clicking links (for mobile)
+  const sidenavLinks = sidenav.querySelectorAll('a');
+  sidenavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 992) {
+        toggleSidebar();
+      }
+    });
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 992) {
+      sidenav.classList.remove('show');
+      overlay.classList.remove('show');
+    }
+  });
+});
+</script>
+
 </body>
 
 </html>
