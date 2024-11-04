@@ -37,7 +37,7 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
-<button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+<!-- <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button> -->
 <div class="sidebar" id="sidebar">
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-blue" id="sidenav-main">
     <div class="sidenav-header">
@@ -131,25 +131,6 @@
   <title>Resume builder | Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" type='text/css'>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <style>
-    .modal-content {
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.modal-body button {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.modal-body button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-  </style>
 </head>
 <body>
   <h4 class="mt-5 ms-4">Resume sample</h4>
@@ -211,10 +192,12 @@
       if (!$query) {
           die("Error: " . mysqli_error($connection));
       }
+
+      $no = 1;
       
       while($data = mysqli_fetch_assoc($query)){
           echo "<tr>";
-          echo "<td>" . $data['id'] . "</td>";
+          echo "<td>" . $no++ . "</td>";
           echo "<td>" . htmlspecialchars($data['full_name']) . "</td>";
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";
@@ -1045,7 +1028,6 @@ function deleteSkill(skillId) {
     document.getElementById('sidebar').classList.toggle('open');
     document.querySelector('.sidebar-toggle').classList.toggle('active');
   }
-
 </script>
 
 </body>
