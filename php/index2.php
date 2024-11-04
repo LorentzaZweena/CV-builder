@@ -34,60 +34,12 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="../css/afterlogin.css?v=3.1.0" rel="stylesheet" />
-  <style>
-    /* Add these styles to your existing CSS file */
-
-/* Sidebar overlay */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1035;
-    display: none;
-}
-
-.sidebar-overlay.show {
-    display: block;
-}
-
-/* Sidebar mobile styles */
-@media (max-width: 991.98px) {
-    .sidenav {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1036;
-        height: 100vh;
-    }
-
-    .sidenav.show {
-        transform: translateX(0);
-    }
-}
-
-/* Hamburger menu button */
-#sidebarToggle {
-    background: none;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-#sidebarToggle .material-symbols-outlined {
-    font-size: 24px;
-    color: #333;
-}
-
-  </style>
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-blue" id="sidenav-main">
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+<div class="sidebar" id="sidebar">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-blue" id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="index2.php">
@@ -166,21 +118,10 @@
       </ul>
     </div>
 
-  </aside>
-  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-<!-- Replace your existing navbar with this -->
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-  <div class="container-fluid py-1 px-3">
-    <button class="navbar-toggler d-lg-none" type="button" id="sidebarToggle">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
-    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-      <!-- Your existing navbar content -->
+</aside>
     </div>
-  </div>
-</nav>
-
-
+    <div class="main-content" style="margin-left: 18em;">
+        <!-- Your main page content here -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -213,9 +154,9 @@
 <body>
   <h4 class="mt-5 ms-4">Resume sample</h4>
   <p class="ms-4">Here are some sample resumes that you can follow</p>
-  <div class="d-flex flex-row mb-2">
-    <div class="p-2">
-    <div class="card ms-3" style="width: 15rem;">
+  <div class="d-flex flex-row mb-2" style="margin-left: -9em;">
+    <div class="p-2 ms-n5">
+    <div class="card ms-n5" style="width: 15rem;">
     <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png"><img src="../images/image.png" class="card-img-top"></a>
     <div class="card-body">
       <p class="card-text fw-semibold">Software development engineering</p>
@@ -224,7 +165,7 @@
 </div>
     </div>
     <div class="p-2">
-    <div class="card ms-1" style="width: 15rem;">
+    <div class="card ms-n1" style="width: 15rem;">
     <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png"><img src="../images/image2.png" class="card-img-top"></a>
     <div class="card-body">
       <p class="card-text fw-semibold">Visual communication design</p>
@@ -241,7 +182,7 @@
           </div>
       </div>
     </div>
-    <div class="p-2">
+    <!-- <div class="p-2">
           <div class="card ms-1" style="width: 15rem;">
           <a href="https://i.pinimg.com/736x/fc/7e/3e/fc7e3eecb7d8b373df00fd125458318b.jpg"><img src="../images/creative.png" class="card-img-top"></a>
           <div class="card-body">
@@ -249,7 +190,7 @@
             <p class="card-text mt-n2">Concise summary showcasing professional journey and achievements.</p>
           </div>
       </div>
-    </div>
+    </div> -->
 </div>
 <h4 class="mt-4 ms-4">My resume</h4>
   <p class="ms-4">Take the time to design your own personalized resume that highlights your unique skills</p>
@@ -508,7 +449,7 @@
             </div>
             <div class="modal-body">
                 <div id="skillsList" class="list-group">
-                    <!-- Skills will be loaded here dynamically -->
+                    <!-- Skills nanti disini dynamically -->
                 </div>
             </div>
         </div>
@@ -637,11 +578,11 @@
     </div>
 </div>
 
-<!-- Education List Modal -->
-<div class="modal fade" id="educationListModal" tabindex="-1">
-    <!-- Content will be dynamically inserted here -->
+    <!-- Education List Modal -->
+    <div class="modal fade" id="educationListModal" tabindex="-1">
+        <!-- Content will be dynamically inserted here -->
+    </div>
 </div>
-
 </body>
 </html>
 
@@ -711,7 +652,6 @@
           });
   }
 
-  // Add this function to handle certification deletion
   function showCertificationsForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     if (editModal) {
@@ -767,8 +707,6 @@
     }
 }
 
-
-// Add this function to handle the actual deletion
 function deleteCertification(certId) {
     if (confirm('Are you sure you want to delete this certification?')) {
         fetch('delete_certification.php', {
@@ -781,19 +719,14 @@ function deleteCertification(certId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Remove the certification from the list
                 const certElement = document.querySelector(`[data-cert-id="${certId}"]`);
                 if (certElement) {
                     certElement.remove();
                 }
                 
-                // Refresh the certifications list
                 showCertificationsForm('edit');
                 
-                // Show success message
                 alert('Certification deleted successfully');
-                
-                // Refresh the page to update the table
                 location.reload();
             } else {
                 alert('Error deleting certification');
@@ -806,8 +739,6 @@ function deleteCertification(certId) {
     }
 }
 
-
-// Modify the showEducationForm function
 function showEducationForm(action) {
     const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
     if (editModal) {
@@ -815,7 +746,6 @@ function showEducationForm(action) {
     }
 
     if (action === 'edit') {
-        // Fetch and display education list for deletion
         fetch(`get_education.php?cv_id=${currentCvId}`)
             .then(response => response.json())
             .then(educations => {
@@ -865,8 +795,6 @@ function showEducationForm(action) {
         new bootstrap.Modal(document.getElementById('educationFormModal')).show();
     }
 }
-
-// Add function to handle education deletion
 function deleteEducation(eduId) {
     if (confirm('Are you sure you want to delete this education entry?')) {
         fetch('delete_education.php', {
@@ -879,19 +807,14 @@ function deleteEducation(eduId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Remove the education entry from the list
                 const eduElement = document.querySelector(`[data-edu-id="${eduId}"]`);
                 if (eduElement) {
                     eduElement.remove();
                 }
-                
-                // Refresh the education list
+    
                 showEducationForm('edit');
                 
-                // Show success message
                 alert('Education entry deleted successfully');
-                
-                // Refresh the page to update the table
                 location.reload();
             } else {
                 alert('Error deleting education entry');
@@ -958,16 +881,12 @@ function deleteExperience(expId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Remove the experience from the list
                 const expElement = document.querySelector(`[data-exp-id="${expId}"]`);
                 if (expElement) {
                     expElement.remove();
                 }
                 
-                // Refresh the experience list
                 showExperienceForm('edit');
-                
-                // Show success message
                 alert('Experience deleted successfully');
             } else {
                 alert('Error deleting experience');
@@ -1012,7 +931,6 @@ function loadExperienceData(expId) {
         .then(data => {
             const form = document.querySelector('#experienceFormModal form');
             
-            // Pre-fill the form with experience data
             form.querySelector('[name="cv_id"]').value = currentCvId;
             form.querySelector('[name="exp_id"]').value = data.id;
             form.querySelector('[name="exp_title"]').value = data.title;
@@ -1022,7 +940,6 @@ function loadExperienceData(expId) {
             form.querySelector('[name="exp_end_date"]').value = data.end_date;
             form.querySelector('[name="exp_description"]').value = data.description;
             
-            // Hide list modal and show form modal
             experienceListModal.hide();
             
             const formModal = new bootstrap.Modal(document.getElementById('experienceFormModal'));
@@ -1051,7 +968,6 @@ function loadExperienceData(expId) {
     }
 
     if (action === 'edit') {
-        // Fetch and display skills for deletion
         fetch(`get_skills.php?cv_id=${currentCvId}`)
             .then(response => response.json())
             .then(skills => {
@@ -1075,7 +991,6 @@ function loadExperienceData(expId) {
                 new bootstrap.Modal(document.getElementById('skillsListModal')).show();
             });
     } else {
-        // Show add skill form
         document.getElementById('skill_cv_id').value = currentCvId;
         new bootstrap.Modal(document.getElementById('skillsFormModal')).show();
     }
@@ -1093,16 +1008,12 @@ function deleteSkill(skillId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Remove the skill from the list
                 const skillElement = document.querySelector(`[data-skill-id="${skillId}"]`);
                 if (skillElement) {
                     skillElement.remove();
                 }
                 
-                // Refresh the skills list
                 showSkillsForm('edit');
-                
-                // Show success message
                 alert('Skill deleted successfully');
             } else {
                 alert('Error deleting skill');
@@ -1130,44 +1041,11 @@ function deleteSkill(skillId) {
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
   <!-- Add this before closing body tag -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const sidebarToggle = document.getElementById('sidebarToggle');
-  const sidenav = document.querySelector('.sidenav');
-  const body = document.body;
-
-  // Create overlay element
-  const overlay = document.createElement('div');
-  overlay.className = 'sidebar-overlay';
-  body.appendChild(overlay);
-
   function toggleSidebar() {
-    sidenav.classList.toggle('show');
-    overlay.classList.toggle('show');
+    document.getElementById('sidebar').classList.toggle('open');
+    document.querySelector('.sidebar-toggle').classList.toggle('active');
   }
 
-  sidebarToggle.addEventListener('click', toggleSidebar);
-  
-  // Close sidebar when clicking overlay
-  overlay.addEventListener('click', toggleSidebar);
-
-  // Close sidebar when clicking links (for mobile)
-  const sidenavLinks = sidenav.querySelectorAll('a');
-  sidenavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth < 992) {
-        toggleSidebar();
-      }
-    });
-  });
-
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 992) {
-      sidenav.classList.remove('show');
-      overlay.classList.remove('show');
-    }
-  });
-});
 </script>
 
 </body>
