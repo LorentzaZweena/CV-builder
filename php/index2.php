@@ -495,7 +495,6 @@
     <!-- Content will be dynamically inserted here -->
 </div>
 
-
 <!-- Education Choice Modal -->
 <div class="modal fade" id="educationChoiceModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
