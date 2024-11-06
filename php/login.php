@@ -8,7 +8,7 @@ if (isset($_POST["login"])) {
 
     $result = mysqli_query($connection, "SELECT * FROM user WHERE username = '$username'");
         $row = mysqli_fetch_assoc($result);
-            //  header("Location: index2.php");
+             header("Location: index3.php");
         // $error = true;
 }
 ?>
@@ -70,7 +70,7 @@ if (isset($_POST["login"])) {
     <div class="login-container">
         <h1 class="text-center">Welcome Back!</h1>
         <p class="text-center" style="margin-top: -1em;">Log in to continue</p>
-        <form action="index2.php" method="post">
+        <form action="index3.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" placeholder="Enter your username" required autocomplete="off">

@@ -1,3 +1,7 @@
+<?php
+    include 'connection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,8 +354,8 @@
     <div class="sidebar" id="sidebar">
         <aside class="sidenav">
             <div class="sidenav-header">
-                <a class="navbar-brand" href="index2.php">
-                    <img src="./images/logo2.png" alt="main_logo">
+                <a class="navbar-brand" href="index3.php">
+                    <img src="../images/logo2.png" alt="main_logo">
                     <span class="font-weight-bold">Resume builder</span>
                 </a>
             </div>
@@ -361,7 +365,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index2.php">
+                        <a class="nav-link active" href="index3.php">
                             <i class="material-icons">dashboard</i>
                             <span>My resumes</span>
                         </a>
@@ -423,7 +427,7 @@
         <div class="buat-flex">
             <div class="satu">
                 <div class="card">
-                    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png" target="_blank"><img src="./images/image.png" alt="cvATS" style="width:100%"></a>
+                    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/graduate-software-engineer-v1.png" target="_blank"><img src="../images/image.png" alt="cvATS" style="width:100%"></a>
                     <div class="container">
                     <h4 style="margin-top: 0.5em;">Software engineering</h4> 
                     <p style="margin-top: 0.5em;">Problem solver creating efficient software solutions.</p> 
@@ -432,7 +436,7 @@
             </div>
             <div class="dua">
                 <div class="card2">
-                    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png" target="_blank"><img src="./images/image2.png" alt="cvATS" style="width:100%"></a>
+                    <a href="https://asset.velvetjobs.com/resume-sample-examples/images/visual-communications-v1.png" target="_blank"><img src="../images/image2.png" alt="cvATS" style="width:100%"></a>
                     <div class="container">
                     <h4 style="margin-top: 0.5em;">Communication design</h4> 
                     <p style="margin-top: 0.5em;">Crafting engaging visuals to communicate messages.     </p> 
@@ -441,7 +445,7 @@
             </div>
             <div class="tiga">
                 <div class="card3">
-                    <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png" target="_blank"><img src="./images/image3.png" alt="cvATS" style="width:90%"></a>
+                    <a href="https://d25zcttzf44i59.cloudfront.net/senior-network-engineer-resume-example.png" target="_blank"><img src="../images/image3.png" alt="cvATS" style="width:90%"></a>
                     <div class="container">
                     <h4 style="margin-top: 0.5em;">Network engineering</h4> 
                     <p style="margin-top: 0.5em;">Efficient and effective data transmission strategies</p>
@@ -464,16 +468,30 @@
                   <th>Designation</th>
                   <th>Action</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Ariva Zweena</td>
-                    <td>Full-stack programmer</td>
-                    <td>
-                        <button class="button button3">Delete</button>
-                        <button class="button button4">Edit</button>
-                        <button class="button">Preview</button>
-                    </td>
-                  </tr>
+                <?php
+      $sql = "SELECT id, full_name, designation FROM creative";
+      $query = mysqli_query($connection, $sql);
+      
+      if (!$query) {
+          die("Error: " . mysqli_error($connection));
+      }
+
+      $no = 1;
+      
+      while($data = mysqli_fetch_assoc($query)){
+          echo "<tr>";
+          echo "<td>" . $no++ . "</td>";
+          echo "<td>" . htmlspecialchars($data['full_name']) . "</td>";
+          echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
+          echo "<td>";
+          echo "<a href='delete.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
+          echo "<a href='edit.php?id=".$data['id']."'><button class='button button4'>Edit</button></a>";
+          echo "<a href='preview.php?id=".$data['id']."'><button class='button'>Preview</button></a>";
+          echo "</td>";
+          echo "</tr>";
+      }
+      
+    ?>
               </table>
         </div>
     </div>

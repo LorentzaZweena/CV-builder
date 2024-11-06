@@ -6,5 +6,5 @@
     $query = "DELETE FROM creative WHERE id='$id'";
     mysqli_query($connection, $query);
 
-    header('location:index2.php');
+    header('location:index3.php');
 ?>

@@ -24,7 +24,7 @@
         $sql = "INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES ('".$full_name."', '".$designation."', '".$address."', '".$photo."', '".$email."', '".$phone."', '".$selfDescription."')";
 
         if(mysqli_query($connection, $sql)){
-            header("location:index2.php");
+            header("location:index3.php");
         } else {
             echo "Error: " . mysqli_error($connection);
         }
@@ -834,7 +834,7 @@
 
         <!-- Navigation links -->
         <ul>
-        <li><a href="index2.php">Home</a></li>
+        <li><a href="index3.php">Home</a></li>
         <li><a href="#" class="active">Create resume</a></li>
         <!-- <li><a href="#">ATS</a></li> -->
         <li><a href="https://smkpesat.sch.id/civitas/" target="_blank">Profile</a></li>
