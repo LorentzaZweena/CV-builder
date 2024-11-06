@@ -485,7 +485,7 @@
           echo "<td>" . htmlspecialchars($data['designation']) . "</td>";
           echo "<td>";
           echo "<a href='delete.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
-          echo "<a href='edit.php?id=".$data['id']."'><button class='button button4'>Edit</button></a>";
+          echo "<a href='edit-resume.php?id=".$data['id']."'><button class='button button4'>Edit</button></a>";
           echo "<a href='preview.php?id=".$data['id']."'><button class='button'>Preview</button></a>";
           echo "</td>";
           echo "</tr>";

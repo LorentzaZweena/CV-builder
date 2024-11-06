@@ -883,7 +883,7 @@
 </head>
 <body>
     <section style="margin-left: 1em; margin-bottom: 1em;">
-        <a href="index2.php" class="print-btn btn btn-primary">Go back</a>
+        <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
     </section>
 
 <section id = "preview-sc" class = "print_area active">
