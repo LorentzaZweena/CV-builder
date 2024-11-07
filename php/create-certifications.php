@@ -1,48 +1,24 @@
 <?php
     include "connection.php";
-        $id_cv = $_GET['id'];
-        $sql = "SELECT * FROM creative WHERE id='".$id_cv."'";
-        $query = mysqli_query($connection, $sql);
-        $data = mysqli_fetch_array($query);
+    $cv_id = $_GET['cv_id'];
 
-        if (isset($_POST['firstname'])) {
-            $full_name = mysqli_real_escape_string($connection, $_POST['firstname']);
-            $designation = mysqli_real_escape_string($connection, $_POST['designation']);
-            $address = mysqli_real_escape_string($connection, $_POST['address']);
-            $email = mysqli_real_escape_string($connection, $_POST['email']);
-            $mobileno = mysqli_real_escape_string($connection, $_POST['mobileno']);
-            $selfDescription = mysqli_real_escape_string($connection, $_POST['summary']);
-            
-            function handlePhotoUpload($file) {
-                $target_dir = "../images/";
-                $target_file = $target_dir . basename($file["name"]);
-                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if(isset($_POST['submit'])) {
+        $cert_title = htmlspecialchars(trim($_POST['cert_title']));
+        $description = htmlspecialchars(trim($_POST['description']));
+        
+        // Insert certification for specific CV
+        $sql = "INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)";
                 
-                $check = getimagesize($file["tmp_name"]);
-                if($check !== false) {
-                    if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg") {
-                        if (move_uploaded_file($file["tmp_name"], $target_file)) {
-                            return $target_file;
-                        }
-                    }
-                }
-                return false;
-            }
-            
-            if (isset($_FILES['photo']) && $_FILES['photo']['error'] == UPLOAD_ERR_OK) {
-                $photoPath = handlePhotoUpload($_FILES['photo']);
-            }
+        $stmt = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stmt, "iss", $cv_id, $cert_title, $description);
         
-            $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation',  address = '$address', email = '$email', mobileno = '$mobileno', selfDescription = '$selfDescription' WHERE id = '$id_cv'";
-                    
-            if($photoPath) {
-                $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation',  address = '$address', email = '$email', mobileno = '$mobileno', selfDescription = '$selfDescription', photo = '$photoPath' WHERE id = '$id_cv'";
-            }
-        
-            mysqli_query($connection, $sql);
-            header('location: index3.php');
+        if(mysqli_stmt_execute($stmt)) {
+            header("location: index3.php");
+        } else {
+            echo "Error: " . mysqli_error($connection);
         }
-        
+        mysqli_stmt_close($stmt);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -374,10 +350,6 @@
                 .section-two .section-items{
                     grid-template-columns: repeat(2, 1fr);
                 }
-
-                .form-text{
-                    margin-top: 2em;
-                }
             }
 
             @media screen and (min-width: 992px){
@@ -397,10 +369,6 @@
                 }
                 .section-two .section-item-icon img{
                     margin-left: 0;
-                }
-
-                .form-text{
-                    margin-top: 2em;
                 }
             }
 
@@ -692,10 +660,6 @@
                     grid-template-columns: repeat(2, 1fr);
                     column-gap: 2rem;
                 }
-
-                .form-text{
-                    margin-top: 2em;
-                }
             }
 
             @media screen and (min-width: 992px){
@@ -704,10 +668,6 @@
                 }
                 .cols-3{
                     grid-template-columns: repeat(3, 1fr);
-                }
-
-                .form-text{
-                    margin-top: 2em;
                 }
             }
 
@@ -846,76 +806,6 @@
                     .buat-flex{
                         display: flex;
                     }
-
-                    .navbar {
-  overflow: hidden;
-  background-color: #333;
-}
-
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin-top: 0.8em;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #284260;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-@media screen and (max-width: 768px) {
-    .form-text {
-        /* position: relative; */
-        margin-top: 0.5em !important;
-        margin-left: 0 !important;
-        font-size: 11px;
-    }
-}
-
         </style>
     </head>
     <body>
@@ -933,297 +823,38 @@
 
         <!-- Navigation links -->
         <ul>
-        <!-- <li><a href="index3.php">Home</a></li> -->
-            <div class="dropdown">
-                <button class="dropbtn">Add 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                <a href="create-certifications.php?cv_id=<?php echo $id_cv; ?>">Add Certification</a>
-                    <a href="#">Add Educations</a>
-                    <a href="#">Add Experiences</a>
-                    <a href="#">Add Skills</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Edit 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                <a href="edit-certifications.php?cv_id=<?php echo $id_cv; ?>">Edit Certification</a>
-                    <a href="#">Edit Educations</a>
-                    <a href="#">Edit Experiences</a>
-                    <a href="#">Edit Skills</a>
-                </div>
-            </div>
-        <li><a href="index3.php">Back</a></li>
+        <li><a href="index3.php">Home</a></li>
+        <li><a href="#" class="active">Create resume</a></li>
+        <!-- <li><a href="#">ATS</a></li> -->
+        <li><a href="https://smkpesat.sch.id/civitas/" target="_blank">Profile</a></li>
+        <li><a href="logout.php">Logout</a></li>
         </ul>
   </nav>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
             <div class = "container">
                 <div class = "about-cnt">
-                <form id="cv-form" action="edit-resume.php?id=<?= $id_cv; ?>" method="POST" enctype="multipart/form-data" class="cv-form">
-
-                <input type="hidden" name="id" value="<?php echo $id_cv; ?>">
+                <form id="cv-form" action="" method="POST" class="cv-form">
+                <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
 
                         <div class = "cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>Edit basic information</h3>
+                                <h3>Add certifications</h3>
                             </div>
                             <div class = "cv-form-row cv-form-row-about">
-                                <div class = "cols-3">
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Full Name</label>
-                                        <input name="firstname" type="text" class="form-control firstname" id="firstname" value="<?= $data['full_name'] ?>">
-                                        <span class="form-text"></span>
-                                    </div>
-                                    <div class="form-elem">
-                                        <label for="" class="form-label">Your Image</label>
-                                        <input name="image" type="file" class="form-control image" id="image">
-                                        <script>
-                                            const imageFile = new File([""], "<?= basename($data['photo']) ?>", {
-                                                type: "image/*",
-                                            });
-                                            const dataTransfer = new DataTransfer();
-                                            dataTransfer.items.add(imageFile);
-
-                                            document.getElementById('image').files = dataTransfer.files;
-                                        </script>
-                                    </div>
-
-
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Designation</label>
-                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" value="<?= $data['designation'] ?>">
-                                        <span class="form-text"></span>
-                                    </div>
-                                </div>
-
-                                <div class="cols-2">
-                                <div class = "form-elem">
-                                        <label for = "" class = "form-label">Address</label>
-                                        <input name = "address" type = "text" class = "form-control address" id = "address" value="<?= $data['address'] ?>">
-                                        <span class="form-text"></span>
-                                    </div>
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Email</label>
-                                        <input name = "email" type = "text" class = "form-control email" id = "email" placeholder="e.g. ariva02zweena@gmail.com" value="<?= $data['email'] ?>">
-                                        <span class="form-text"></span>
-                                    </div>
-                                </div>
-
                                 <div class = "cols-2">
                                     <div class = "form-elem">
-                                        <label for = "" class = "form-label">Phone number:</label>
-                                        <input name = "mobileno" type = "text" class = "form-control mobileno" id = "mobileno" placeholder="e.g. +62 123-456-7890" value="<?= $data['mobileno'] ?>">
-                                        <span class="form-text" style="margin-top: -1.8em; margin-left: 0.2em;">You called that phone number? Bro...</span>
-                                    </div>
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Self description</label>
-                                        <textarea name="summary" class="form-control summary" id="summary" style="width: 100%;" rows="2"><?= $data['selfDescription'] ?></textarea>
+                                        <label for = "" class = "form-label">Certification title</label>
+                                        <input name = "cert_title" type = "text" class = "form-control firstname" id = "firstname" placeholder="e.g. Web application, 2023" required style="width: 204%;">
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>Certifications</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-a">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-achievement">
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Title</label>
-                                                    <input name="group-a[0][achieve_title]" type="text" class="form-control achieve_title" placeholder="e.g. Web design, 2024" style="width: 204%;">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name="group-a[0][achieve_description]" class="form-control achieve_description" style="width: 204%;" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
+                                    <div class = "form-elem">
+                                        <label for = "" class = "form-label">Description</label>
+                                        <textarea name="description" class="form-control" required placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Erat blandit felis ultricies sem accumsan lorem est et. Congue nam pretium turpis sociosqu hendrerit per magna"></textarea>
+                                        <span class="form-text"></span>
                                     </div>
                                 </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn" id="add-certification-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>experience</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-b">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Title</label>
-                                                    <input name="group-b[0][exp_title]" type="text" class="form-control exp_title" placeholder="e.g Web developer">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Company / Organization</label>
-                                                    <input name="group-b[0][exp_organization]" type="text" class="form-control exp_organization" placeholder="e.g Google">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Location</label>
-                                                    <input name="group-b[0][exp_location]" type="text" class="form-control exp_location" placeholder="e.g Bogor, Indonesia">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="cols-2">
-                                                <div class="form-elem">
-                                                    <label for="exp_start_date" class="form-label">Start Date</label>
-                                                    <input name="group-b[0][exp_start_date]" type="text" class="form-control exp_start_date" placeholder="e.g August">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class="form-elem">
-                                                    <label for="exp_end_date" class="form-label">End Date</label>
-                                                    <input name="group-b[0][exp_end_date]" type="text" class="form-control exp_end_date" placeholder="e.g September 2020">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class="cols-2">
-                                                <div class="form-elem">
-                                                    <label for="exp_description" class="form-label">Description</label>
-                                                    <textarea name="group-b[0][exp_description]" class="form-control exp_description" placeholder="e.g Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro tempore quod praesentium nam itaque dolorem nostrum quo ipsam, modi, ut et earum sit perspiciatis inventore fugit, molestias suscipit doloremque voluptates?"  rows="5" style="width: 204%;"></textarea>
-
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>education</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-c">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">School</label>
-                                                    <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" placeholder="e.g SMK INFORMATIKA PESAT">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class="form-elem">
-                                                    <label for="edu_degree_input" class="form-label">Majors</label>
-                                                    <input name="edu_degree" type="text" class="form-control edu_degree" id="" placeholder="e.g Rekayasa perangkat lunak">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">City</label>
-                                                    <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()" placeholder="e.g Bogor, Indonesia">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="20-05-2013">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="29-12-2040">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name = "edu_description" type = "text" class = "form-control edu_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>projects</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-d">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = ""  placeholder="e.g Sistem voting osis" style="width: 204%;">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>skills</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-e">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-skills">
-                                            <div class = "form-elem">
-                                                <label for = "" class = "form-label">Skill</label>
-                                                <input name = "skill" type = "text" class = "form-control skill" id = "" placeholder="e.g PHP">
-                                                <span class="form-text"></span>
-                                            </div>
-                                            
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div> -->
-                        <!-- <div class="form-submit">
-                            <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
-                        </div> -->
-                        <input type="submit" value="Save CV" class="btn btn-primary"></input>
+                                <button type="submit" name="submit" class="btn btn-primary">Save Certification</button>
                     </form>
                 </div>
             </div>
@@ -1238,13 +869,5 @@
         <!-- app js -->
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-            const imageInput = document.getElementById('image');
-            const fileName = imageInput.dataset.value;
-            imageInput.value = fileName;
-        });
-
-        </script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
     include "connection.php";
-        $id_cv = $_GET['id'];
-        $sql = "SELECT * FROM creative WHERE id='".$id_cv."'";
+        $id_cv = $_GET['cv_id'];
+        $sql = "SELECT * FROM certifications WHERE id='".$id_cv."'";
         $query = mysqli_query($connection, $sql);
         $data = mysqli_fetch_array($query);
 
@@ -950,7 +950,7 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="edit-certifications.php?cv_id=<?php echo $id_cv; ?>">Edit Certification</a>
+                <a href="create-certifications.php?cv_id=<?php echo $id_cv; ?>">Edit Certification</a>
                     <a href="#">Edit Educations</a>
                     <a href="#">Edit Experiences</a>
                     <a href="#">Edit Skills</a>
@@ -1026,203 +1026,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>Certifications</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-a">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-achievement">
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Title</label>
-                                                    <input name="group-a[0][achieve_title]" type="text" class="form-control achieve_title" placeholder="e.g. Web design, 2024" style="width: 204%;">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name="group-a[0][achieve_description]" class="form-control achieve_description" style="width: 204%;" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn" id="add-certification-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>experience</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-b">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Title</label>
-                                                    <input name="group-b[0][exp_title]" type="text" class="form-control exp_title" placeholder="e.g Web developer">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Company / Organization</label>
-                                                    <input name="group-b[0][exp_organization]" type="text" class="form-control exp_organization" placeholder="e.g Google">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Location</label>
-                                                    <input name="group-b[0][exp_location]" type="text" class="form-control exp_location" placeholder="e.g Bogor, Indonesia">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="cols-2">
-                                                <div class="form-elem">
-                                                    <label for="exp_start_date" class="form-label">Start Date</label>
-                                                    <input name="group-b[0][exp_start_date]" type="text" class="form-control exp_start_date" placeholder="e.g August">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class="form-elem">
-                                                    <label for="exp_end_date" class="form-label">End Date</label>
-                                                    <input name="group-b[0][exp_end_date]" type="text" class="form-control exp_end_date" placeholder="e.g September 2020">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class="cols-2">
-                                                <div class="form-elem">
-                                                    <label for="exp_description" class="form-label">Description</label>
-                                                    <textarea name="group-b[0][exp_description]" class="form-control exp_description" placeholder="e.g Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro tempore quod praesentium nam itaque dolorem nostrum quo ipsam, modi, ut et earum sit perspiciatis inventore fugit, molestias suscipit doloremque voluptates?"  rows="5" style="width: 204%;"></textarea>
-
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>education</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-c">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-3">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">School</label>
-                                                    <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" placeholder="e.g SMK INFORMATIKA PESAT">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class="form-elem">
-                                                    <label for="edu_degree_input" class="form-label">Majors</label>
-                                                    <input name="edu_degree" type="text" class="form-control edu_degree" id="" placeholder="e.g Rekayasa perangkat lunak">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">City</label>
-                                                    <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()" placeholder="e.g Bogor, Indonesia">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Start Date</label>
-                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="20-05-2013">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">End Date</label>
-                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="29-12-2040">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name = "edu_description" type = "text" class = "form-control edu_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>projects</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-d">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = ""  placeholder="e.g Sistem voting osis" style="width: 204%;">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name = "proj_description" type = "text" class = "form-control proj_description" id = "" onkeyup="generateCV()" placeholder="e.g. Lorem ipsum odor amet, consectetuer adipiscing elit. Integer integer mauris tempor hac netus ut habitant finibus. Placerat arcu egestas duis suspendisse nisl, tristique placerat dis" style="width: 204%;"></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div>
-
-                        <div class="cv-form-blk">
-                            <div class = "cv-form-row-title">
-                                <h3>skills</h3>
-                            </div>
-
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-e">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-skills">
-                                            <div class = "form-elem">
-                                                <label for = "" class = "form-label">Skill</label>
-                                                <input name = "skill" type = "text" class = "form-control skill" id = "" placeholder="e.g PHP">
-                                                <span class="form-text"></span>
-                                            </div>
-                                            
-                                            <button data-repeater-delete type = "button" class = "repeater-remove-btn">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type = "button" data-repeater-create value = "Add" class = "repeater-add-btn">+</button>
-                            </div>
-                        </div> -->
-                        <!-- <div class="form-submit">
-                            <button type="submit" name="submit" class="btn btn-primary">Save CV</button>
-                        </div> -->
                         <input type="submit" value="Save CV" class="btn btn-primary"></input>
                     </form>
                 </div>
