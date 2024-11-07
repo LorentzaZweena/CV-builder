@@ -982,7 +982,7 @@
                                         <input name="image" type="file" class="form-control image" id="image">
                                         <script>
                                             const imageFile = new File([""], "<?= basename($data['photo']) ?>", {
-                                                type: "image/*",
+                                                type: "../image/*",
                                             });
                                             const dataTransfer = new DataTransfer();
                                             dataTransfer.items.add(imageFile);
