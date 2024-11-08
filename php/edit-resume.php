@@ -56,7 +56,6 @@
         <!-- custom css -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="../css/edit-resume.css">
-
     </head>
     <body>
     <nav>
@@ -85,9 +84,8 @@
                 </button>
                 <div class="dropdown-content">
                 <a href="create-certifications.php?cv_id=<?php echo $id_cv; ?>">Add Certification</a>
-                <a href="create-educations.php?cv_id=<?php echo $id_cv; ?>">Add Education</a>
-                    <a href="#">Add Educations</a>
-                    <a href="#">Add Experiences</a>
+                <a href="create-educations.php?cv_id=<?php echo $id_cv; ?>">Add Educations</a>
+                <a href="create-experiences.php?cv_id=<?php echo $id_cv; ?>">Add Experiences</a>
                     <a href="#">Add Skills</a>
                 </div>
             </div>
@@ -162,7 +160,8 @@
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Phone number:</label>
                                         <input name = "mobileno" type = "text" class = "form-control mobileno" id = "mobileno" placeholder="e.g. +62 123-456-7890" value="<?= $data['mobileno'] ?>">
-                                        <span class="form-text" style="margin-top: -1.8em; margin-left: 0.2em;">We cant guaranteed the safety of your number....</span>
+                                        <span class="form-text" style="margin-top: -1.8em; margin-left: 0.2em;">Attention : There's no edit menu in navbar</span>
+                                        <!-- <span class="form-text" style="margin-top: -1.8em; margin-left: 0.2em;">Attention : There's no edit button here</span> -->
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Self description</label>

@@ -11,7 +11,7 @@
         $end_date = htmlspecialchars(trim($_POST['edu_graduation_date']));
         $description = htmlspecialchars(trim($_POST['edu_description']));
         
-        $sql = "INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO experiences (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 
         $stmt = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($stmt, "issssss", $cv_id, $school, $degree, $city, $start_date, $end_date, $description);
@@ -75,8 +75,8 @@
                 </button>
                 <div class="dropdown-content">
                 <a href="create-certifications.php?cv_id=<?php echo $cv_id; ?>">Add Certification</a>
-                <a href="#">Add Educations</a>
-                <a href="create-experiences.php?cv_id=<?php echo $cv_id ?>">Add Experiences</a>
+                <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
+                <a href="#">Add Experiences</a>
                     <a href="#">Add Skills</a>
                 </div>
             </div>
@@ -106,46 +106,45 @@
                             </div>
 
                                         <div class = "cv-form-row">
-                                            <div class = "cols-3">
+                                        <div class = "cols-3">
                                                 <div class = "form-elem">
-                                                    <label for = "" class = "form-label">School</label>
-                                                    <input name = "edu_school" type = "text" class = "form-control edu_school" id = "" onkeyup="generateCV()" placeholder="e.g SMK INFORMATIKA PESAT">
+                                                    <label for = "" class = "form-label">Title</label>
+                                                    <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" placeholder="e.g Full-stack programmer">
+                                                    <span class="form-text"></span>
+                                                </div>
+                                                <div class = "form-elem">
+                                                    <label for = "" class = "form-label">Company / Organization</label>
+                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" placeholder="e.g SMK PESAT ITXPRO">
+                                                    <span class="form-text"></span>
+                                                </div>
+                                                <div class = "form-elem">
+                                                    <label for = "" class = "form-label">Location</label>
+                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" placeholder="e.g Bogor, Indonesia">
+                                                    <span class="form-text"></span>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="cols-2">
+                                                <div class="form-elem">
+                                                    <label for="exp_start_date" class="form-label">Start Month</label>
+                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="e.g August">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
-                                                    <label for="edu_degree_input" class="form-label">Majors</label>
-                                                    <input name="edu_degree" type="text" class="form-control edu_degree" id="" placeholder="e.g Rekayasa perangkat lunak">
+                                                    <label for="exp_end_date" class="form-label">End Month - Year</label>
+                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="e.g November 2021">
                                                     <span class="form-text"></span>
                                                 </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">City</label>
-                                                    <input name = "edu_city" type = "text" class = "form-control edu_city" id = "" onkeyup="generateCV()" placeholder="e.g Bogor, Indonesia">
+                                        </div>
+                                        <div class="cols-2">
+                                                <div class="form-elem">
+                                                    <label for="exp_description" class="form-label">Description</label>
+                                                    <textarea name="exp_description" class="form-control edu_description" id="exp_description" rows="2" placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis pharetra inceptos leo suscipit, condimentum aliquet enim praesent. Auctor facilisi aliquam accumsan non ultrices iaculis felis lectus senectus. Suscipit velit aptent tristique lobortis sagittis conubia senectus commodo."></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
-                                            </div>
-
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Start year</label>
-                                                    <input name = "edu_start_date" type = "text" class = "form-control edu_start_date" id = "edu_start_date" onkeyup="generateCV()" placeholder="2013">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">End year</label>
-                                                    <input name = "edu_graduation_date" type = "text" class = "form-control edu_graduation_date" id = "edu_graduation_date" onkeyup="generateCV()" placeholder="2040">
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
-                                            <div class = "cols-2">
-                                                <div class = "form-elem">
-                                                    <label for = "" class = "form-label">Description</label>
-                                                    <textarea name="edu_description" class="form-control edu_description" id="edu_description" rows="2" placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis pharetra inceptos leo suscipit, condimentum aliquet enim praesent. Auctor facilisi aliquam accumsan non ultrices iaculis felis lectus senectus. Suscipit velit aptent tristique lobortis sagittis conubia senectus commodo."></textarea>
-                                                    <span class="form-text"></span>
-                                                </div>
-                                            </div>
                                         </div>
                                 </div>
-                                <button type="submit" name="submit" class="btn btn-primary">Save Education</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Save Experiences</button>
                             </div>
                         </div>
             </div>
