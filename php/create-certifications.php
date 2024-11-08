@@ -838,7 +838,7 @@
 
                         <div class = "cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>Add certifications</h3>
+                                <h3>Add certifications (This action is irrevocable)</h3>
                             </div>
                             <div class = "cv-form-row cv-form-row-about">
                                 <div class = "cols-2">

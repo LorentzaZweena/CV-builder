@@ -3,14 +3,18 @@
     $cv_id = $_GET['cv_id'];
 
     if(isset($_POST['submit'])) {
-        $cert_title = htmlspecialchars(trim($_POST['cert_title']));
-        $description = htmlspecialchars(trim($_POST['description']));
+        $school = htmlspecialchars(trim($_POST['edu_school']));
+        $degree = htmlspecialchars(trim($_POST['edu_degree']));
+        $city = htmlspecialchars(trim($_POST['edu_city']));
+
+        $start_date = htmlspecialchars(trim($_POST['edu_start_date']));
+        $end_date = htmlspecialchars(trim($_POST['edu_graduation_date']));
+        $description = htmlspecialchars(trim($_POST['edu_description']));
         
-        // Insert certification for specific CV
-        $sql = "INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO education (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 
         $stmt = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stmt, "iss", $cv_id, $cert_title, $description);
+        mysqli_stmt_bind_param($stmt, "issssss", $cv_id, $school, $degree, $city, $start_date, $end_date, $description);
         
         if(mysqli_stmt_execute($stmt)) {
             header("location: index3.php");
@@ -651,7 +655,7 @@
                 box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
             }
 
-            .form-elem textarea {
+            .form-elem .edu_description {
                 width: 204%;
                 min-height: 50px;
             }
@@ -666,6 +670,11 @@
                     grid-template-columns: repeat(2, 1fr);
                     column-gap: 2rem;
                 }
+
+                .form-elem .edu_description {
+                width: 204%;
+                min-height: 50px;
+            }
             }
 
             @media screen and (min-width: 992px){
@@ -681,10 +690,10 @@
                 margin: 2rem 0 6rem 0;
             }
 
-            .form-elem textarea {
-    width: 100%;
-    min-height: 100px;
-}
+                    .form-elem textarea {
+            width: 100%;
+            min-height: 100px;
+        }
 
 
             @media print{
@@ -853,10 +862,7 @@
                                 <h3>Add educations</h3>
                             </div>
 
-                            <div class = "row-separator repeater">
-                                <div class = "repeater" data-repeater-list = "group-c">
-                                    <div data-repeater-item>
-                                        <div class = "cv-form-row cv-form-row-experience">
+                                        <div class = "cv-form-row">
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">School</label>
@@ -890,12 +896,11 @@
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <textarea name="edu_description" class="form-control edu_description" id="edu_description" rows="2"></textarea>
+                                                    <textarea name="edu_description" class="form-control edu_description" id="edu_description" rows="2" placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis pharetra inceptos leo suscipit, condimentum aliquet enim praesent. Auctor facilisi aliquam accumsan non ultrices iaculis felis lectus senectus. Suscipit velit aptent tristique lobortis sagittis conubia senectus commodo."></textarea>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-primary">Save Education</button>
                             </div>
