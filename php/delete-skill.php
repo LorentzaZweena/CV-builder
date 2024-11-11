@@ -290,16 +290,11 @@
             <table id="customers">
                 <tr>
                   <th>No</th>
-                  <th>Title</th>
-                  <th>Organization</th>
-                  <th>Location</th>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Description</th>
+                  <th>Skills</th>
                   <th>Action</th>
                 </tr>
                 <?php
-                    $sql = "SELECT * FROM experiences WHERE cv_id = ?";
+                    $sql = "SELECT * FROM skills WHERE cv_id = ?";
                     $stmt = mysqli_prepare($connection, $sql);
                     mysqli_stmt_bind_param($stmt, "i", $cv_id);
                     mysqli_stmt_execute($stmt);
@@ -314,14 +309,9 @@
                     while($data = mysqli_fetch_assoc($result)){
                         echo "<tr>";
                         echo "<td>" . $no++ . "</td>";
-                        echo "<td>" . htmlspecialchars($data['title']) . "</td>";
-                        echo "<td>" . htmlspecialchars($data['organization']) . "</td>";
-                        echo "<td>" . htmlspecialchars($data['location']) . "</td>";
-                        echo "<td>" . htmlspecialchars($data['start_date']) . "</td>";
-                        echo "<td>" . htmlspecialchars($data['end_date']) . "</td>";
-                        echo "<td style='text-align: justify;'>" . htmlspecialchars($data['description']) . "</td>";
+                        echo "<td>" . htmlspecialchars($data['skill_name']) . "</td>";
                         echo "<td>";
-                        echo "<a href='delete_experience.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
+                        echo "<a href='delete_skill.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -341,24 +331,23 @@
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
         <script>
-function toggleMenu() {
-    const navUl = document.querySelector('nav ul');
-    const hamburger = document.querySelector('.hamburger');
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    navUl.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    
-    // Make dropdowns visible when menu is active
-    dropdowns.forEach(dropdown => {
-        if(navUl.classList.contains('active')) {
-            dropdown.style.display = 'block';
-        } else {
-            dropdown.style.display = '';
-        }
-    });
-}
-
+            function toggleMenu() {
+                const navUl = document.querySelector('nav ul');
+                const hamburger = document.querySelector('.hamburger');
+                const dropdowns = document.querySelectorAll('.dropdown');
+                
+                navUl.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                
+                // Make dropdowns visible when menu is active
+                dropdowns.forEach(dropdown => {
+                    if(navUl.classList.contains('active')) {
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = '';
+                    }
+                });
+            }
 </script>
     </body>
 </html>

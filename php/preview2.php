@@ -142,7 +142,7 @@ header p {
 </head>
 <body>
 <section style="margin-left: 6em; margin-bottom: 1em;">
-        <a href="index2.php" class="print-btn btn btn-primary">Go back</a>
+        <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
     </section>
 
     <div class="cv-container">

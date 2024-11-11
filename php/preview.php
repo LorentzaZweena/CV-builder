@@ -1,5 +1,6 @@
 <?php
     include("connection.php");
+    $cv_id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -770,6 +771,10 @@
                         display: flex;
                     }
 
+                    .dua{
+                        margin-left: 1em;
+                    }
+
                     /* Responsive styles for the preview container */
 @media screen and (max-width: 992px) {
     .preview-cnt {
@@ -883,7 +888,14 @@
 </head>
 <body>
     <section style="margin-left: 1em; margin-bottom: 1em;">
-        <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
+        <div class="buat-flex">
+            <div class="satu">
+                <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
+            </div>
+            <div class="dua">
+            <a href="preview2.php?id=<?= $cv_id ?>" class="print-btn btn btn-primary">ATS version</a>
+            </div>
+        </div>
     </section>
 
 <section id = "preview-sc" class = "print_area active">

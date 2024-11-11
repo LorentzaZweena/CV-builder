@@ -79,10 +79,10 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="edit-certifications.php?cv_id=<?php echo $id_cv; ?>">Delete Certification</a>
-                    <a href="#">Delete Educations</a>
-                    <a href="#">Delete Experiences</a>
-                    <a href="#">Delete Skills</a>
+                <a href="delete_certification.php?cv_id=<?php echo $id_cv; ?>">Delete Certification</a>
+                <a href="delete-education.php?cv_id=<?php echo $id_cv; ?>">Delete education</a>
+                <a href="delete-experience.php?cv_id=<?php echo $id_cv; ?>">Delete experience</a>
+                <a href="delete-skill.php?cv_id=<?php echo $id_cv; ?>">Delete Skills</a>
                 </div>
             </div>
             <li><a href="index3.php">Back</a></li>
