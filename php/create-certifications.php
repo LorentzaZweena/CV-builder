@@ -6,14 +6,13 @@
         $cert_title = htmlspecialchars(trim($_POST['cert_title']));
         $description = htmlspecialchars(trim($_POST['description']));
         
-        // Insert certification for specific CV
         $sql = "INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)";
                 
         $stmt = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($stmt, "iss", $cv_id, $cert_title, $description);
         
         if(mysqli_stmt_execute($stmt)) {
-            header("location: index3.php");
+            // header("location: index3.php");
         } else {
             echo "Error: " . mysqli_error($connection);
         }
@@ -150,4 +149,4 @@ function toggleMenu() {
 
 </script>
     </body>
-</html>
+</html> 
