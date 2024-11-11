@@ -290,12 +290,16 @@
             <table id="customers">
                 <tr>
                   <th>No</th>
-                  <th>Certification</th>
+                  <th>School</th>
+                  <th>Degree</th>
+                  <th>City</th>
+                  <th>Start</th>
+                  <th>End</th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>
                 <?php
-                    $sql = "SELECT * FROM certifications WHERE cv_id = ?";
+                    $sql = "SELECT * FROM experiences WHERE cv_id = ?";
                     $stmt = mysqli_prepare($connection, $sql);
                     mysqli_stmt_bind_param($stmt, "i", $cv_id);
                     mysqli_stmt_execute($stmt);
@@ -311,9 +315,13 @@
                         echo "<tr>";
                         echo "<td>" . $no++ . "</td>";
                         echo "<td>" . htmlspecialchars($data['title']) . "</td>";
+                        echo "<td>" . htmlspecialchars($data['organization']) . "</td>";
+                        echo "<td>" . htmlspecialchars($data['location']) . "</td>";
+                        echo "<td>" . htmlspecialchars($data['start_date']) . "</td>";
+                        echo "<td>" . htmlspecialchars($data['end_date']) . "</td>";
                         echo "<td style='text-align: justify;'>" . htmlspecialchars($data['description']) . "</td>";
                         echo "<td>";
-                        echo "<a href='delete_certification.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
+                        echo "<a href='delete_experience.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -333,23 +341,24 @@
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
         <script>
-            function toggleMenu() {
-                const navUl = document.querySelector('nav ul');
-                const hamburger = document.querySelector('.hamburger');
-                const dropdowns = document.querySelectorAll('.dropdown');
-                
-                navUl.classList.toggle('active');
-                hamburger.classList.toggle('active');
-                
-                // Make dropdowns visible when menu is active
-                dropdowns.forEach(dropdown => {
-                    if(navUl.classList.contains('active')) {
-                        dropdown.style.display = 'block';
-                    } else {
-                        dropdown.style.display = '';
-                    }
-                });
-            }
+function toggleMenu() {
+    const navUl = document.querySelector('nav ul');
+    const hamburger = document.querySelector('.hamburger');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    navUl.classList.toggle('active');
+    hamburger.classList.toggle('active');
+    
+    // Make dropdowns visible when menu is active
+    dropdowns.forEach(dropdown => {
+        if(navUl.classList.contains('active')) {
+            dropdown.style.display = 'block';
+        } else {
+            dropdown.style.display = '';
+        }
+    });
+}
+
 </script>
     </body>
 </html>
