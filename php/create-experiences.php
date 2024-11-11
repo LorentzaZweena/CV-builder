@@ -3,15 +3,15 @@
     $cv_id = $_GET['cv_id'];
 
     if(isset($_POST['submit'])) {
-        $school = htmlspecialchars(trim($_POST['edu_school']));
-        $degree = htmlspecialchars(trim($_POST['edu_degree']));
-        $city = htmlspecialchars(trim($_POST['edu_city']));
+        $school = htmlspecialchars(trim($_POST['exp_title']));
+        $degree = htmlspecialchars(trim($_POST['exp_organization']));
+        $city = htmlspecialchars(trim($_POST['exp_location']));
 
-        $start_date = htmlspecialchars(trim($_POST['edu_start_date']));
-        $end_date = htmlspecialchars(trim($_POST['edu_graduation_date']));
-        $description = htmlspecialchars(trim($_POST['edu_description']));
+        $start_date = htmlspecialchars(trim($_POST['exp_start_date']));
+        $end_date = htmlspecialchars(trim($_POST['exp_end_date']));
+        $description = htmlspecialchars(trim($_POST['exp_description']));
         
-        $sql = "INSERT INTO experiences (cv_id, school, degree, city, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO experiences (cv_id, title, organization, location, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 
         $stmt = mysqli_prepare($connection, $sql);
         mysqli_stmt_bind_param($stmt, "issssss", $cv_id, $school, $degree, $city, $start_date, $end_date, $description);
@@ -74,10 +74,10 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="create-certifications.php?cv_id=<?php echo $cv_id; ?>">Add Certification</a>
-                <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
-                <a href="#">Add Experiences</a>
-                    <a href="#">Add Skills</a>
+                    <a href="create-certifications.php?cv_id=<?php echo $cv_id; ?>">Add Certification</a>
+                    <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
+                    <a href="#">Add Experiences</a>
+                    <a href="create-skill.php?cv_id=<?php echo $cv_id; ?>">Add Skill</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -85,7 +85,7 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="edit-certifications.php?cv_id=<?php echo $id_cv; ?>">Delete Certification</a>
+                <a href="edit-certifications.php?cv_id=<?php echo $cv_id; ?>">Delete Certification</a>
                     <a href="#">Delete Educations</a>
                     <a href="#">Delete Experiences</a>
                     <a href="#">Delete Skills</a>

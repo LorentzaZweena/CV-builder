@@ -30,7 +30,15 @@
             }
             
             if (isset($_FILES['photo']) && $_FILES['photo']['error'] == UPLOAD_ERR_OK) {
-                $photoPath = handlePhotoUpload($_FILES['photo']);
+                $target_dir = "../images/";
+                $target_file = $target_dir . basename($_FILES["photo"]["name"]);
+
+                if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+                    $photoPath = $target_file;
+                    $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation', address = '$address', email = '$email', mobileno = '$mobileno', selfDescription = '$selfDescription', photo = '$target_file' WHERE id = '$id_cv'";
+                    
+                    mysqli_query($connection, $sql);
+                }
             }
         
             $sql = "UPDATE creative SET full_name = '$full_name', designation = '$designation',  address = '$address', email = '$email', mobileno = '$mobileno', selfDescription = '$selfDescription' WHERE id = '$id_cv'";
@@ -83,10 +91,10 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="create-certifications.php?cv_id=<?php echo $id_cv; ?>">Add Certification</a>
-                <a href="create-educations.php?cv_id=<?php echo $id_cv; ?>">Add Educations</a>
-                <a href="create-experiences.php?cv_id=<?php echo $id_cv; ?>">Add Experiences</a>
-                    <a href="#">Add Skills</a>
+                    <a href="create-certifications.php?cv_id=<?php echo $id_cv; ?>">Add Certification</a>
+                    <a href="create-educations.php?cv_id=<?php echo $id_cv; ?>">Add Educations</a>
+                    <a href="create-experiences.php?cv_id=<?php echo $id_cv; ?>">Add Experiences</a>
+                    <a href="create-skill.php?cv_id=<?php echo $id_cv; ?>">Add Skill</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -123,7 +131,7 @@
                                     </div>
                                     <div class="form-elem">
                                         <label for="" class="form-label">Your Image</label>
-                                        <input name="image" type="file" class="form-control image" id="image">
+                                        <input name="photo" type="file" class="form-control image" id="image">
                                         <script>
                                             const imageFile = new File([""], "<?= basename($data['photo']) ?>", {
                                                 type: "image/*",

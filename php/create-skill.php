@@ -3,14 +3,12 @@
     $cv_id = $_GET['cv_id'];
 
     if(isset($_POST['submit'])) {
-        $cert_title = htmlspecialchars(trim($_POST['cert_title']));
-        $description = htmlspecialchars(trim($_POST['description']));
+        $cert_title = htmlspecialchars(trim($_POST['skill']));
         
-        // Insert certification for specific CV
-        $sql = "INSERT INTO certifications (cv_id, title, description) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO skills (cv_id, skill_name) VALUES (?, ?)";
                 
         $stmt = mysqli_prepare($connection, $sql);
-        mysqli_stmt_bind_param($stmt, "iss", $cv_id, $cert_title, $description);
+        mysqli_stmt_bind_param($stmt, "is", $cv_id, $cert_title);
         
         if(mysqli_stmt_execute($stmt)) {
             header("location: index3.php");
@@ -73,7 +71,7 @@
                 <a href="#">Add Certification</a>
                 <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
                 <a href="create-experiences.php?cv_id=<?php echo $cv_id ?>">Add Experiences</a>
-                <a href="create-skill.php?cv_id=<?php echo $id_cv; ?>">Add Skill</a>
+                    <a href="#">Add Skills</a>
                 </div>
             </div>
             <div class="dropdown">
@@ -96,25 +94,22 @@
                 <form id="cv-form" action="" method="POST" class="cv-form">
                 <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
 
-                        <div class = "cv-form-blk">
+                <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>Add certifications</h3>
+                                <h3>skills</h3>
                             </div>
-                            <div class = "cv-form-row cv-form-row-about">
-                                <div class = "cols-2">
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Certification title</label>
-                                        <input name = "cert_title" type = "text" class = "form-control firstname" id = "firstname" placeholder="e.g. Web application, 2023" required>
-                                        <span class="form-text"></span>
-                                    </div>
-                                </div>
-                                    <div class = "form-elem">
-                                        <label for = "" class = "form-label">Description</label>
-                                        <textarea name="description" class="form-control" required placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Erat blandit felis ultricies sem accumsan lorem est et. Congue nam pretium turpis sociosqu hendrerit per magna"></textarea>
-                                        <span class="form-text"></span>
-                                    </div>
-                                </div>
-                                <button type="submit" name="submit" class="btn btn-primary">Save Certification</button>
+                                        <div class = "cv-form-row cv-form-row-skills">
+                                            <div class = "form-elem">
+                                                <label for = "" class = "form-label">Skill</label>
+                                                <input name = "skill" type = "text" class = "form-control skill" id = "" onkeyup="generateCV()" placeholder="e.g PHP">
+                                                <span class="form-text"></span>
+                                            </div>
+                                        
+                                        </div>
+                                        <button type="submit" name="submit" class="btn btn-primary">Save skill</button>
+
+                            
+                        </div>
                     </form>
                 </div>
             </div>
