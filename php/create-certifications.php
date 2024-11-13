@@ -1,6 +1,6 @@
 <?php
     include "connection.php";
-    $cv_id = $_GET['cv_id'];
+    $cv_id = isset($_GET['cv_id']) ? $_GET['cv_id'] : header('Location: index3.php');
 
     if(isset($_POST['submit'])) {
         $cert_title = htmlspecialchars(trim($_POST['cert_title']));
@@ -18,6 +18,11 @@
         }
         mysqli_stmt_close($stmt);
     }
+
+    if(isset($_POST['view'])) {
+        header("location:delete_certification.php?cv_id=" . $cv_id);
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -42,27 +47,91 @@
                     width: 100%;
                 }
             }
+
+            #customers {
+  font-family: 'Poppins', Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+  margin-left: 3em;
+  margin-top: 6em;
+}
+
+#customers td, #customers th {
+  /* border: 1px solid #ddd; */
+  padding: 8px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #002e63;
+  color: white;
+  border: none;
+  text-align: center;
+}
+
+.form-text{
+    margin-top: -0.5em;
+}
+
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 0.5em;
+}
+
+.button4{
+    background-color: #002e63;
+    border-radius: 0.5em;
+}
+
+.dua{
+    margin-left: 23em;
+}
+
+@media screen and (max-width: 600px) {
+        .buat-flex{
+            display: block;
+        }
+
+        .dua{
+            margin-left: 0;
+            margin-top: 1em;
+        }
+    }
+
         </style>
     </head>
     <body>
     <nav>
     <div class="hamburger" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-        <!-- Checkbox for toggling menu -->
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+      
         <input type="checkbox" id="check">
 
-        <!-- Menu icon -->
+       
         <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
         </label>
 
-        <!-- Site logo -->
         <label class="logo">Resume builder</label>
-
-        <!-- Navigation links -->
         <ul>
             <div class="dropdown">
                 <button class="dropbtn">Add 
@@ -75,17 +144,17 @@
                 <a href="create-skill.php?cv_id=<?php echo $id_cv; ?>">Add Skill</a>
                 </div>
             </div>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="dropbtn">Delete 
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="delete_certification.php?cv_id=<?php echo $id_cv; ?>">Delete Certification</a>
+                <a href="delete_certification.php?cv_id=<?php echo $cv_id; ?>">Delete Certification</a>
                 <a href="delete-education.php?cv_id=<?php echo $id_cv; ?>">Delete education</a>
                 <a href="delete-experience.php?cv_id=<?php echo $id_cv; ?>">Delete experience</a>
                 <a href="delete-skill.php?cv_id=<?php echo $id_cv; ?>">Delete Skills</a>
                 </div>
-            </div>
+            </div> -->
             <li><a href="index3.php">Back</a></li>
         </ul>
   </nav>
@@ -116,6 +185,23 @@
                                 <button type="submit" name="submit" class="btn btn-primary">Save Certification</button>
                     </form>
                 </div>
+                <form action="" method="post">
+                <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
+                    <div class="buat-flex">
+
+                    <div class="satu">
+                        <h3>Fancy seeing the certifications you have added?</h3>
+                        <div class="desc">
+                            <p>Click the button to behold the certifications thou hast most nobly conferred</p>
+                        </div>
+                    </div>
+
+                    <div class="dua">
+                        <button class='button button4' name="view">View certification</button>
+                    </div>
+                        
+                    </div>
+                </form>
             </div>
         </section>
 
@@ -129,24 +215,23 @@
         <script src="../js/app.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
         <script>
-function toggleMenu() {
-    const navUl = document.querySelector('nav ul');
-    const hamburger = document.querySelector('.hamburger');
-    const dropdowns = document.querySelectorAll('.dropdown');
-    
-    navUl.classList.toggle('active');
-    hamburger.classList.toggle('active');
-    
-    // Make dropdowns visible when menu is active
-    dropdowns.forEach(dropdown => {
-        if(navUl.classList.contains('active')) {
-            dropdown.style.display = 'block';
-        } else {
-            dropdown.style.display = '';
-        }
-    });
-}
-
+            function toggleMenu() {
+                const navUl = document.querySelector('nav ul');
+                const hamburger = document.querySelector('.hamburger');
+                const dropdowns = document.querySelectorAll('.dropdown');
+                
+                navUl.classList.toggle('active');
+                hamburger.classList.toggle('active');
+                
+                // Make dropdowns visible when menu is active
+                dropdowns.forEach(dropdown => {
+                    if(navUl.classList.contains('active')) {
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = '';
+                    }
+                });
+            }
 </script>
     </body>
 </html> 

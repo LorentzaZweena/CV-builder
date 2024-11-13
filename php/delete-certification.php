@@ -6,5 +6,5 @@
     $query = "DELETE FROM certifications WHERE id='$id'";
     mysqli_query($connection, $query);
 
-    header('location:index3.php');
+    header('location:create-certifications.php');
 ?>

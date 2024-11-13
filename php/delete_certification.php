@@ -13,7 +13,7 @@
         mysqli_stmt_bind_param($stmt, "iss", $cv_id, $cert_title, $description);
         
         if(mysqli_stmt_execute($stmt)) {
-            header("location: index3.php");
+            // header("location: index3.php");
         } else {
             echo "Error: " . mysqli_error($connection);
         }
@@ -282,7 +282,7 @@
                     <a href="#">Delete Skills</a>
                 </div>
             </div> -->
-            <li><a href="index3.php">Back</a></li>
+            <li><a href="create-certifications.php?cv_id=<?php echo $cv_id; ?>">Back</a></li>
         </ul>
   </nav>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
@@ -313,7 +313,7 @@
                         echo "<td>" . htmlspecialchars($data['title']) . "</td>";
                         echo "<td style='text-align: justify;'>" . htmlspecialchars($data['description']) . "</td>";
                         echo "<td>";
-                        echo "<a href='delete_certification.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
+                        echo "<a href='delete-certification.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
                         echo "</td>";
                         echo "</tr>";
                     }
