@@ -192,28 +192,27 @@
                                         </div>
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-primary">Save Education</button>
-                </form>
-                            </div>
+                        </form>
+                    </div>
                             <form action="" method="post">
-                <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
-                    <div class="buat-flex" style="margin-top: 1em;">
+                                <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
+                                    <div class="buat-flex" style="margin-top: 1em;">
 
-                    <div class="satu">
-                        <h3>Fancy seeing the education you have added?</h3>
-                        <div class="desc">
-                            <p>Click the button to behold the educations thou hast most nobly conferred</p>
-                        </div>
-                    </div>
+                                    <div class="satu">
+                                        <h3>Fancy seeing the education you have added?</h3>
+                                        <div class="desc">
+                                            <p>Click the button to behold the educations thou hast most nobly conferred</p>
+                                        </div>
+                                    </div>
 
-                    <div class="dua">
-                        <button class='button button4' name="view">View education</button>
+                                    <div class="dua">
+                                        <button class='button button4' name="view">View education</button>
+                                    </div>
+                                        
+                                    </div>
+                            </form>
+                        </div>      
                     </div>
-                        
-                    </div>
-                </form>
-                        </div>
-                        
-            </div>
         </section>
 
         <!-- jquery cdn -->

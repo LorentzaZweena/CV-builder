@@ -17,6 +17,10 @@
         }
         mysqli_stmt_close($stmt);
     }
+
+    if(isset($_POST['view'])) {
+        header("location:delete-skill.php?cv_id=" . $cv_id);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -111,7 +115,25 @@
                             
                         </div>
                     </form>
+
                 </div>
+                <form action="" method="post">
+                <input type="hidden" name="cv_id" value="<?php echo $cv_id; ?>">
+                    <div class="buat-flex">
+
+                    <div class="satu">
+                        <h3>Fancy seeing the skill you have added?</h3>
+                        <div class="desc">
+                            <p>Click the button to behold the skills thou hast most nobly conferred</p>
+                        </div>
+                    </div>
+
+                    <div class="dua">
+                        <button class='button button4' name="view">View experiences</button>
+                    </div>
+                        
+                    </div>
+                </form>
             </div>
         </section>
 

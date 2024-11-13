@@ -834,11 +834,11 @@
 
         <!-- Navigation links -->
         <ul>
-        <li><a href="index3.php">Home</a></li>
-        <li><a href="#" class="active">Create resume</a></li>
-        <!-- <li><a href="#">ATS</a></li> -->
-        <li><a href="https://smkpesat.sch.id/civitas/" target="_blank">Profile</a></li>
-        <li><a href="logout.php">Logout</a></li>
+            <li><a href="index3.php">Home</a></li>
+            <li><a href="#" class="active">Create resume</a></li>
+            <!-- <li><a href="#">ATS</a></li> -->
+            <li><a href="https://smkpesat.sch.id/civitas/" target="_blank">Profile</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
   </nav>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
