@@ -11,7 +11,7 @@
         mysqli_stmt_bind_param($stmt, "is", $cv_id, $cert_title);
         
         if(mysqli_stmt_execute($stmt)) {
-            header("location: index3.php");
+            // header("location: index3.php");
         } else {
             echo "Error: " . mysqli_error($connection);
         }
@@ -45,6 +45,40 @@
                     width: 100%;
                 }
             }
+
+            .button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 0.5em;
+}
+
+.button4{
+    background-color: #002e63;
+    border-radius: 0.5em;
+}
+
+.dua{
+    margin-left: 10em;
+}
+
+@media screen and (max-width: 600px) {
+        .buat-flex{
+            display: block;
+        }
+
+        .dua{
+            margin-left: 0;
+            margin-top: 1em;
+        }
+    }
         </style>
     </head>
     <body>
@@ -122,14 +156,14 @@
                     <div class="buat-flex">
 
                     <div class="satu">
-                        <h3>Fancy seeing the skill you have added?</h3>
+                        <h3>Might I behold the skill thou hast so royally bestowed?</h3>
                         <div class="desc">
-                            <p>Click the button to behold the skills thou hast most nobly conferred</p>
+                            <p>I beseech thee, click the button and behold the noble skills thou hast conferred upon this humble form!</p>
                         </div>
                     </div>
 
                     <div class="dua">
-                        <button class='button button4' name="view">View experiences</button>
+                        <button class='button button4' name="view">View skills</button>
                     </div>
                         
                     </div>

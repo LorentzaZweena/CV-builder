@@ -282,7 +282,7 @@
                     <a href="#">Delete Skills</a>
                 </div>
             </div> -->
-            <li><a href="index3.php">Back</a></li>
+            <li><a href="create-skill.php?cv_id=<?php echo $cv_id; ?>">Back</a></li>
         </ul>
   </nav>
         <section id = "about-sc" class = "" style="margin-top: -3.5em;">
