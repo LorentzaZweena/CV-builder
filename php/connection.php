@@ -1,15 +1,21 @@
 <?php
-    $connection = mysqli_connect("localhost", "root", "", "cvbuilder");
-    
-    if(mysqli_connect_errno()){
-        echo "Failed to connect: " . mysqli_connect_error();
+    //nama server
+    $server = "localhost";
+
+    //username database
+    $user = "root";
+
+    //password database
+    $password = "";
+
+    //nama database
+    $nama_database = "cvbuilder";
+
+    $connection = mysqli_connect($server, $user, $password, $nama_database);
+    if(!$connection){
+        die("Gagal terhubung dengan database: " . mysqli_connect_error());
     }
 
-    return array(
-        'host' => "localhost",
-        'username' => "root",
-        'password' => "",
-        'dbname' => "cvbuilder"
-        
-    );
+    //memulai session php
+    session_start();
 ?>

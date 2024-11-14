@@ -123,7 +123,7 @@
                 <a href="create-certifications.php?cv_id=<?php echo $cv_id; ?>">Add Certification</a>
                 <a href="#">Add Educations</a>
                 <a href="create-experiences.php?cv_id=<?php echo $cv_id ?>">Add Experiences</a>
-                <a href="create-skill.php?cv_id=<?php echo $id_cv; ?>">Add Skill</a>
+                <a href="create-skill.php?cv_id=<?php echo $cv_id; ?>">Add Skill</a>
                 </div>
             </div>
             <!-- <div class="dropdown">

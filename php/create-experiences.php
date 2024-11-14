@@ -126,7 +126,7 @@
                     <a href="create-skill.php?cv_id=<?php echo $cv_id; ?>">Add Skill</a>
                 </div>
             </div>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="dropbtn">Delete 
                     <i class="fa fa-caret-down"></i>
                 </button>
@@ -136,7 +136,7 @@
                 <a href="delete-experience.php?cv_id=<?php echo $cv_id; ?>">Delete experience</a>
                 <a href="delete-skill.php?cv_id=<?php echo $id_cv; ?>">Delete Skills</a>
                 </div>
-            </div>
+            </div> -->
             <li><a href="index3.php">Back</a></li>
         </ul>
   </nav>

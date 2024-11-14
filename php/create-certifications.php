@@ -1,6 +1,7 @@
 <?php
     include "connection.php";
     $cv_id = isset($_GET['cv_id']) ? $_GET['cv_id'] : header('Location: index3.php');
+    // $cv_id = isset($_GET['cv_id']) ? $_GET['cv_id'] : header('Location: create-certifications.php');
 
     if(isset($_POST['submit'])) {
         $cert_title = htmlspecialchars(trim($_POST['cert_title']));
@@ -141,7 +142,7 @@
                 <a href="#">Add Certification</a>
                 <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
                 <a href="create-experiences.php?cv_id=<?php echo $cv_id ?>">Add Experiences</a>
-                <a href="create-skill.php?cv_id=<?php echo $id_cv; ?>">Add Skill</a>
+                <a href="create-skill.php?cv_id=<?php echo $cv_id; ?>">Add Skill</a>
                 </div>
             </div>
             <!-- <div class="dropdown">

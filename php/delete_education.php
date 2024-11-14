@@ -6,5 +6,5 @@
     $query = "DELETE FROM `education` WHERE id='$id'";
     mysqli_query($connection, $query);
 
-    header('location:create-educations.php');
+    header('location:delete-education.php');
 ?>

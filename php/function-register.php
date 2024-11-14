@@ -19,13 +19,13 @@ function registrasi($data){
     }
 
     //encrypt password
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     //insert db
     mysqli_query($connection, "INSERT INTO user VALUES('', '$username', '$password')");
     
     // Start the session
-    session_start();
+    // session_start();
     
     // Store the username in a session variable
     $_SESSION['username'] = $username;

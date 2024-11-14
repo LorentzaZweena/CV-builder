@@ -106,21 +106,10 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="#">Add Certification</a>
+                <a href="create-certifications.php?cv_id=<?php echo $cv_id ?>">Add Certifications</a>
                 <a href="create-educations.php?cv_id=<?php echo $cv_id ?>">Add Educations</a>
                 <a href="create-experiences.php?cv_id=<?php echo $cv_id ?>">Add Experiences</a>
                     <a href="#">Add Skills</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Delete 
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                <a href="delete_certification.php?cv_id=<?php echo $id_cv; ?>">Delete Certification</a>
-                <a href="delete-education.php?cv_id=<?php echo $id_cv; ?>">Delete education</a>
-                <a href="delete-experience.php?cv_id=<?php echo $id_cv; ?>">Delete experience</a>
-                <a href="delete-skill.php?cv_id=<?php echo $id_cv; ?>">Delete Skills</a>
                 </div>
             </div>
             <li><a href="index3.php">Back</a></li>

@@ -6,5 +6,5 @@
     $query = "DELETE FROM `skills` WHERE id='$id'";
     mysqli_query($connection, $query);
 
-    header('location:create-skill.php');
+    header('location:index3.php');
 ?>
