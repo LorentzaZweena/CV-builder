@@ -1,5 +1,9 @@
 <?php
     include "connection.php";
+    // session_start();
+    
+    $user_id = $_SESSION['id'];
+
     if (isset($_POST['firstname'])) {
         $firstname = htmlspecialchars(trim($_POST['firstname'] ?? ''));
         $middlename = htmlspecialchars(trim($_POST['middlename'] ?? ''));
@@ -7,13 +11,14 @@
         
         $full_name = trim($firstname . " " . $middlename . " " . $lastname);
         $photo = '';
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
-                $photoTmpName = $_FILES['image']['tmp_name'];
-                $photoName = basename($_FILES['image']['name']);
-                $photoPath = '../images/' . $photoName;
-                move_uploaded_file($photoTmpName, $photoPath);
-                $photo = $photoPath;
-            }
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+            $photoTmpName = $_FILES['image']['tmp_name'];
+            $photoName = basename($_FILES['image']['name']);
+            $photoPath = '../images/' . $photoName;
+            move_uploaded_file($photoTmpName, $photoPath);
+            $photo = $photoPath;
+        }
         
         $designation = $_POST['designation'];
         $address = $_POST['address'];
@@ -21,16 +26,21 @@
         $phone = $_POST['mobileno'];
         $selfDescription = $_POST['summary'];
 
-        $sql = "INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`) VALUES ('".$full_name."', '".$designation."', '".$address."', '".$photo."', '".$email."', '".$phone."', '".$selfDescription."')";
+        $sql = "INSERT INTO `creative` (`full_name`, `designation`, `address`, `photo`, `email`, `mobileno`, `selfDescription`, `user_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = mysqli_prepare($connection, $sql);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $full_name, $designation, $address, $photo, $email, $phone, $selfDescription, $user_id);
 
-        if(mysqli_query($connection, $sql)){
+        if(mysqli_stmt_execute($stmt)){
             header("location:index3.php");
         } else {
             echo "Error: " . mysqli_error($connection);
         }
         
+        mysqli_stmt_close($stmt);
     }
 ?>
+
 
 <!DOCTYPE html>
 <html>

@@ -469,8 +469,12 @@
                   <th>Action</th>
                 </tr>
                 <?php
-      $sql = "SELECT id, full_name, designation FROM creative";
-      $query = mysqli_query($connection, $sql);
+      // Modify the existing query
+      $sql = "SELECT id, full_name, designation FROM creative WHERE user_id = ?";
+      $stmt = mysqli_prepare($connection, $sql);
+      mysqli_stmt_bind_param($stmt, "i", $_SESSION['id']); 
+      mysqli_stmt_execute($stmt);
+      $query = mysqli_stmt_get_result($stmt);
       
       if (!$query) {
           die("Error: " . mysqli_error($connection));

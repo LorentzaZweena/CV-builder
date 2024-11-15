@@ -1180,21 +1180,29 @@
 
             // show the list data
             const showListData = (listData, listContainer) => {
-                listContainer.innerHTML = "";
-                listData.forEach(listItem => {
-                    let itemElem = document.createElement('div');
-                    itemElem.classList.add('preview-item');
-                    
-                    for(const key in listItem){
-                        let subItemElem = document.createElement('span');
-                        subItemElem.classList.add('preview-item-val');
-                        subItemElem.innerHTML = `${listItem[key]}`;
-                        itemElem.appendChild(subItemElem);
-                    }
-
-                    listContainer.appendChild(itemElem);
-                })
+    listContainer.innerHTML = "";
+    listData.forEach(listItem => {
+        let itemElem = document.createElement('div');
+        itemElem.classList.add('preview-item');
+        
+        for(const key in listItem){
+            let subItemElem = document.createElement('span');
+            subItemElem.classList.add('preview-item-val');
+            
+            // Add dash between start and end dates
+            if(key === 'exp_start_date' || key === 'edu_start_date') {
+                subItemElem.innerHTML = `${listItem[key]} - `;
+            } else {
+                subItemElem.innerHTML = `${listItem[key]}`;
             }
+            
+            itemElem.appendChild(subItemElem);
+        }
+
+        listContainer.appendChild(itemElem);
+    })
+}
+
 
             const displayCV = (userData) => {
                 nameDsp.innerHTML = userData.firstname + " " + userData.middlename + " " + userData.lastname;
