@@ -832,7 +832,7 @@
     }
 }
 
-/* Responsive styles for extra small screens */
+
 @media screen and (max-width: 480px) {
     html {
         font-size: 9px;
@@ -860,6 +860,16 @@
     .projects-items.preview-blk-list .preview-item span {
         display: block;
         margin: 0.5rem 0;
+    }
+
+    .satu{
+        width: 30%;
+        text-align: center;
+    }
+
+    .dua{
+        width: 40%;
+        text-align: center;
     }
 }
 

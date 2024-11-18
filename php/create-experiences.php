@@ -155,17 +155,17 @@
                                         <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Title</label>
-                                                    <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" placeholder="e.g Full-stack programmer">
+                                                    <input name = "exp_title" type = "text" class = "form-control exp_title" id = "" placeholder="e.g Full-stack programmer" required>
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Company / Organization</label>
-                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" placeholder="e.g SMK PESAT ITXPRO">
+                                                    <input name = "exp_organization" type = "text" class = "form-control exp_organization" id = "" placeholder="e.g SMK PESAT ITXPRO" required>
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Location</label>
-                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" placeholder="e.g Bogor, Indonesia">
+                                                    <input name = "exp_location" type = "text" class = "form-control exp_location" id = "" placeholder="e.g Bogor, Indonesia" required>
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -173,20 +173,21 @@
                                             <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_start_date" class="form-label">Start Month</label>
-                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="e.g August">
+                                                    <input name="exp_start_date" type="text" class="form-control exp_start_date" id="exp_start_date" placeholder="e.g August" required>
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class="form-elem">
                                                     <label for="exp_end_date" class="form-label">End Month - Year</label>
-                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="e.g November 2021">
+                                                    <input name="exp_end_date" type="text" class="form-control exp_end_date" id="exp_end_date" placeholder="e.g November 2021" required>
                                                     <span class="form-text"></span>
                                                 </div>
                                         </div>
                                         <div class="cols-2">
                                                 <div class="form-elem">
                                                     <label for="exp_description" class="form-label">Description</label>
-                                                    <textarea name="exp_description" class="form-control edu_description" id="exp_description" rows="2" placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis pharetra inceptos leo suscipit, condimentum aliquet enim praesent. Auctor facilisi aliquam accumsan non ultrices iaculis felis lectus senectus. Suscipit velit aptent tristique lobortis sagittis conubia senectus commodo."></textarea>
+                                                    <textarea name="exp_description" class="form-control edu_description" id="exp_description" rows="2" placeholder="e.g Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis pharetra inceptos leo suscipit, condimentum aliquet enim praesent. Auctor facilisi aliquam accumsan non ultrices iaculis felis lectus senectus. Suscipit velit aptent tristique lobortis sagittis conubia senectus commodo." required></textarea>
                                                     <span class="form-text"></span>
+                                                    
                                                 </div>
                                         </div>
                                 </div>

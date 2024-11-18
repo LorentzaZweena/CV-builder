@@ -33,7 +33,15 @@ body {
     padding: 20px;
     margin: 0 auto;
     width: 800px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); */
+}
+
+.cv-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: white;
 }
 
 header {
@@ -131,6 +139,7 @@ header p {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 11.5em;
     }
 
     .export-btn:hover {
@@ -138,10 +147,78 @@ header p {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
+
+    .go-back{
+        margin-left: 16em;
+        margin-bottom: 1em;
+    }
+
+    /* Responsive text sizing */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 18px;
+    }
+    
+    h3, h4 {
+        font-size: 16px;
+    }
+    
+    p, ul li {
+        font-size: 14px;
+    }
+
+    .buat-flex {
+        flex-direction: column;
+    }
+    
+    .buat-flex > div {
+        margin: 2px 0;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+    .cv-container {
+        padding: 10px;
+        width: 100%;
+        margin-left: -1px;
+    }
+    
+    .cv-section {
+        margin-bottom: 15px;
+    }
+    
+    .experience-item, .education-item {
+        margin-bottom: 12px;
+    }
+
+    .export-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        margin-left: 0;
+    }
+
+    .go-back {
+        margin-left: 1em;
+    }
+}
     </style>
 </head>
 <body>
-<section style="margin-left: 6em; margin-bottom: 1em;">
+<section class="go-back">
         <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
     </section>
 
@@ -373,7 +450,7 @@ header p {
     </div>
     <section class="print-btn-sc">
     <div class="container">
-        <button type="button" onclick="window.print()" class="export-btn" style="margin-left: 5em;">
+        <button type="button" onclick="window.print()" class="export-btn">
             <span class="material-symbols-outlined" style="margin-right: 8px;">Download as PDF</span>
         </button>
     </div>

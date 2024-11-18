@@ -150,6 +150,13 @@
 .loginpage_dwimg{
     margin: 5px;
 }
+
+@media screen and (max-width: 600px) {
+    .login_main{
+            margin-top: 5.5em;
+            margin-left: 1em;
+    }
+}
     </style>
 </head>
 <body>

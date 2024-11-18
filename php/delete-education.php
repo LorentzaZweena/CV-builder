@@ -163,6 +163,20 @@
 .desc2{
     margin-left: 2.3em;
 }
+
+.swal-medium {
+    width: 400px !important;
+    font-size: 1em !important;
+}
+
+.swal-title {
+    font-size: 1em !important;
+}
+
+.swal-text {
+    font-size: 1em !important;
+}
+
 @media (max-width: 768px) {
     .main-content {
         margin-left: 0;
@@ -321,7 +335,7 @@
                         echo "<td>" . htmlspecialchars($data['end_date']) . "</td>";
                         echo "<td style='text-align: justify;'>" . htmlspecialchars($data['description']) . "</td>";
                         echo "<td>";
-                        echo "<a href='delete_education.php?id=" . $data['id'] . "''><button class='button button3'>Delete</button></a>";
+                        echo "<button onclick='deleteCertification(" . $data['id'] . ")' class='button button3'>Delete</button>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -359,6 +373,46 @@ function toggleMenu() {
     });
 }
 
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function deleteCertification(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+            popup: 'swal-medium',
+            title: 'swal-title',
+            content: 'swal-text'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('delete_education.php?id=' + id, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Education deleted successfully.',
+                    icon: 'success',
+                    customClass: {
+                        popup: 'swal-medium',
+                        title: 'swal-title',
+                        content: 'swal-text',
+                        confirmButton: 'swal-confirm-button'
+                    }
+                }).then(() => {
+                    document.querySelector(`button[onclick="deleteCertification(${id})"]`).closest('tr').remove();
+                });
+            });
+        }
+    });
+}
 </script>
     </body>
 </html>
