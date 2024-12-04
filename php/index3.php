@@ -162,8 +162,8 @@
         .card2 {
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         transition: 0.3s;
-        width: 90%;
-        margin-left: -12em;
+        width: 100%;
+        margin-left: -14em;
         margin-top: 1.4em;
         padding-bottom: 1em;
         border-radius: 0.5em;
@@ -178,7 +178,7 @@
         transition: 0.3s;
         width: 95%;
         margin-left: -12em;
-        margin-top: 2.5em;
+        margin-top: 1em;
         padding-bottom: 1em;
         border-radius: 0.5em;
         }
