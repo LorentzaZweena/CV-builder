@@ -13,8 +13,8 @@
         }
         .login_main{
             display: flex;
-            margin-top: 5.5em;
-            margin-left: 31em;
+            margin-top: 7.5em;
+            margin-left: 37em;
             text-decoration: none;
     }
 
