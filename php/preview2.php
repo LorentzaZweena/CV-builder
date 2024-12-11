@@ -218,9 +218,9 @@ header p {
     </style>
 </head>
 <body>
-<section class="go-back">
+<!-- <section class="go-back">
         <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
-    </section>
+    </section> -->
 
     <div class="cv-container">
         <header>

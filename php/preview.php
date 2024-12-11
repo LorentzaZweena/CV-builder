@@ -897,7 +897,7 @@
         </style>
 </head>
 <body>
-    <section style="margin-left: 1em; margin-bottom: 1em;">
+    <!-- <section style="margin-left: 1em; margin-bottom: 1em;">
         <div class="buat-flex">
             <div class="satu">
                 <a href="index3.php" class="print-btn btn btn-primary">Go back</a>
@@ -906,9 +906,9 @@
             <a href="preview2.php?id=<?= $cv_id ?>" class="print-btn btn btn-primary">ATS version</a>
             </div>
         </div>
-    </section>
+    </section> -->
 
-<section id = "preview-sc" class = "print_area active">
+<section id = "preview-sc" class = "print_area active" style="margin-top: 2em;">
     <?php
         $cv_id = $_GET['id'];
 
@@ -1112,6 +1112,13 @@
                 <section class = "print-btn-sc">
                     <div class = "container">
                         <button id="download-pdf-btn" type="button" class="print-btn btn btn-primary" onclick="print()">Download as PDF</button>
+                        <?php
+                        // echo "<div class='container'>";
+                        // echo "<a href='preview2.php?id=".$cv_id."' target='_blank'><button class='button' id='download-pdf-btn' class='print-btn btn btn-primary' type='button'>ATS version</button></a>";
+                        echo "<a href='preview2.php?id=".$cv_id."' target='blank'><button id='download-pdf-btn' type='button' class='print-btn btn btn-primary'>ATS version</button></a>";
+                        // echo "</div>";
+                        ?>
+                        <!-- <a href="preview2.php" target="_blank"><button id="download-pdf-btn" type="button" class="print-btn btn btn-primary">ATS version</button></a> -->
                     </div>
                 </section>
             
